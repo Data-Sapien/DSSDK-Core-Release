@@ -15,7 +15,7 @@ let package = Package(
         // Realm for your framework’s internal use
         .package(
             url: "https://github.com/realm/realm-swift.git",
-            .exact("10.39.0")
+            from: "10.44.0"
         )
     ],
     targets: [
