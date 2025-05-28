@@ -1,0 +1,825 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios18.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name DSSDK
+import AVFoundation
+import AuthenticationServices
+import SystemConfiguration.CaptiveNetwork
+import CoreLocation
+import CoreTelephony
+@_exported import DSSDK
+import Foundation
+import JavaScriptCore
+import MachO
+import MediaPlayer
+import Network
+import NotificationCenter
+import ObjectiveC
+import SafariServices
+import Security
+import Swift
+import SwiftUI
+import SystemConfiguration
+import UIKit
+import UserNotifications
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import ObjectiveC.runtime
+public class DeviceDataCollector : DSSDK.MeDataValueCollector {
+  public init()
+  public typealias T = Any
+  public var name: Swift.String
+  public var requiredPermissions: [Swift.String]? {
+    get
+  }
+  public func isPermissionsGranted() -> Swift.Bool
+  public var permissionType: DSSDK.PermissionType?
+  public func collectData(meDataName: Swift.String? = nil) -> DSSDK.MeDataValueResponse
+  public func collectData(onSuccess: @escaping (DSSDK.MeDataValueResponse?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void))
+  @objc deinit
+}
+public enum DeviceDataType : Swift.String {
+  case DEVICE_BRAND
+  case DEVICE_LANGUAGE
+  case DEVICE_COUNTRY
+  case SDK_VERSION
+  case AB_TEST_GROUP
+  case PUSH_NOTIFICATION_STATUS
+  case MOBILE_CARRIER
+  case DEVICE_OS
+  case DEVICE_OS_VERSION
+  case DEVICE_MODEL
+  case LAST_APP_OPEN_DATE
+  case DEVICE_SCREEN_RESOLUTION
+  case DEVICE_TIME_ZONE
+  case DEVICE_GMT_OFFSET
+  case DEVICE_BATTERY_LEVEL
+  case DEVICE_BATTERY_STATE
+  case DEVICE_ORIENTATION
+  case DEVICE_ROOTED
+  case SESSION_DURATION
+  case DEVICE_AVAILABLE_STORAGE
+  case DEVICE_NETWORK_TYPE
+  case DEVICE_UPTIME
+  case DEVICE_MUTED
+  case DEVICE_RAM_USAGE_PERCENTAGE
+  case DEVICE_DOWNLOAD_SPEED
+  case DEVICE_UPLOAD_SPEED
+  case DEVICE_UI_MODE
+  case DEVICE_VPN_ACTIVE
+  case DEVICE_HEADPHONE_CONNECTED
+  case DEVICE_IP_ADDRESS
+  case DEVICE_SCREEN_BRIGHTNESS_LEVEL
+  case UNKNOWN
+  public static func getTypeOrNull(meDataName: Swift.String?) -> DSSDK.DeviceDataType?
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public class InstalledAppDataCollector : DSSDK.MeDataValueCollector {
+  public init()
+  public typealias T = [DSSDK.InstalledAppData]
+  public var name: Swift.String
+  public var requiredPermissions: [Swift.String]?
+  public var permissionType: DSSDK.PermissionType?
+  public func isPermissionsGranted() -> Swift.Bool
+  public func collectData(meDataName: Swift.String?) -> DSSDK.MeDataValueResponse
+  public func collectData(onSuccess: @escaping (DSSDK.MeDataValueResponse?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void))
+  @objc deinit
+}
+public struct InstalledAppData : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol PermissionRequestHandling : AnyObject {
+  init()
+  var permissionTypeCase: DSSDK.PermissionType.Case { get }
+  func request(_ type: DSSDK.PermissionType, completion: @escaping (Swift.Bool) -> Swift.Void)
+}
+@_hasMissingDesignatedInitializers public class PermissionRequestRegistry {
+  public static let shared: DSSDK.PermissionRequestRegistry
+  public func register(_ handler: any DSSDK.PermissionRequestHandling)
+  public func handler(for type: DSSDK.PermissionType) -> (any DSSDK.PermissionRequestHandling)?
+  @objc deinit
+}
+public protocol CollectorPlugin {
+  static func createCollector() -> any DSSDK.MeDataValueCollector
+}
+public protocol ContinuousMeDataValueCollector {
+  associatedtype T
+  var name: Swift.String { get }
+  var requiredPermissions: [Swift.String]? { get }
+  func startDataCollection() async throws -> DSSDK.ContinuousMeDataValueResponse
+  func saveData(data: Self.T)
+  func isPermissionsGranted() async -> Swift.Bool
+}
+public enum ContinuousMeDataValueResponse {
+  case started(Any?)
+  case failed(any Swift.Error)
+  case permissionRequired([Swift.String]?)
+}
+public enum ContinuousCollectorType : Swift.String {
+  case location
+  public static func getTypeOrNull(meDataName: Swift.String?) -> DSSDK.ContinuousCollectorType?
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol MeDataValueCollector {
+  associatedtype T
+  var name: Swift.String { get }
+  var requiredPermissions: [Swift.String]? { get }
+  var permissionType: DSSDK.PermissionType? { get }
+  func collectData(meDataName: Swift.String?) async throws -> DSSDK.MeDataValueResponse
+  func isPermissionsGranted() -> Swift.Bool
+}
+public enum MeDataValueResponse {
+  case success(Any?)
+  case failed(any Swift.Error)
+  case permissionRequired([Swift.String]?)
+  public static func successResponse(_ data: Any?) -> DSSDK.MeDataValueResponse
+  public static func failedResponse(_ throwable: any Swift.Error) -> DSSDK.MeDataValueResponse
+  public static func permissionRequiredResponse(_ permissionList: [Swift.String]? = nil) -> DSSDK.MeDataValueResponse
+}
+public enum CollectorType : Swift.String {
+  case contactList
+  case appUsage
+  case bluetoothDevices
+  case calendar
+  case photoExif
+  case installedApps
+  case networkSsid
+  case callLog
+  case deviceData
+  case reminderData
+  case totalCalorieData
+  case latestWeightData
+  case latestHeightData
+  case dailyAverageStepCount
+  case dailyAverageWalkingDistance
+  case dailyAverageFlightsClimbed
+  case dailyAverageStandTime
+  case dailyAverageHeartRate
+  case dailyAverageRestingHeartRate
+  case dailyAverageWalkingHeartRate
+  case unknown
+  public static func getTypeOrNull(meDataName: Swift.String?) -> DSSDK.CollectorType?
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum PermissionType {
+  case health(scopes: [Swift.String])
+  case location
+  case contact
+  case photos
+  case calendar
+  case reminder
+}
+extension DSSDK.PermissionType {
+  public enum Case {
+    case health, location, contact, photos, calendar, reminder
+    public static func == (a: DSSDK.PermissionType.Case, b: DSSDK.PermissionType.Case) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var permissionTypeCase: DSSDK.PermissionType.Case {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers final public class BundleMarker {
+  @objc deinit
+}
+extension Foundation.Date {
+  public static var currentEpochTime: Swift.Int64 {
+    get
+  }
+}
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.Optional where Wrapped == Swift.String {
+  public func getCSSFileURL() -> Foundation.URL?
+  public func getFormViewerFileURL() -> Foundation.URL?
+}
+#else
+extension Swift.Optional where Wrapped == Swift.String {
+  public func getCSSFileURL() -> Foundation.URL?
+  public func getFormViewerFileURL() -> Foundation.URL?
+}
+#endif
+extension Swift.String {
+  public func jsEscapedString() -> Swift.String
+}
+extension DSSDK.ExchangeService : DSSDK.JavaScriptExportable {
+  public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+extension DSSDK.JourneyContext : DSSDK.JavaScriptExportable {
+  public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+extension DSSDK.ManagedApiService : DSSDK.JavaScriptExportable {
+  public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+extension DSSDK.MeDataService : DSSDK.JavaScriptExportable {
+  public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+extension DSSDK.QuestionService : DSSDK.JavaScriptExportable {
+  public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+public protocol JavaScriptExportable {
+  func registerMethods(to context: JavaScriptCore.JSContext)
+}
+public protocol JavaScriptExportableProvider : ObjectiveC.NSObject {
+  static func provideExportables() -> [any DSSDK.JavaScriptExportable]
+}
+public class JavaScriptRunner {
+  public init()
+  public func registerClass(_ exportable: any DSSDK.JavaScriptExportable)
+  public func runScript(_ script: Swift.String) throws -> JavaScriptCore.JSValue
+  public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void) throws
+  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Swift.String?) -> Swift.Void, onError: @escaping (Swift.String) -> Swift.Void) throws -> JavaScriptCore.JSValue
+  @objc deinit
+}
+public protocol WebViewModuleProvider : ObjectiveC.NSObject {
+  static func provideUserScripts() -> [WebKit.WKUserScript]
+  static func provideHandlers(webView: WebKit.WKWebView) -> [Swift.String : any WebKit.WKScriptMessageHandler]
+}
+public class CollectorRegistry {
+  public init()
+  public func removeCollector(collector: any DSSDK.MeDataValueCollector)
+  public func addCollector(_ collector: any DSSDK.MeDataValueCollector)
+  public func addCollectors(_ collectors: any DSSDK.MeDataValueCollector...)
+  public func getCollectorFor(_ meDataName: Swift.String?) -> (any DSSDK.MeDataValueCollector)?
+  public static let shared: DSSDK.CollectorRegistry
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ContinuousMeDataService {
+  public static let shared: DSSDK.ContinuousMeDataService
+  public func requestLocationPermission(completion: @escaping (Swift.Bool) -> Swift.Void)
+  public func startLocationCollection()
+  public func checkLocationServicesEnabled(completion: @escaping (Swift.Bool) -> Swift.Void)
+  public func requestLocation()
+  @objc deinit
+}
+public struct DataSapien {
+  public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
+  public static func getMeDataService() -> DSSDK.MeDataService
+  public static func getJourneyService() -> DSSDK.JourneyService
+  public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
+  public static func getRuleEngineService() -> DSSDK.RuleEngineService
+  public static func getExchangeService() -> DSSDK.ExchangeService
+  public static func getQuestionService() -> DSSDK.QuestionService
+  public static func getManagedApiService() -> DSSDK.ManagedApiService
+  public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
+}
+@_hasMissingDesignatedInitializers public class DataSapienConfig {
+  public static let shared: DSSDK.DataSapienConfig
+  public func getAuthScope() -> Swift.String?
+  public func setAuthScope(scope: Swift.String?)
+  public func getAuthClientSecret() -> Swift.String?
+  public func setauthClientSecret(clientSecret: Swift.String?)
+  public func getAuthClientId() -> Swift.String?
+  public func setAuthClientId(clientId: Swift.String?)
+  public func getAuthURL() -> Swift.String?
+  public func setAuthURL(authUrl: Swift.String?)
+  public func setFromLocal(local: Swift.Bool)
+  public func getFromlocal() -> Swift.Bool
+  public func getBaseUrl() -> Swift.String?
+  public func setAppGroupID(_ appGroupID: Swift.String?)
+  public func getAppGroupID() -> Swift.String?
+  public func setAuthKey(_ authKey: Swift.String?)
+  public func setBaseUrl(_ baseUrl: Swift.String?)
+  public func registerCollectors(_ collectorRegistry: DSSDK.CollectorRegistry)
+  public func setRuleCallback(_ callback: ((Swift.String) throws -> Swift.Bool)?)
+  public func getRuleCallback() -> ((Swift.String) throws -> Swift.Bool)?
+  public class Builder {
+    public init()
+    public func setAuth(_ authURL: Swift.String, _ authClientId: Swift.String, _ authClientSecret: Swift.String, _ authScope: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func setAuthKey(_ authKey: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func setBaseUrl(_ baseUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func setAppGroupID(_ appGroupID: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func registerCollectors(_ collectorRegistry: DSSDK.CollectorRegistry) -> DSSDK.DataSapienConfig.Builder
+    public func setRuleCallback(_ callback: ((Swift.String) throws -> Swift.Bool)?) -> DSSDK.DataSapienConfig.Builder
+    public func setFromLocal(_ fromLocal: Swift.Bool) -> DSSDK.DataSapienConfig.Builder
+    public func build() -> DSSDK.DataSapienConfig
+    @objc deinit
+  }
+  @objc deinit
+}
+extension DSSDK.DataSapienConfig {
+  public static func loadFromJSON() -> DSSDK.DataSapienConfig
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class DSAppDelegate : UIKit.UIResponder, UIKit.UIApplicationDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc open func application(_ application: UIKit.UIApplication, continue userActivity: Foundation.NSUserActivity, restorationHandler: @escaping ([any UIKit.UIUserActivityRestoring]?) -> Swift.Void) -> Swift.Bool
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ExchangeService {
+  public static let shared: DSSDK.ExchangeService
+  public func fetchExchanges(onSuccess: @escaping ([DSSDK.Exchange]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getAllExchanges() -> [DSSDK.Exchange]?
+  public func getExchagesByTag(tag: Swift.String) -> [DSSDK.Exchange]?
+  public func getNativeMeDataCollector(exchange: DSSDK.Exchange) -> [any DSSDK.MeDataValueCollector]?
+  public func getQaBasedMeDataCollector(exchange: DSSDK.Exchange) -> [DSSDK.Question]?
+  public func getQaBasedMeDataByName(name: Swift.String, exchange: DSSDK.Exchange) -> DSSDK.Question?
+  public func getSurveyQuestions(exchange: DSSDK.Exchange) -> [DSSDK.Question]?
+  public func completeExchangeAndGetLatestInfo(exchange: DSSDK.Exchange?) -> DSSDK.ExchangeTransactionInfo?
+  public func saveExchangeMeDataValue(exchange: DSSDK.Exchange?, meDataDefinition: DSSDK.MeDataDefinition, values: [Any], onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func saveSurveyAnswer(exchange: DSSDK.Exchange?, question: DSSDK.Question?, answers: [Swift.String], onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getLatestExchangeTransactionInfo(exchangeId: Swift.String) -> DSSDK.ExchangeTransactionInfo?
+  public func clearExchangeTransactions()
+  public func clearExchangeTransaction(by id: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class JourneyService {
+  public static let shared: DSSDK.JourneyService
+  public func fetchJourneys(onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getJourneysByTag(tag: Swift.String, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
+  public func executeJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ManagedApiService {
+  public static let shared: DSSDK.ManagedApiService
+  public func fetchAndSave()
+  public func getManagedApi(name: Swift.String) -> DSSDK.DataMap?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class MeDataService {
+  public static let shared: DSSDK.MeDataService
+  public func getMeDataCategoryGroups(onSuccess: @escaping ([DSSDK.MeDataCategoryGroup]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func fetchMeDataDefinitions(onSuccess: @escaping ([DSSDK.MeDataDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func refreshMeDataDefinitions()
+  public func getMeDataDefinitions() -> [DSSDK.MeDataDefinition]?
+  public func getMeDataDefinitionByName(name: Swift.String) -> DSSDK.MeDataDefinition?
+  public func saveMeDataValue(meDataContainer: DSSDK.MeDataContainer, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func bulkSaveMeDataValues(meDataContainers: [DSSDK.MeDataContainer], onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func saveMeDataValue(meDataContainer: DSSDK.MeDataContainer)
+  public func getAllMeDataValue(onSuccess: @escaping ([DSSDK.MeData]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getMeDataValueByName(name: Swift.String) -> DSSDK.MeData?
+  public func getLatestMeDataValueByName(name: Swift.String) -> [Swift.String]?
+  public func getLatestMeDataListValueByName(names: [Swift.String]) -> [Swift.String : [Swift.String]?]
+  public func getMeDataValueByDefinition(meDataDefinition: DSSDK.MeDataDefinition) -> DSSDK.MeData?
+  public func collectMeData(meDataNameList: [Swift.String], onSuccess: @escaping ([Swift.String : Any]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func collectMeData(definition: DSSDK.MeDataDefinition, onSuccess: @escaping ([Swift.String : Any]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func collectAllNatives(onComplete: (() -> Swift.Void)? = nil)
+  public func clearMeDataValueByName(name: Swift.String)
+  public func searchMeDataLongitudinally(withID medataId: Swift.String, searchTerms: [Swift.String], completion: @escaping ([Swift.String]) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class QuestionService {
+  public static let shared: DSSDK.QuestionService
+  public func fetchQuestions(onSuccess: @escaping ([DSSDK.Question]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getQuestionByMeDataName(meDataDefinitionName: Swift.String) -> DSSDK.Question?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class RuleEngineService {
+  public static let shared: DSSDK.RuleEngineService
+  public func runRules()
+  @objc deinit
+}
+public struct BaseResponse<T> : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
+  public var created: [DSSDK.BaseVersionedResponse<T>]
+  public var updated: [DSSDK.BaseVersionedResponse<T>]
+  public var deleted: [Swift.String]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct BaseVersionedResponse<T> : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
+  public var id: Swift.String
+  public var createdBy: Swift.String?
+  public var createdAt: Swift.String?
+  public var updatedBy: Swift.String?
+  public var updatedAt: Swift.String?
+  public var payload: T
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct Script : Swift.Codable, Swift.Hashable {
+  public var code: Swift.String
+  public static func == (lhs: DSSDK.Script, rhs: DSSDK.Script) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct DSConfig : Swift.Decodable {
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Audience : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var text: Swift.String
+  public var description: Swift.String?
+  public var segmentsJson: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Exchange : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String?
+  public var state: Swift.String
+  public var type: Swift.String?
+  public var tags: [Swift.String]?
+  public var metadata: DSSDK.ExchangeMetadata?
+  public var audience: DSSDK.ExchangeAudience?
+  public var medataIds: [Swift.String]
+  public var survey: DSSDK.Survey?
+  public var postScript: DSSDK.Script?
+  public var publishedBy: Swift.String?
+  public var publishedAt: Foundation.TimeInterval?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ExchangeAudience : Swift.Codable {
+  public var audience: DSSDK.Audience?
+  public var openEnded: Swift.Bool
+  public var count: Swift.Int
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ExchangeMetadata : Swift.Codable {
+  public var title: Swift.String
+  public var description: Swift.String?
+  public var imageUrl: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Question : Swift.Codable, Swift.Hashable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var text: Swift.String
+  public var description: Swift.String?
+  public var imageUrl: Swift.String?
+  public var meDataDef: DSSDK.MeDataDefinition?
+  public var valueDef: DSSDK.ValueDefinition?
+  public static func == (lhs: DSSDK.Question, rhs: DSSDK.Question) -> Swift.Bool
+  public func getValueDef() -> DSSDK.ValueDefinition?
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Survey : Swift.Codable {
+  public var id: Swift.String
+  public var questions: [DSSDK.SurveyQuestion]
+  public init(id: Swift.String = UUID().uuidString, questions: [DSSDK.SurveyQuestion])
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct SurveyQuestion : Swift.Codable {
+  public var question: DSSDK.Question?
+  public var required: Swift.Bool
+  public var minAnswerTimeMs: Swift.Int
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ExchangeMeDataValue : Swift.Codable {
+  public var id: Swift.String
+  public var transactionInfoId: Swift.String
+  public var meDataDefinitionId: Swift.String
+  public var name: Swift.String
+  public var values: [Swift.String]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ExchangeTransaction : Swift.Codable {
+  public var id: Swift.String
+  public var latestTransactionInfoId: Swift.String
+  public var transactionInfo: [DSSDK.ExchangeTransactionInfo]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ExchangeTransactionInfo : Swift.Codable {
+  public var id: Swift.String
+  public var exchangeId: Swift.String
+  public var state: Swift.String
+  public var submissionTime: Foundation.TimeInterval
+  public var questionnaireResults: [DSSDK.QuestionnaireResult]
+  public var meDataValues: [DSSDK.ExchangeMeDataValue]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct QuestionnaireResult : Swift.Codable {
+  public var id: Swift.String
+  public var transactionInfoId: Swift.String
+  public var questionId: Swift.String
+  public var text: Swift.String
+  public var answers: [Swift.String]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension Foundation.NSNotification.Name {
+  public static let didReceiveAuthorizationCode: Foundation.Notification.Name
+}
+public struct Journey : Swift.Codable {
+  public var id: Swift.String
+  public var bpmnXml: Swift.String
+  public var metadata: DSSDK.JourneyMetadata?
+  public var tags: [Swift.String]?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct JourneyMetadata : Swift.Codable {
+  public var title: Swift.String
+  public var description: Swift.String?
+  public var imageUrl: Swift.String?
+  public func getImage() -> Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public class JourneyContext {
+  public init(values: [Swift.String : Any] = [:])
+  public func getValue<T>(forKey key: Swift.String) -> T?
+  public func putValue(_ value: Any, forKey key: Swift.String)
+  public func appendValues(values newValues: [Swift.String : Any])
+  public func getAllValues() -> [Swift.String : Any]
+  @objc deinit
+}
+public struct JourneyTransaction : Swift.Codable {
+  public var id: Swift.String
+  public var latestTransactionInfoId: Swift.String
+  public var transactionInfo: [DSSDK.JourneyTransactionInfo]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct JourneyTransactionInfo : Swift.Codable {
+  public var id: Swift.String
+  public var journeyId: Swift.String
+  public var state: Swift.String
+  public var submissionTime: Foundation.TimeInterval
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public typealias DataMap = [Swift.String : Swift.String]
+public struct MeDataCategoryGroup {
+}
+public struct MeDataGroup : Swift.Codable {
+  public var meDataDefinition: DSSDK.MeDataDefinition
+  public var meData: DSSDK.MeData
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum DataType : Swift.String, Swift.Codable {
+  case STRING
+  case NUMBER
+  case BOOLEAN
+  case DATETIME
+  case IMAGE
+  case VIDEO
+  case OBJECT
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct DataTypeConstraints : Swift.Codable, Swift.Hashable {
+  public static func == (lhs: DSSDK.DataTypeConstraints, rhs: DSSDK.DataTypeConstraints) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct EnumeratedValue : Swift.Codable, Swift.Hashable {
+  public var id: Swift.String
+  public var text: Swift.String
+  public var description: Swift.String?
+  public var imageUrl: Swift.String?
+  public static func == (lhs: DSSDK.EnumeratedValue, rhs: DSSDK.EnumeratedValue) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct EnumeratedValueConstraints : Swift.Codable, Swift.Hashable {
+  public var allowNone: Swift.Bool
+  public var allowIdk: Swift.Bool
+  public var allowNa: Swift.Bool
+  public var allowOther: Swift.Bool
+  public static func == (lhs: DSSDK.EnumeratedValueConstraints, rhs: DSSDK.EnumeratedValueConstraints) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MeDataCategory : Swift.Codable, Swift.Hashable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var iconUrl: Swift.String?
+  public var description: Swift.String?
+  public static func == (lhs: DSSDK.MeDataCategory, rhs: DSSDK.MeDataCategory) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var text: Swift.String?
+  public var type: Swift.String?
+  public var script: DSSDK.Script?
+  public var valueDef: DSSDK.ValueDefinition?
+  public var category: DSSDK.MeDataCategory?
+  public static func == (lhs: DSSDK.MeDataDefinition, rhs: DSSDK.MeDataDefinition) -> Swift.Bool
+  public func getMeDataDefinitionType() -> DSSDK.MeDataType?
+  public func createMeData(values: [Any], valueNotAvailable: Swift.Bool = false, saveDate: Swift.Int64 = Date.currentEpochTime) throws -> DSSDK.MeDataContainer
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum MeDataType : Swift.String, Swift.Codable {
+  case NATIVE
+  case QA_BASED
+  case API_BASED
+  case SCRIPTED
+  case INFERRED
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct MultiValueConstraints : Swift.Codable, Swift.Hashable {
+  public var minValue: Swift.Int
+  public var maxValue: Swift.Int
+  public static func == (lhs: DSSDK.MultiValueConstraints, rhs: DSSDK.MultiValueConstraints) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ValueDefinition : Swift.Codable, Swift.Hashable {
+  public var type: Swift.String?
+  public var constraints: DSSDK.DataTypeConstraints?
+  public var multivalued: Swift.Bool
+  public var multiValueConstraints: DSSDK.MultiValueConstraints?
+  public var enumerated: Swift.Bool
+  public var enumeratedValues: [DSSDK.EnumeratedValue]?
+  public var enumeratedValueConstraints: DSSDK.EnumeratedValueConstraints?
+  public static func == (lhs: DSSDK.ValueDefinition, rhs: DSSDK.ValueDefinition) -> Swift.Bool
+  public func getValueDefinitionDataType() -> DSSDK.DataType?
+  public func hash(into hasher: inout Swift.Hasher)
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MeData : Swift.Codable {
+  public var meDataDefinitionId: Swift.String
+  public var name: Swift.String
+  public var firstValueSaveDate: Swift.Int64
+  public var lastValueSaveDate: Swift.Int64
+  public var lastValueId: Swift.String
+  public var meDataValueInfo: [DSSDK.MeDataValueInfo]
+  public func getLastValue() -> DSSDK.MeDataValueInfo?
+  public func getAllValues() -> [DSSDK.MeDataValueInfo]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MeDataContainer : Swift.Codable {
+  public var meDataDefinition: DSSDK.MeDataDefinition
+  public var meDataValueInfo: [DSSDK.MeDataValueInfo]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MeDataValue : Swift.Codable {
+  public var id: Swift.String
+  public var value: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MeDataValueInfo : Swift.Codable {
+  public var id: Swift.String
+  public var meDataDefinitionId: Swift.String
+  public var valueNotAvailable: Swift.Bool
+  public var saveDate: Swift.Int64
+  public var meDataValue: [DSSDK.MeDataValue]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum DataTypeEntity : Swift.String {
+  case STRING
+  case NUMBER
+  case BOOLEAN
+  case DATETIME
+  case IMAGE
+  case VIDEO
+  case OBJECT
+  case UNKNOWN
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public class DSException : Swift.Error {
+  public init(errorCode: Swift.Int = DSException.DEFAULT_ERROR_CODE, message: Swift.String, info: Swift.String? = nil)
+  public static let DEFAULT_ERROR_CODE: Swift.Int
+  public static let GENERAL_ERROR_CODE: Swift.Int
+  public static let MD_ERROR_CODE: Swift.Int
+  public static let MD_SAVE_ERROR_CODE: Swift.Int
+  public static let MD_GET_ERROR_CODE: Swift.Int
+  public static let MD_VALUE_CREATION_NO_TYPE_ERROR_CODE: Swift.Int
+  public static let MD_VALUE_CREATION_TYPE_CAST_ERROR_CODE: Swift.Int
+  public static let RE_ERROR_CODE: Swift.Int
+  public static let RE_DATA_TYPE_ERROR_CODE: Swift.Int
+  public static let RE_MULTIVALUED_ERROR_CODE: Swift.Int
+  public static let RE_NO_VAL_DEF_ERROR_CODE: Swift.Int
+  public static let RE_CORRUPTED_RULE_ERROR_CODE: Swift.Int
+  public static let SEG_ERROR_CODE: Swift.Int
+  public static let COL_ERROR_CODE: Swift.Int
+  public static let COL_DEVICE_DATA_ERROR_CODE: Swift.Int
+  public static let COL_HEALTH_DATA_ERROR_CODE: Swift.Int
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class GeneralException : DSSDK.DSException {
+  override public init(errorCode: Swift.Int = DSException.GENERAL_ERROR_CODE, message: Swift.String = "General error occurred", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class MeDataValueCreationNoTypeException : DSSDK.DSException {
+  override public init(errorCode: Swift.Int = DSException.MD_VALUE_CREATION_NO_TYPE_ERROR_CODE, message: Swift.String, info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class MeDataValueCreationTypeCastException : DSSDK.DSException {
+  override public init(errorCode: Swift.Int = DSException.MD_VALUE_CREATION_TYPE_CAST_ERROR_CODE, message: Swift.String, info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class RuleEngineException : DSSDK.DSException {
+  override public init(errorCode: Swift.Int = DSException.RE_ERROR_CODE, message: Swift.String = "Rule engine error occurred", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class REDataTypeException : DSSDK.RuleEngineException {
+  override public init(errorCode: Swift.Int = DSException.RE_DATA_TYPE_ERROR_CODE, message: Swift.String = "Rule engine criteria data type not allowed", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class REMultiValuedException : DSSDK.RuleEngineException {
+  override public init(errorCode: Swift.Int = DSException.RE_MULTIVALUED_ERROR_CODE, message: Swift.String = "Operator cannot be used with multivalued", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class RENoValueDefinitionException : DSSDK.RuleEngineException {
+  override public init(errorCode: Swift.Int = DSException.RE_NO_VAL_DEF_ERROR_CODE, message: Swift.String = "Value definition couldn't be found in the database", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class RECorruptedRuleException : DSSDK.RuleEngineException {
+  override public init(errorCode: Swift.Int = DSException.RE_CORRUPTED_RULE_ERROR_CODE, message: Swift.String = "Rule corrupted, there is no filter or filters or criteria", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class CollectorException : DSSDK.DSException {
+  override public init(errorCode: Swift.Int = DSException.COL_ERROR_CODE, message: Swift.String = "MeData Collector error occurred", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class CollectorDeviceDataException : DSSDK.CollectorException {
+  override public init(errorCode: Swift.Int = DSException.COL_DEVICE_DATA_ERROR_CODE, message: Swift.String = "Collector device data error occured", info: Swift.String? = nil)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class CollectorHealthDataException : DSSDK.CollectorException {
+  override public init(errorCode: Swift.Int = DSException.COL_HEALTH_DATA_ERROR_CODE, message: Swift.String = "Collector health data error occured", info: Swift.String? = nil)
+  @objc deinit
+}
+extension DSSDK.DeviceDataType : Swift.Equatable {}
+extension DSSDK.DeviceDataType : Swift.Hashable {}
+extension DSSDK.DeviceDataType : Swift.RawRepresentable {}
+extension DSSDK.ContinuousCollectorType : Swift.Equatable {}
+extension DSSDK.ContinuousCollectorType : Swift.Hashable {}
+extension DSSDK.ContinuousCollectorType : Swift.RawRepresentable {}
+extension DSSDK.CollectorType : Swift.Equatable {}
+extension DSSDK.CollectorType : Swift.Hashable {}
+extension DSSDK.CollectorType : Swift.RawRepresentable {}
+extension DSSDK.PermissionType.Case : Swift.Equatable {}
+extension DSSDK.PermissionType.Case : Swift.Hashable {}
+extension DSSDK.DataType : Swift.Equatable {}
+extension DSSDK.DataType : Swift.Hashable {}
+extension DSSDK.DataType : Swift.RawRepresentable {}
+extension DSSDK.MeDataType : Swift.Equatable {}
+extension DSSDK.MeDataType : Swift.Hashable {}
+extension DSSDK.MeDataType : Swift.RawRepresentable {}
+extension DSSDK.DataTypeEntity : Swift.Equatable {}
+extension DSSDK.DataTypeEntity : Swift.Hashable {}
+extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
