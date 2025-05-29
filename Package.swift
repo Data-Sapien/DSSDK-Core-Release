@@ -8,22 +8,25 @@ let package = Package(
     .library(name: "DSSDKCore", targets: ["DSSDKCore"])
   ],
   targets: [
-    // 1) Your prebuilt SDK
-    .binaryTarget(
-      name: "DSSDK",
-      path: "./DSSDK.xcframework"
-    ),
+    // 1) Vendorled Realm frameworks
+    .binaryTarget(name: "Realm",     path: "./Realm.xcframework"),
+    .binaryTarget(name: "RealmSwift",path: "./RealmSwift.xcframework"),
 
-    // 3) Your wrapper that links everything together
+    // 2) Your SDK’s XCFramework
+    .binaryTarget(name: "DSSDK",     path: "./DSSDK.xcframework"),
+
+    // 3) A tiny wrapper that re-exports DSSDK & Realm
     .target(
       name: "DSSDKCore",
       dependencies: [
         "DSSDK",
+        "Realm",
+        "RealmSwift"
       ],
       path: "Sources/DSSDKCore",
       resources: [
         .process("Resources/form-js.css"),
-        .process("Resources/form-viewer.umd.js"),
+        .process("Resources/form-viewer.umd.js")
       ]
     )
   ]
