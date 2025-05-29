@@ -6162,37 +6162,6 @@
         ]
       },
       {
-        "kind": "TypeDecl",
-        "name": "BundleMarker",
-        "printedName": "BundleMarker",
-        "declKind": "Class",
-        "usr": "s:5DSSDK12BundleMarkerC",
-        "mangledName": "$s5DSSDK12BundleMarkerC",
-        "moduleName": "DSSDK",
-        "declAttributes": [
-          "Final",
-          "AccessControl",
-          "RawDocComment"
-        ],
-        "hasMissingDesignatedInitializers": true,
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          }
-        ]
-      },
-      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -8094,35 +8063,6 @@
           },
           {
             "kind": "Function",
-            "name": "getBaseUrl",
-            "printedName": "getBaseUrl()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK16DataSapienConfigC10getBaseUrlSSSgyF",
-            "mangledName": "$s5DSSDK16DataSapienConfigC10getBaseUrlSSSgyF",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
             "name": "setAppGroupID",
             "printedName": "setAppGroupID(_:)",
             "children": [
@@ -8685,8 +8625,7 @@
             "moduleName": "DSSDK",
             "static": true,
             "declAttributes": [
-              "Final",
-              "AccessControl"
+              "Final"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -35090,14 +35029,14 @@
     {
       "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/lib\/DataSapienConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 719,
+      "offset": 733,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/lib\/DataSapienConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2702,
+      "offset": 2735,
       "length": 5,
       "value": "false"
     },

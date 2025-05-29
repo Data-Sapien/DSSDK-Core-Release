@@ -196,9 +196,6 @@ extension DSSDK.PermissionType {
     get
   }
 }
-@_hasMissingDesignatedInitializers final public class BundleMarker {
-  @objc deinit
-}
 extension Foundation.Date {
   public static var currentEpochTime: Swift.Int64 {
     get
@@ -291,7 +288,6 @@ public struct DataSapien {
   public func setAuthURL(authUrl: Swift.String?)
   public func setFromLocal(local: Swift.Bool)
   public func getFromlocal() -> Swift.Bool
-  public func getBaseUrl() -> Swift.String?
   public func setAppGroupID(_ appGroupID: Swift.String?)
   public func getAppGroupID() -> Swift.String?
   public func setAuthKey(_ authKey: Swift.String?)
