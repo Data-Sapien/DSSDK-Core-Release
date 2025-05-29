@@ -1,5 +1,5 @@
 {
-  "originHash" : "f2557ab86572d882b4c687e6c119ccce4ce551ec3eba6c18bf939883ef7e7fdc",
+  "originHash" : "90431a6fc290f41087ac9378fdf72899b97eb4f27a4a897ca775536398174498",
   "pins" : [
     {
       "identity" : "realm-core",
@@ -8,6 +8,15 @@
       "state" : {
         "revision" : "cccb3ca9e26ec452a29f2f0d4050d1e38b8a3d43",
         "version" : "14.14.0"
+      }
+    },
+    {
+      "identity" : "realm-dynamic-wrapper",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Data-Sapien/Realm-Dynamic-Wrapper.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c63300c2dbe3d01ad63cf9348c5d621b233e2259"
       }
     },
     {

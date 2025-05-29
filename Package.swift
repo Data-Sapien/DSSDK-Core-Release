@@ -8,16 +8,12 @@ let package = Package(
         // Clients do `import DSSDK`
         .library(
             name: "DSSDKCore",
-            type: .dynamic,
             targets: ["DSSDKCore"]
         )
     ],
     dependencies: [
         // Realm for your framework’s internal use
-        .package(
-            url: "https://github.com/realm/realm-swift.git",
-            from: "10.44.0"
-        )
+        .package(url: "https://github.com/Data-Sapien/Realm-Dynamic-Wrapper.git", branch: "main"),
     ],
     targets: [
         // 1) Your prebuilt XCFramework exposes module DSSDK
@@ -31,18 +27,13 @@ let package = Package(
             name: "DSSDKCore",  // ← same name as the product
             dependencies: [
                 "DSSDK",  // ← the binaryTarget
-                .product(name: "RealmSwift", package: "realm-swift"),
+                .product(name: "RealmDynamicWrapper", package: "Realm-Dynamic-Wrapper"),
             ],
             path: "Sources/DSSDKCore",
             resources: [
                 .process("Resources/form-js.css"),
                 .process("Resources/form-viewer.umd.js"),
             ]
-        ),
-
-        .testTarget(
-            name: "DSSDKTests",
-            dependencies: ["DSSDK"]
         ),
     ]
 )
