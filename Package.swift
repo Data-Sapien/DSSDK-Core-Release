@@ -8,6 +8,7 @@ let package = Package(
         // Clients do `import DSSDK`
         .library(
             name: "DSSDKCore",
+            type: .dynamic,
             targets: ["DSSDKCore"]
         )
     ],
