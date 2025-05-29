@@ -6,7 +6,7 @@
 //
 
 @_exported import DSSDK
-import RealmSwift
+//import RealmSwift
 
 public enum _DSSDKCore {}  // keep this so SPM still sees at least one Swift file
 
