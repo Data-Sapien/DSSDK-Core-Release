@@ -6162,6 +6162,37 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "BundleMarker",
+        "printedName": "BundleMarker",
+        "declKind": "Class",
+        "usr": "s:5DSSDK12BundleMarkerC",
+        "mangledName": "$s5DSSDK12BundleMarkerC",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -8063,6 +8094,35 @@
           },
           {
             "kind": "Function",
+            "name": "getBaseUrl",
+            "printedName": "getBaseUrl()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK16DataSapienConfigC10getBaseUrlSSSgyF",
+            "mangledName": "$s5DSSDK16DataSapienConfigC10getBaseUrlSSSgyF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "setAppGroupID",
             "printedName": "setAppGroupID(_:)",
             "children": [
@@ -8625,7 +8685,8 @@
             "moduleName": "DSSDK",
             "static": true,
             "declAttributes": [
-              "Final"
+              "Final",
+              "AccessControl"
             ],
             "isFromExtension": true,
             "funcSelfKind": "NonMutating"
@@ -32494,6 +32555,190 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "ExchangeFlowManager",
+        "printedName": "ExchangeFlowManager",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(color:exchange:NVC:onComplete:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "ExchangeFlowManager",
+                "printedName": "DSSDK.ExchangeFlowManager",
+                "usr": "s:5DSSDK19ExchangeFlowManagerC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIColor",
+                "printedName": "UIKit.UIColor",
+                "usr": "c:objc(cs)UIColor"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Exchange",
+                "printedName": "DSSDK.Exchange",
+                "usr": "s:5DSSDK8ExchangeV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "UIViewController",
+                "printedName": "UIKit.UIViewController",
+                "usr": "c:objc(cs)UIViewController"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5DSSDK19ExchangeFlowManagerC5color8exchange3NVC10onCompleteACSo7UIColorC_AA0B0VSo16UIViewControllerCyyctcfc",
+            "mangledName": "$s5DSSDK19ExchangeFlowManagerC5color8exchange3NVC10onCompleteACSo7UIColorC_AA0B0VSo16UIViewControllerCyyctcfc",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "startExchange",
+            "printedName": "startExchange()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK19ExchangeFlowManagerC05startB0yyF",
+            "mangledName": "$s5DSSDK19ExchangeFlowManagerC05startB0yyF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "Custom",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:5DSSDK19ExchangeFlowManagerC",
+        "mangledName": "$s5DSSDK19ExchangeFlowManagerC",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl",
+          "Custom"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "Import",
         "name": "ObjectiveC.runtime",
         "printedName": "ObjectiveC.runtime",
         "declKind": "Import",
@@ -35029,14 +35274,14 @@
     {
       "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/lib\/DataSapienConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 733,
+      "offset": 719,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/lib\/DataSapienConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 2735,
+      "offset": 2702,
       "length": 5,
       "value": "false"
     },
@@ -35886,6 +36131,20 @@
       "offset": 558,
       "length": 14,
       "value": "\"app_logs.txt\""
+    },
+    {
+      "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/ui\/exchange\/ExchangeFlowManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 325,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/ui\/exchange\/QuestionViewController.swift",
+      "kind": "Array",
+      "offset": 1422,
+      "length": 2,
+      "value": "[]"
     },
     {
       "filePath": "\/Users\/metecanduyal\/Desktop\/Git\/datasapien\/ios\/DSSDK-Core-Framework\/DSSDK\/DSSDK\/ui\/journey\/JourneyViewController.swift",

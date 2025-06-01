@@ -196,6 +196,9 @@ extension DSSDK.PermissionType {
     get
   }
 }
+@_hasMissingDesignatedInitializers final public class BundleMarker {
+  @objc deinit
+}
 extension Foundation.Date {
   public static var currentEpochTime: Swift.Int64 {
     get
@@ -288,6 +291,7 @@ public struct DataSapien {
   public func setAuthURL(authUrl: Swift.String?)
   public func setFromLocal(local: Swift.Bool)
   public func getFromlocal() -> Swift.Bool
+  public func getBaseUrl() -> Swift.String?
   public func setAppGroupID(_ appGroupID: Swift.String?)
   public func getAppGroupID() -> Swift.String?
   public func setAuthKey(_ authKey: Swift.String?)
@@ -799,6 +803,11 @@ public class DSException : Swift.Error {
   override public init(errorCode: Swift.Int = DSException.COL_HEALTH_DATA_ERROR_CODE, message: Swift.String = "Collector health data error occured", info: Swift.String? = nil)
   @objc deinit
 }
+@_Concurrency.MainActor public class ExchangeFlowManager {
+  @_Concurrency.MainActor public init(color: UIKit.UIColor, exchange: DSSDK.Exchange, NVC: UIKit.UIViewController, onComplete: @escaping (() -> Swift.Void))
+  @_Concurrency.MainActor public func startExchange()
+  @objc deinit
+}
 extension DSSDK.DeviceDataType : Swift.Equatable {}
 extension DSSDK.DeviceDataType : Swift.Hashable {}
 extension DSSDK.DeviceDataType : Swift.RawRepresentable {}
@@ -819,3 +828,4 @@ extension DSSDK.MeDataType : Swift.RawRepresentable {}
 extension DSSDK.DataTypeEntity : Swift.Equatable {}
 extension DSSDK.DataTypeEntity : Swift.Hashable {}
 extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
+extension DSSDK.ExchangeFlowManager : Swift.Sendable {}
