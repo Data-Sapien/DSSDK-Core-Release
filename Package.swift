@@ -3,7 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "DSSDKCore",
-    platforms: [.iOS(.v13)],
+    platforms: [.iOS(.v17)],
     products: [
         .library(name: "DSSDKCore", targets: ["DSSDKCore"])
     ],
