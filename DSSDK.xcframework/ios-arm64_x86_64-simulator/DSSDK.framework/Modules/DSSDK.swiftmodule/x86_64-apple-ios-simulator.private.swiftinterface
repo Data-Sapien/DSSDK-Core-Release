@@ -14,6 +14,7 @@ import MediaPlayer
 import Network
 import NotificationCenter
 import ObjectiveC
+import RealmSwift
 import SafariServices
 import Security
 import Swift
@@ -196,6 +197,9 @@ extension DSSDK.PermissionType {
     get
   }
 }
+@_hasMissingDesignatedInitializers final public class BundleMarker {
+  @objc deinit
+}
 extension Foundation.Date {
   public static var currentEpochTime: Swift.Int64 {
     get
@@ -267,6 +271,8 @@ public class CollectorRegistry {
 }
 public struct DataSapien {
   public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
+  public static func setPushToken(_ pushToken: Swift.String)
+  public static func getSegmentService() -> DSSDK.SegmentService
   public static func getMeDataService() -> DSSDK.MeDataService
   public static func getJourneyService() -> DSSDK.JourneyService
   public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
@@ -275,10 +281,13 @@ public struct DataSapien {
   public static func getQuestionService() -> DSSDK.QuestionService
   public static func getManagedApiService() -> DSSDK.ManagedApiService
   public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
+  public func setup()
 }
 @_hasMissingDesignatedInitializers public class DataSapienConfig {
   public static let shared: DSSDK.DataSapienConfig
   public func getAuthScope() -> Swift.String?
+  public func gethostUrl() -> Swift.String?
+  public func sethostUrl(hostUrl: Swift.String?)
   public func setAuthScope(scope: Swift.String?)
   public func getAuthClientSecret() -> Swift.String?
   public func setauthClientSecret(clientSecret: Swift.String?)
@@ -300,6 +309,7 @@ public struct DataSapien {
     public func setAuth(_ authURL: Swift.String, _ authClientId: Swift.String, _ authClientSecret: Swift.String, _ authScope: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func setAuthKey(_ authKey: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func setBaseUrl(_ baseUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func sethostUrl(_ hostUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func setAppGroupID(_ appGroupID: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func registerCollectors(_ collectorRegistry: DSSDK.CollectorRegistry) -> DSSDK.DataSapienConfig.Builder
     public func setRuleCallback(_ callback: ((Swift.String) throws -> Swift.Bool)?) -> DSSDK.DataSapienConfig.Builder
@@ -332,6 +342,10 @@ extension DSSDK.DataSapienConfig {
   public func getLatestExchangeTransactionInfo(exchangeId: Swift.String) -> DSSDK.ExchangeTransactionInfo?
   public func clearExchangeTransactions()
   public func clearExchangeTransaction(by id: Swift.String)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class HostService {
+  public static let shared: DSSDK.HostService
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
@@ -379,6 +393,12 @@ extension DSSDK.DataSapienConfig {
 @_hasMissingDesignatedInitializers public class RuleEngineService {
   public static let shared: DSSDK.RuleEngineService
   public func runRules()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SegmentService {
+  public static let shared: DSSDK.SegmentService
+  public func fetchSegments(onSuccess: @escaping ([DSSDK.Segment]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func fetchAndSubscribeToSegments(onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
 public struct BaseResponse<T> : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
@@ -519,6 +539,10 @@ public struct QuestionnaireResult : Swift.Codable {
 extension Foundation.NSNotification.Name {
   public static let didReceiveAuthorizationCode: Foundation.Notification.Name
 }
+public struct Host : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 public struct Journey : Swift.Codable {
   public var id: Swift.String
   public var bpmnXml: Swift.String
@@ -559,6 +583,10 @@ public struct JourneyTransactionInfo : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
 }
 public typealias DataMap = [Swift.String : Swift.String]
+public struct ManagedApi : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 public struct MeDataCategoryGroup {
 }
 public struct MeDataGroup : Swift.Codable {
@@ -720,6 +748,69 @@ public struct MeDataValueInfo : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+public struct Segment : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct SegmentInfo : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ScriptEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AudienceEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeAudienceEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeMetadataEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class QuestionEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class RewardEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SurveyEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SurveyQuestionEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ExchangeMeDataValueEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ExchangeTransactionEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ExchangeTransactionInfoEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class QuestionnaireResultEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class HostEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class JourneyTransactionEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class JourneyTransactionInfoEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
 public enum DataTypeEntity : Swift.String {
   case STRING
   case NUMBER
@@ -734,6 +825,23 @@ public enum DataTypeEntity : Swift.String {
   public var rawValue: Swift.String {
     get
   }
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataCategoryEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataDefinitionEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueEntity : RealmSwift.Object {
+  @objc override public static func indexedProperties() -> [Swift.String]
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueInfoEntity : RealmSwift.Object {
+  @objc override public static func indexedProperties() -> [Swift.String]
+  @objc deinit
 }
 public class DSException : Swift.Error {
   public init(errorCode: Swift.Int = DSException.DEFAULT_ERROR_CODE, message: Swift.String, info: Swift.String? = nil)
@@ -799,6 +907,11 @@ public class DSException : Swift.Error {
   override public init(errorCode: Swift.Int = DSException.COL_HEALTH_DATA_ERROR_CODE, message: Swift.String = "Collector health data error occured", info: Swift.String? = nil)
   @objc deinit
 }
+@_Concurrency.MainActor public class ExchangeFlowManager {
+  @_Concurrency.MainActor public init(color: UIKit.UIColor, exchange: DSSDK.Exchange, NVC: UIKit.UIViewController, onComplete: @escaping (() -> Swift.Void))
+  @_Concurrency.MainActor public func startExchange()
+  @objc deinit
+}
 extension DSSDK.DeviceDataType : Swift.Equatable {}
 extension DSSDK.DeviceDataType : Swift.Hashable {}
 extension DSSDK.DeviceDataType : Swift.RawRepresentable {}
@@ -819,3 +932,4 @@ extension DSSDK.MeDataType : Swift.RawRepresentable {}
 extension DSSDK.DataTypeEntity : Swift.Equatable {}
 extension DSSDK.DataTypeEntity : Swift.Hashable {}
 extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
+extension DSSDK.ExchangeFlowManager : Swift.Sendable {}

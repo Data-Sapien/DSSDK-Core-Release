@@ -24,7 +24,6 @@ class WebViewIntelligenceServiceHandler: NSObject, WKScriptMessageHandler {
 
         switch method {
         case "loadModel":
-            print("METEMODEL userContentController loadModel")
             handleLoadModel(
                 modelName: body["modelName"] as? String,
                 onStatus: body["onStatus"] as? String,
@@ -51,7 +50,6 @@ class WebViewIntelligenceServiceHandler: NSObject, WKScriptMessageHandler {
 
     private func handleLoadModel(modelName: String?, onStatus: String?, onComplete: String?, onError: String?) {
         guard let modelName, let onStatus, let onComplete, let onError else { return }
-        print("METEMODEL handleLoadModel loadModel")
         Task { @MainActor in
             IntelligenceService.shared.load(modelName: modelName) { status in
                 self.callJSFunction(name: onStatus, with: status)
@@ -92,9 +90,6 @@ class WebViewIntelligenceServiceHandler: NSObject, WKScriptMessageHandler {
 
     nonisolated func callJSFunction(name: String, with value: Any) {
         let escaped: String
-        
-        print("METEMODEL callJSFunction \(name) --- \(value)")
-
 
         if let string = value as? String {
             escaped = "\"\(string.jsEscapedString())\""
@@ -102,14 +97,10 @@ class WebViewIntelligenceServiceHandler: NSObject, WKScriptMessageHandler {
             escaped = "\(value)"
         }
         
-        print("METEMODEL callJSFunction \(escaped)")
-
 
         DispatchQueue.main.async {
             self.webView?.evaluateJavaScript("\(name)(\(escaped));") { result, error in
                 if let error = error {
-                    print("METEMODEL callJSFunction err \(error)")
-
                     print("⚠️ JS Callback Error: \(error)")
                 }
             }

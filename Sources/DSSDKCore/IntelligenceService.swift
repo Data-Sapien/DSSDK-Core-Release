@@ -76,7 +76,6 @@ public class IntelligenceService {
     // MARK: - LOAD
     // ===============================================================================
     private func load(modelName: String) async throws -> ModelContainer {
-        print("METEMODEL load modelName")
         guard let model = ModelConfiguration.getModelByName(modelName) else {
             throw LLMEvaluatorError.modelNotFound(modelName)
         }
@@ -116,7 +115,6 @@ public class IntelligenceService {
     }
     
     public func load(modelName: String, status: @escaping @Sendable(Double) -> (), completion: @escaping @Sendable(ModelContainer) -> () , error: @escaping @Sendable(Error)->()) {
-        print("METEMODEL load \(modelName)")
         guard let model = ModelConfiguration.getModelByName(modelName) else {
             error(LLMEvaluatorError.modelNotFound(modelName))
             return
@@ -124,7 +122,6 @@ public class IntelligenceService {
 
         switch loadState {
         case .idle:
-            print("METEMODEL idle \(modelName)")
             // limit the buffer cache
             Task
             {
@@ -152,7 +149,6 @@ public class IntelligenceService {
 
 
         case let .loaded(modelContainer):
-            print("METEMODEL loaded \(modelName)")
             completion(modelContainer)
         }
     }
