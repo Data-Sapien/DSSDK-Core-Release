@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios18.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name DSSDK
+// swift-module-flags: -target arm64-apple-ios17.6 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name DSSDK
 import AVFoundation
 import AuthenticationServices
 import SystemConfiguration.CaptiveNetwork
@@ -14,7 +14,6 @@ import MediaPlayer
 import Network
 import NotificationCenter
 import ObjectiveC
-import RealmSwift
 import SafariServices
 import Security
 import Swift
@@ -756,61 +755,6 @@ public struct SegmentInfo : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ScriptEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AudienceEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeAudienceEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeMetadataEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class QuestionEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class RewardEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SurveyEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SurveyQuestionEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class ExchangeMeDataValueEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class ExchangeTransactionEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class ExchangeTransactionInfoEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class QuestionnaireResultEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class HostEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class JourneyTransactionEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class JourneyTransactionInfoEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
 public enum DataTypeEntity : Swift.String {
   case STRING
   case NUMBER
@@ -825,23 +769,6 @@ public enum DataTypeEntity : Swift.String {
   public var rawValue: Swift.String {
     get
   }
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataCategoryEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataDefinitionEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataEntity : RealmSwift.Object {
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueEntity : RealmSwift.Object {
-  @objc override public static func indexedProperties() -> [Swift.String]
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueInfoEntity : RealmSwift.Object {
-  @objc override public static func indexedProperties() -> [Swift.String]
-  @objc deinit
 }
 public class DSException : Swift.Error {
   public init(errorCode: Swift.Int = DSException.DEFAULT_ERROR_CODE, message: Swift.String, info: Swift.String? = nil)

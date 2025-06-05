@@ -34,7 +34,7 @@
       "location" : "https://github.com/Data-Sapien/mlx-swift-lib.git",
       "state" : {
         "branch" : "main",
-        "revision" : "9b8ea2cc4d24bd83c04748edd1069b0ec1702b4a"
+        "revision" : "45511e1e423ab55e8e6085227d6e6ce5a4efe6b2"
       }
     },
     {
@@ -69,8 +69,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/huggingface/swift-transformers",
       "state" : {
-        "revision" : "c2f302a74cca59cbde683b1425ab43c05685515a",
-        "version" : "0.1.21"
+        "revision" : "55710ddfb1ae804b4b7ce973be75cf2e41272185",
+        "version" : "0.1.17"
       }
     }
   ],
