@@ -17,8 +17,9 @@ let package = Package(
         .binaryTarget(name: "RealmSwift", path: "./RealmSwift.xcframework"),
 
         // 2) Your SDK’s XCFramework
-        .binaryTarget(name: "DSSDK", path: "./DSSDK.xcframework"),
-
+//        .binaryTarget(name: "DSSDK", path: "./DSSDK.xcframework"),
+            
+        
         // 3) A tiny wrapper that re-exports DSSDK & Realm
         .target(
             name: "DSSDKCore",
