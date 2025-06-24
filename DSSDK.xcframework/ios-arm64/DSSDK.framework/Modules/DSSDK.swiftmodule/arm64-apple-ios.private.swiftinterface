@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios17.6 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name DSSDK
+// swift-module-flags: -target arm64-apple-ios18.2 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name DSSDK
 import AVFoundation
 import AuthenticationServices
 import SystemConfiguration.CaptiveNetwork
@@ -14,6 +14,7 @@ import MediaPlayer
 import Network
 import NotificationCenter
 import ObjectiveC
+import RealmSwift
 import SafariServices
 import Security
 import Swift
@@ -269,6 +270,7 @@ public class CollectorRegistry {
   @objc deinit
 }
 public struct DataSapien {
+  public static func arda()
   public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
   public static func setPushToken(_ pushToken: Swift.String)
   public static func getSegmentService() -> DSSDK.SegmentService
@@ -285,6 +287,10 @@ public struct DataSapien {
 @_hasMissingDesignatedInitializers public class DataSapienConfig {
   public static let shared: DSSDK.DataSapienConfig
   public func getAuthScope() -> Swift.String?
+  public func getDebug() -> Swift.Bool
+  public func getmainColor() -> UIKit.UIColor
+  public func setmainColor(mainColor: UIKit.UIColor?)
+  public func setdebug(debug: Swift.Bool?)
   public func gethostUrl() -> Swift.String?
   public func sethostUrl(hostUrl: Swift.String?)
   public func setAuthScope(scope: Swift.String?)
@@ -306,6 +312,8 @@ public struct DataSapien {
   public class Builder {
     public init()
     public func setAuth(_ authURL: Swift.String, _ authClientId: Swift.String, _ authClientSecret: Swift.String, _ authScope: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func setdebug(_ debug: Swift.Bool) -> DSSDK.DataSapienConfig.Builder
+    public func setmainColor(_ mainColor: UIKit.UIColor) -> DSSDK.DataSapienConfig.Builder
     public func setAuthKey(_ authKey: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func setBaseUrl(_ baseUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func sethostUrl(_ hostUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
@@ -755,6 +763,61 @@ public struct SegmentInfo : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ScriptEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AudienceEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeAudienceEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeMetadataEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class QuestionEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class RewardEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SurveyEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SurveyQuestionEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ExchangeMeDataValueEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ExchangeTransactionEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class ExchangeTransactionInfoEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class QuestionnaireResultEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class HostEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class JourneyTransactionEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class JourneyTransactionInfoEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
 public enum DataTypeEntity : Swift.String {
   case STRING
   case NUMBER
@@ -769,6 +832,23 @@ public enum DataTypeEntity : Swift.String {
   public var rawValue: Swift.String {
     get
   }
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataCategoryEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataDefinitionEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataEntity : RealmSwift.Object {
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueEntity : RealmSwift.Object {
+  @objc override public static func indexedProperties() -> [Swift.String]
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueInfoEntity : RealmSwift.Object {
+  @objc override public static func indexedProperties() -> [Swift.String]
+  @objc deinit
 }
 public class DSException : Swift.Error {
   public init(errorCode: Swift.Int = DSException.DEFAULT_ERROR_CODE, message: Swift.String, info: Swift.String? = nil)
@@ -835,7 +915,7 @@ public class DSException : Swift.Error {
   @objc deinit
 }
 @_Concurrency.MainActor public class ExchangeFlowManager {
-  @_Concurrency.MainActor public init(color: UIKit.UIColor, exchange: DSSDK.Exchange, NVC: UIKit.UIViewController, onComplete: @escaping (() -> Swift.Void))
+  @_Concurrency.MainActor public init(exchange: DSSDK.Exchange, NVC: UIKit.UIViewController, onComplete: @escaping (() -> Swift.Void))
   @_Concurrency.MainActor public func startExchange()
   @objc deinit
 }
