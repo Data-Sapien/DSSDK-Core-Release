@@ -594,10 +594,12 @@ public struct ManagedApi : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct MeDataCategoryGroup {
+public struct MeDataCategoryGroup : Swift.Codable {
   public var category: DSSDK.MeDataCategory
   public var groups: [DSSDK.MeDataGroup]
   public init(category: DSSDK.MeDataCategory, groups: [DSSDK.MeDataGroup])
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct MeDataGroup : Swift.Codable {
   public var meDataDefinition: DSSDK.MeDataDefinition
@@ -922,6 +924,13 @@ public class DSException : Swift.Error {
   @_Concurrency.MainActor public func startExchange()
   @objc deinit
 }
+@_Concurrency.MainActor @preconcurrency public struct MeDataView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public init(categoryGroups: [DSSDK.MeDataCategoryGroup] = [], isLoading: Swift.Bool = true, errorMessage: Swift.String? = nil)
+  public typealias Body = @_opaqueReturnTypeOf("$s5DSSDK10MeDataViewV4bodyQrvp", 0) __
+}
 extension DSSDK.DeviceDataType : Swift.Equatable {}
 extension DSSDK.DeviceDataType : Swift.Hashable {}
 extension DSSDK.DeviceDataType : Swift.RawRepresentable {}
@@ -943,3 +952,4 @@ extension DSSDK.DataTypeEntity : Swift.Equatable {}
 extension DSSDK.DataTypeEntity : Swift.Hashable {}
 extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
 extension DSSDK.ExchangeFlowManager : Swift.Sendable {}
+extension DSSDK.MeDataView : Swift.Sendable {}
