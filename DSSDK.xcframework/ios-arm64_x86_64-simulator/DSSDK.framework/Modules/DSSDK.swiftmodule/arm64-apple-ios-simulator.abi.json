@@ -186,6 +186,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "AVFoundation",
         "printedName": "AVFoundation",
         "declKind": "Import",
@@ -6250,6 +6260,68 @@
         "moduleName": "DSSDK"
       },
       {
+        "kind": "TypeDecl",
+        "name": "Resources",
+        "printedName": "Resources",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "getQuestionAnswerHtml",
+            "printedName": "getQuestionAnswerHtml()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK9ResourcesC21getQuestionAnswerHtml10Foundation3URLVSgyFZ",
+            "mangledName": "$s5DSSDK9ResourcesC21getQuestionAnswerHtml10Foundation3URLVSgyFZ",
+            "moduleName": "DSSDK",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:5DSSDK9ResourcesC",
+        "mangledName": "$s5DSSDK9ResourcesC",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -6322,6 +6394,23 @@
         "declAttributes": [
           "RawDocComment"
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "JavaScriptCore",
+        "printedName": "JavaScriptCore",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
       },
       {
         "kind": "Import",
@@ -7997,6 +8086,69 @@
           },
           {
             "kind": "Function",
+            "name": "getMediaUrl",
+            "printedName": "getMediaUrl()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK16DataSapienConfigC11getMediaUrlSSSgyF",
+            "mangledName": "$s5DSSDK16DataSapienConfigC11getMediaUrlSSSgyF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setMediaUrl",
+            "printedName": "setMediaUrl(mediaUrl:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK16DataSapienConfigC11setMediaUrl05mediaG0ySSSg_tF",
+            "mangledName": "$s5DSSDK16DataSapienConfigC11setMediaUrl05mediaG0ySSSg_tF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "setmainColor",
             "printedName": "setmainColor(mainColor:)",
             "children": [
@@ -8317,8 +8469,8 @@
           },
           {
             "kind": "Function",
-            "name": "setAuthURL",
-            "printedName": "setAuthURL(authUrl:)",
+            "name": "setAuthUrl",
+            "printedName": "setAuthUrl(authUrl:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -8341,8 +8493,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK16DataSapienConfigC10setAuthURL7authUrlySSSg_tF",
-            "mangledName": "$s5DSSDK16DataSapienConfigC10setAuthURL7authUrlySSSg_tF",
+            "usr": "s:5DSSDK16DataSapienConfigC10setAuthUrl04authG0ySSSg_tF",
+            "mangledName": "$s5DSSDK16DataSapienConfigC10setAuthUrl04authG0ySSSg_tF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "AccessControl"
@@ -8495,40 +8647,6 @@
           },
           {
             "kind": "Function",
-            "name": "setBaseUrl",
-            "printedName": "setBaseUrl(_:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK16DataSapienConfigC10setBaseUrlyySSSgF",
-            "mangledName": "$s5DSSDK16DataSapienConfigC10setBaseUrlyySSSgF",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
             "name": "registerCollectors",
             "printedName": "registerCollectors(_:)",
             "children": [
@@ -8671,7 +8789,7 @@
               {
                 "kind": "Function",
                 "name": "setAuth",
-                "printedName": "setAuth(_:_:_:_:)",
+                "printedName": "setAuth(url:clientId:clientSecret:scope:)",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -8705,8 +8823,41 @@
                   }
                 ],
                 "declKind": "Func",
-                "usr": "s:5DSSDK16DataSapienConfigC7BuilderC7setAuthyAESS_S3StF",
-                "mangledName": "$s5DSSDK16DataSapienConfigC7BuilderC7setAuthyAESS_S3StF",
+                "usr": "s:5DSSDK16DataSapienConfigC7BuilderC7setAuth3url8clientId0I6Secret5scopeAESS_S3StF",
+                "mangledName": "$s5DSSDK16DataSapienConfigC7BuilderC7setAuth3url8clientId0I6Secret5scopeAESS_S3StF",
+                "moduleName": "DSSDK",
+                "declAttributes": [
+                  "AccessControl"
+                ],
+                "funcSelfKind": "NonMutating"
+              },
+              {
+                "kind": "Function",
+                "name": "setHost",
+                "printedName": "setHost(baseUrl:mediaUrl:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Builder",
+                    "printedName": "DSSDK.DataSapienConfig.Builder",
+                    "usr": "s:5DSSDK16DataSapienConfigC7BuilderC"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Func",
+                "usr": "s:5DSSDK16DataSapienConfigC7BuilderC7setHost7baseUrl05mediaI0AESS_SStF",
+                "mangledName": "$s5DSSDK16DataSapienConfigC7BuilderC7setHost7baseUrl05mediaI0AESS_SStF",
                 "moduleName": "DSSDK",
                 "declAttributes": [
                   "AccessControl"
@@ -8788,33 +8939,6 @@
                 "declKind": "Func",
                 "usr": "s:5DSSDK16DataSapienConfigC7BuilderC10setAuthKeyyAESSF",
                 "mangledName": "$s5DSSDK16DataSapienConfigC7BuilderC10setAuthKeyyAESSF",
-                "moduleName": "DSSDK",
-                "declAttributes": [
-                  "AccessControl"
-                ],
-                "funcSelfKind": "NonMutating"
-              },
-              {
-                "kind": "Function",
-                "name": "setBaseUrl",
-                "printedName": "setBaseUrl(_:)",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Builder",
-                    "printedName": "DSSDK.DataSapienConfig.Builder",
-                    "usr": "s:5DSSDK16DataSapienConfigC7BuilderC"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Func",
-                "usr": "s:5DSSDK16DataSapienConfigC7BuilderC10setBaseUrlyAESSF",
-                "mangledName": "$s5DSSDK16DataSapienConfigC7BuilderC10setBaseUrlyAESSF",
                 "moduleName": "DSSDK",
                 "declAttributes": [
                   "AccessControl"
@@ -9024,6 +9148,98 @@
             ]
           },
           {
+            "kind": "TypeDecl",
+            "name": "ConfigError",
+            "printedName": "ConfigError",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "missingField",
+                "printedName": "missingField",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(DSSDK.DataSapienConfig.ConfigError.Type) -> (Swift.String) -> DSSDK.DataSapienConfig.ConfigError",
+                    "children": [
+                      {
+                        "kind": "TypeFunc",
+                        "name": "Function",
+                        "printedName": "(Swift.String) -> DSSDK.DataSapienConfig.ConfigError",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ConfigError",
+                            "printedName": "DSSDK.DataSapienConfig.ConfigError",
+                            "usr": "s:5DSSDK16DataSapienConfigC0D5ErrorO"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "DSSDK.DataSapienConfig.ConfigError.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ConfigError",
+                            "printedName": "DSSDK.DataSapienConfig.ConfigError",
+                            "usr": "s:5DSSDK16DataSapienConfigC0D5ErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:5DSSDK16DataSapienConfigC0D5ErrorO12missingFieldyAESScAEmF",
+                "mangledName": "$s5DSSDK16DataSapienConfigC0D5ErrorO12missingFieldyAESScAEmF",
+                "moduleName": "DSSDK"
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:5DSSDK16DataSapienConfigC0D5ErrorO",
+            "mangledName": "$s5DSSDK16DataSapienConfigC0D5ErrorO",
+            "moduleName": "DSSDK",
+            "isFromExtension": true,
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Error",
+                "printedName": "Error",
+                "usr": "s:s5ErrorP",
+                "mangledName": "$ss5ErrorP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Sendable",
+                "printedName": "Sendable",
+                "usr": "s:s8SendableP",
+                "mangledName": "$ss8SendableP"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "loadFromJSON",
             "printedName": "loadFromJSON()",
@@ -9036,14 +9252,15 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK16DataSapienConfigC12loadFromJSONACyFZ",
-            "mangledName": "$s5DSSDK16DataSapienConfigC12loadFromJSONACyFZ",
+            "usr": "s:5DSSDK16DataSapienConfigC12loadFromJSONACyKFZ",
+            "mangledName": "$s5DSSDK16DataSapienConfigC12loadFromJSONACyKFZ",
             "moduleName": "DSSDK",
             "static": true,
             "declAttributes": [
               "Final"
             ],
             "isFromExtension": true,
+            "throwing": true,
             "funcSelfKind": "NonMutating"
           }
         ],
@@ -10833,7 +11050,8 @@
             "mangledName": "$s5DSSDK13MeDataServiceC03getbC14CategoryGroups9onSuccess0H5ErroryySayAA0bcF5GroupVGSgc_ys0J0_pcSgtF",
             "moduleName": "DSSDK",
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -16765,6 +16983,61 @@
             "implicit": true,
             "throwing": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "imageFullUrl",
+            "printedName": "imageFullUrl",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK16ExchangeMetadataV12imageFullUrl10Foundation3URLVSgvp",
+            "mangledName": "$s5DSSDK16ExchangeMetadataV12imageFullUrl10Foundation3URLVSgvp",
+            "moduleName": "DSSDK",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URL?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URL",
+                        "printedName": "Foundation.URL",
+                        "usr": "s:10Foundation3URLV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16ExchangeMetadataV12imageFullUrl10Foundation3URLVSgvg",
+                "mangledName": "$s5DSSDK16ExchangeMetadataV12imageFullUrl10Foundation3URLVSgvg",
+                "moduleName": "DSSDK",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -21606,35 +21879,6 @@
             ]
           },
           {
-            "kind": "Function",
-            "name": "getImage",
-            "printedName": "getImage()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK15JourneyMetadataV8getImageSSSgyF",
-            "mangledName": "$s5DSSDK15JourneyMetadataV8getImageSSSgyF",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -21684,6 +21928,61 @@
             "implicit": true,
             "throwing": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "imageFullUrl",
+            "printedName": "imageFullUrl",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK15JourneyMetadataV12imageFullUrl10Foundation3URLVSgvp",
+            "mangledName": "$s5DSSDK15JourneyMetadataV12imageFullUrl10Foundation3URLVSgvp",
+            "moduleName": "DSSDK",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URL?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URL",
+                        "printedName": "Foundation.URL",
+                        "usr": "s:10Foundation3URLV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyMetadataV12imageFullUrl10Foundation3URLVSgvg",
+                "mangledName": "$s5DSSDK15JourneyMetadataV12imageFullUrl10Foundation3URLVSgvg",
+                "moduleName": "DSSDK",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -25920,6 +26219,61 @@
             "moduleName": "DSSDK",
             "implicit": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "iconFullURL",
+            "printedName": "iconFullURL",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK14MeDataCategoryV11iconFullURL10Foundation0G0VSgvp",
+            "mangledName": "$s5DSSDK14MeDataCategoryV11iconFullURL10Foundation0G0VSgvp",
+            "moduleName": "DSSDK",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URL?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URL",
+                        "printedName": "Foundation.URL",
+                        "usr": "s:10Foundation3URLV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK14MeDataCategoryV11iconFullURL10Foundation0G0VSgvg",
+                "mangledName": "$s5DSSDK14MeDataCategoryV11iconFullURL10Foundation0G0VSgvg",
+                "moduleName": "DSSDK",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -26717,6 +27071,312 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "sharable",
+            "printedName": "sharable",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK16MeDataDefinitionV8sharableSbvp",
+            "mangledName": "$s5DSSDK16MeDataDefinitionV8sharableSbvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV8sharableSbvg",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV8sharableSbvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV8sharableSbvs",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV8sharableSbvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV8sharableSbvM",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV8sharableSbvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "hidden",
+            "printedName": "hidden",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Bool?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK16MeDataDefinitionV6hiddenSbSgvp",
+            "mangledName": "$s5DSSDK16MeDataDefinitionV6hiddenSbSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV6hiddenSbSgvg",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV6hiddenSbSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Bool?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Bool",
+                        "printedName": "Swift.Bool",
+                        "usr": "s:Sb"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV6hiddenSbSgvs",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV6hiddenSbSgvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV6hiddenSbSgvM",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV6hiddenSbSgvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "iconUrl",
+            "printedName": "iconUrl",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK16MeDataDefinitionV7iconUrlSSSgvp",
+            "mangledName": "$s5DSSDK16MeDataDefinitionV7iconUrlSSSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV7iconUrlSSSgvg",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV7iconUrlSSSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV7iconUrlSSSgvs",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV7iconUrlSSSgvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV7iconUrlSSSgvM",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV7iconUrlSSSgvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Function",
             "name": "==",
             "printedName": "==(_:_:)",
@@ -26942,6 +27602,61 @@
             "moduleName": "DSSDK",
             "implicit": true,
             "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "iconFullURL",
+            "printedName": "iconFullURL",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Foundation.URL?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "URL",
+                    "printedName": "Foundation.URL",
+                    "usr": "s:10Foundation3URLV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK16MeDataDefinitionV11iconFullURL10Foundation0G0VSgvp",
+            "mangledName": "$s5DSSDK16MeDataDefinitionV11iconFullURL10Foundation0G0VSgvp",
+            "moduleName": "DSSDK",
+            "isFromExtension": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Foundation.URL?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "URL",
+                        "printedName": "Foundation.URL",
+                        "usr": "s:10Foundation3URLV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK16MeDataDefinitionV11iconFullURL10Foundation0G0VSgvg",
+                "mangledName": "$s5DSSDK16MeDataDefinitionV11iconFullURL10Foundation0G0VSgvg",
+                "moduleName": "DSSDK",
+                "isFromExtension": true,
+                "accessorKind": "get"
+              }
+            ]
           }
         ],
         "declKind": "Struct",
@@ -41712,6 +42427,13 @@
       "value": "\"unknown\""
     },
     {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/dao\/DataSapienDatabase.swift",
+      "kind": "IntegerLiteral",
+      "offset": 243,
+      "length": 1,
+      "value": "2"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/ext\/LoggerExtensions.swift",
       "kind": "StringLiteral",
       "offset": 119,
@@ -41742,14 +42464,14 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/DataSapienConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 869,
+      "offset": 895,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/DataSapienConfig.swift",
       "kind": "BooleanLiteral",
-      "offset": 3706,
+      "offset": 3820,
       "length": 5,
       "value": "false"
     },
@@ -41924,7 +42646,21 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/dto\/medata\/medatadefinition\/MeDataDefinition.swift",
       "kind": "BooleanLiteral",
-      "offset": 1274,
+      "offset": 430,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/dto\/medata\/medatadefinition\/MeDataDefinition.swift",
+      "kind": "BooleanLiteral",
+      "offset": 466,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/dto\/medata\/medatadefinition\/MeDataDefinition.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1563,
       "length": 5,
       "value": "false"
     },

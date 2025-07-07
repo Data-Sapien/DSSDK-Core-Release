@@ -205,6 +205,10 @@ extension Foundation.Date {
     get
   }
 }
+@_hasMissingDesignatedInitializers public class Resources {
+  public static func getQuestionAnswerHtml() -> Foundation.URL?
+  @objc deinit
+}
 #if compiler(>=5.3) && $NoncopyableGenerics
 extension Swift.Optional where Wrapped == Swift.String {
   public func getCSSFileURL() -> Foundation.URL?
@@ -289,6 +293,8 @@ public struct DataSapien {
   public func getAuthScope() -> Swift.String?
   public func getDebug() -> Swift.Bool
   public func getmainColor() -> UIKit.UIColor
+  public func getMediaUrl() -> Swift.String?
+  public func setMediaUrl(mediaUrl: Swift.String?)
   public func setmainColor(mainColor: UIKit.UIColor?)
   public func setdebug(debug: Swift.Bool?)
   public func gethostUrl() -> Swift.String?
@@ -299,23 +305,22 @@ public struct DataSapien {
   public func getAuthClientId() -> Swift.String?
   public func setAuthClientId(clientId: Swift.String?)
   public func getAuthURL() -> Swift.String?
-  public func setAuthURL(authUrl: Swift.String?)
+  public func setAuthUrl(authUrl: Swift.String?)
   public func setFromLocal(local: Swift.Bool)
   public func getFromlocal() -> Swift.Bool
   public func setAppGroupID(_ appGroupID: Swift.String?)
   public func getAppGroupID() -> Swift.String?
   public func setAuthKey(_ authKey: Swift.String?)
-  public func setBaseUrl(_ baseUrl: Swift.String?)
   public func registerCollectors(_ collectorRegistry: DSSDK.CollectorRegistry)
   public func setRuleCallback(_ callback: ((Swift.String) throws -> Swift.Bool)?)
   public func getRuleCallback() -> ((Swift.String) throws -> Swift.Bool)?
   public class Builder {
     public init()
-    public func setAuth(_ authURL: Swift.String, _ authClientId: Swift.String, _ authClientSecret: Swift.String, _ authScope: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func setAuth(url authUrl: Swift.String, clientId authClientId: Swift.String, clientSecret authClientSecret: Swift.String, scope authScope: Swift.String) -> DSSDK.DataSapienConfig.Builder
+    public func setHost(baseUrl hostUrl: Swift.String, mediaUrl mediaURL: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func setdebug(_ debug: Swift.Bool) -> DSSDK.DataSapienConfig.Builder
     public func setmainColor(_ mainColor: UIKit.UIColor) -> DSSDK.DataSapienConfig.Builder
     public func setAuthKey(_ authKey: Swift.String) -> DSSDK.DataSapienConfig.Builder
-    public func setBaseUrl(_ baseUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func sethostUrl(_ hostUrl: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func setAppGroupID(_ appGroupID: Swift.String) -> DSSDK.DataSapienConfig.Builder
     public func registerCollectors(_ collectorRegistry: DSSDK.CollectorRegistry) -> DSSDK.DataSapienConfig.Builder
@@ -327,7 +332,10 @@ public struct DataSapien {
   @objc deinit
 }
 extension DSSDK.DataSapienConfig {
-  public static func loadFromJSON() -> DSSDK.DataSapienConfig
+  public enum ConfigError : Swift.Error {
+    case missingField(Swift.String)
+  }
+  public static func loadFromJSON() throws -> DSSDK.DataSapienConfig
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class DSAppDelegate : UIKit.UIResponder, UIKit.UIApplicationDelegate {
   @_Concurrency.MainActor @preconcurrency @objc open func application(_ application: UIKit.UIApplication, continue userActivity: Foundation.NSUserActivity, restorationHandler: @escaping ([any UIKit.UIUserActivityRestoring]?) -> Swift.Void) -> Swift.Bool
@@ -477,6 +485,11 @@ public struct ExchangeMetadata : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+extension DSSDK.ExchangeMetadata {
+  public var imageFullUrl: Foundation.URL? {
+    get
+  }
+}
 public struct Question : Swift.Codable, Swift.Hashable {
   public var id: Swift.String
   public var name: Swift.String
@@ -562,9 +575,13 @@ public struct JourneyMetadata : Swift.Codable {
   public var title: Swift.String
   public var description: Swift.String?
   public var imageUrl: Swift.String?
-  public func getImage() -> Swift.String?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
+}
+extension DSSDK.JourneyMetadata {
+  public var imageFullUrl: Foundation.URL? {
+    get
+  }
 }
 public class JourneyContext {
   public init(values: [Swift.String : Any] = [:])
@@ -669,6 +686,11 @@ public struct MeDataCategory : Swift.Codable, Swift.Hashable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
+extension DSSDK.MeDataCategory {
+  public var iconFullURL: Foundation.URL? {
+    get
+  }
+}
 public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
   public var id: Swift.String
   public var name: Swift.String
@@ -677,6 +699,9 @@ public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
   public var script: DSSDK.Script?
   public var valueDef: DSSDK.ValueDefinition?
   public var category: DSSDK.MeDataCategory?
+  public var sharable: Swift.Bool
+  public var hidden: Swift.Bool?
+  public var iconUrl: Swift.String?
   public static func == (lhs: DSSDK.MeDataDefinition, rhs: DSSDK.MeDataDefinition) -> Swift.Bool
   public func getMeDataDefinitionType() -> DSSDK.MeDataType?
   public func createMeData(values: [Any], valueNotAvailable: Swift.Bool = false, saveDate: Swift.Int64 = Date.currentEpochTime) throws -> DSSDK.MeDataContainer
@@ -686,6 +711,11 @@ public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
     get
   }
   public init(from decoder: any Swift.Decoder) throws
+}
+extension DSSDK.MeDataDefinition {
+  public var iconFullURL: Foundation.URL? {
+    get
+  }
 }
 public enum MeDataType : Swift.String, Swift.Codable {
   case NATIVE

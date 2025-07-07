@@ -1,0 +1,305 @@
+<html>
+<head>
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+    }
+
+    .page {
+      padding: 20px;
+      padding-bottom: 120px;
+    }
+
+    #text {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    #desc {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 12px;
+    }
+
+    #inputs.enumerated {
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .input-row {
+      padding: 16px;
+      font-size: 17px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .input-row:last-child {
+      border-bottom: none;
+    }
+
+    /* Layout for radio/checkbox */
+    .input-row.option-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Layout for text/number/date */
+    .input-row.input-field-row {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-row input[type="radio"],
+    .input-row input[type="checkbox"] {
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border: 2px solid #ff3b30;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .input-row input[type="radio"]:checked::before,
+    .input-row input[type="checkbox"]:checked::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 10px;
+      height: 10px;
+      background-color: #ff3b30;
+      border-radius: 50%;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .controls button {
+      flex: 1;
+      margin: 0 6px;
+      padding: 14px 0;
+      font-size: 17px;
+      font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      background-color: #ff3b30;
+      color: #fff;
+    }
+
+    .controls button:disabled {
+      background-color: #ffe5e3;
+      color: #ff3b30;
+      opacity: 0.6;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"] {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 16px;
+      font-weight: 500;
+      border: 1px solid #d1d1d6;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      color: #000;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      transition: border 0.3s ease;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus {
+      border: 1px solid #ff3b30;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div id="container">
+      <div id="text"></div>
+      <div id="desc"></div>
+      <div id="inputs"></div>
+    </div>
+    <div class="controls">
+      <button id="backBtn">Back</button>
+      <button id="nextBtn">Next</button>
+    </div>
+  </div>
+
+  <script>
+    const questions = JSON.parse("JSONPLACEHOLDER");
+    let currentIndex = 0;
+    const answers = {};
+
+    const container = document.getElementById("container");
+    const inputsDiv = document.getElementById("inputs");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function clearInputs() {
+      inputsDiv.innerHTML = "";
+      inputsDiv.className = "";
+    }
+
+    function renderQuestionForm(question) {
+      container.querySelector("#text").innerText = question.text;
+      container.querySelector("#desc").innerText = question.description || "";
+      clearInputs();
+      const valueDef = question.meDataDef.valueDef;
+
+      if (valueDef.enumerated) {
+        inputsDiv.className = "enumerated";
+        valueDef.enumeratedValues.forEach((val, idx) => {
+          const input = document.createElement("input");
+          input.id = "input_" + idx;
+          input.type = valueDef.multivalued ? "checkbox" : "radio";
+          input.name = "input";
+          input.value = val.id;
+
+          const label = document.createElement("label");
+          label.setAttribute("for", input.id);
+          label.innerText = val.text;
+
+          const wrapper = document.createElement("div");
+          wrapper.className = "input-row option-row";
+          wrapper.appendChild(label);
+          wrapper.appendChild(input);
+          inputsDiv.appendChild(wrapper);
+        });
+      } else {
+        const wrapper = document.createElement("div");
+        wrapper.className = "input-row input-field-row";
+
+        const input = document.createElement("input");
+        input.type = valueDef.type === "NUMBER" ? "number" :
+                     valueDef.type === "DATETIME" ? "date" : "text";
+        input.name = "input";
+        input.placeholder = "Enter value...";
+
+        wrapper.appendChild(input);
+        inputsDiv.appendChild(wrapper);
+      }
+
+      updateButtonStates();
+    }
+
+    function updateButtonStates() {
+      backBtn.disabled = currentIndex === 0;
+      nextBtn.innerText = currentIndex === questions.length - 1 ? "Complete" : "Next";
+    }
+
+    function getAnswer() {
+      const inputs = inputsDiv.querySelectorAll("[name='input']");
+      if (!inputs.length) return null;
+
+      if (inputs[0].type === "radio") {
+        const selected = [...inputs].find(i => i.checked);
+        return selected ? selected.value : null;
+      }
+
+      if (inputs[0].type === "checkbox") {
+        return [...inputs].filter(i => i.checked).map(i => i.value);
+      }
+
+      return inputs[0].value || null;
+    }
+
+    function getAnswerText(question, answer) {
+      const valueDef = question.meDataDef.valueDef;
+
+      if (valueDef.enumerated) {
+        if (Array.isArray(answer)) {
+          return answer.map(id => {
+            const match = valueDef.enumeratedValues.find(v => v.id === id);
+            return match ? match.text : id;
+          });
+        } else {
+          const match = valueDef.enumeratedValues.find(v => v.id === answer);
+          return match ? match.text : answer;
+        }
+      }
+      
+      // ✅ Convert date string to epoch time
+      if (valueDef.type === "DATETIME" && typeof answer === "string") {
+        const date = new Date(answer);
+        if (!isNaN(date.getTime())) {
+          return Math.floor(date.getTime() / 1000); // return epoch in seconds
+        }
+      }
+
+      return answer;
+    }
+
+    function saveAnswer(question) {
+      const rawAnswer = getAnswer();
+      const key = question.meDataDef?.name;
+      if (key && rawAnswer != null) {
+        const finalAnswer = getAnswerText(question, rawAnswer);
+        answers[key] = finalAnswer;
+        console.log("Saved:", key, "=>", finalAnswer);
+      }
+    }
+
+    backBtn.onclick = () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestionForm(questions[currentIndex]);
+      }
+    };
+
+    nextBtn.onclick = () => {
+      if (!isAnswered()) {
+        alert("Please answer the question before continuing.");
+        return;
+      }
+
+      saveAnswer(questions[currentIndex]);
+
+      if (currentIndex === questions.length - 1) {
+        window.webkit.messageHandlers.formHandler.postMessage({
+          type: "submit",
+          data: { data: answers }
+        });
+      } else {
+        currentIndex++;
+        renderQuestionForm(questions[currentIndex]);
+      }
+    };
+
+    function isAnswered() {
+      const answer = getAnswer();
+      return answer && (Array.isArray(answer) ? answer.length > 0 : true);
+    }
+
+    renderQuestionForm(questions[currentIndex]);
+  </script>
+</body>
+</html>
