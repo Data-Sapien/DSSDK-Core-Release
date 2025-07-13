@@ -13,7 +13,6 @@ import MachO
 import MediaPlayer
 import Network
 import NotificationCenter
-import ObjectiveC
 import RealmSwift
 import SafariServices
 import Security
@@ -26,7 +25,6 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-import ObjectiveC.runtime
 public class DeviceDataCollector : DSSDK.MeDataValueCollector {
   public init()
   public typealias T = Any
@@ -207,6 +205,7 @@ extension Foundation.Date {
 }
 @_hasMissingDesignatedInitializers public class Resources {
   public static func getQuestionAnswerHtml() -> Foundation.URL?
+  public static func getMeDataDisplayHtml() -> Foundation.URL?
   @objc deinit
 }
 #if compiler(>=5.3) && $NoncopyableGenerics
@@ -348,7 +347,9 @@ extension DSSDK.DataSapienConfig {
   public func getAllExchanges() -> [DSSDK.Exchange]?
   public func getExchagesByTag(tag: Swift.String) -> [DSSDK.Exchange]?
   public func getNativeMeDataCollector(exchange: DSSDK.Exchange) -> [any DSSDK.MeDataValueCollector]?
+  public func getScriptedMeDataCollector(exchange: DSSDK.Exchange) -> [any DSSDK.MeDataValueCollector]?
   public func getQaBasedMeDataCollector(exchange: DSSDK.Exchange) -> [DSSDK.Question]?
+  public func getExchangeMeDataDefinitions(exchange: DSSDK.Exchange) -> [DSSDK.MeDataDefinition]
   public func getQaBasedMeDataByName(name: Swift.String, exchange: DSSDK.Exchange) -> DSSDK.Question?
   public func getSurveyQuestions(exchange: DSSDK.Exchange) -> [DSSDK.Question]?
   public func completeExchangeAndGetLatestInfo(exchange: DSSDK.Exchange?) -> DSSDK.ExchangeTransactionInfo?
@@ -369,6 +370,7 @@ extension DSSDK.DataSapienConfig {
   public func getJourneysByTag(tag: Swift.String, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
   public func executeJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
+  public func executeExchange(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), exchange: DSSDK.Exchange, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class ManagedApiService {
@@ -397,6 +399,7 @@ extension DSSDK.DataSapienConfig {
   public func collectAllNatives(onComplete: (() -> Swift.Void)? = nil)
   public func clearMeDataValueByName(name: Swift.String)
   public func searchMeDataLongitudinally(withID medataId: Swift.String, searchTerms: [Swift.String], completion: @escaping ([Swift.String]) -> Swift.Void)
+  public func getMedataViewController()
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class QuestionService {
@@ -589,6 +592,8 @@ public class JourneyContext {
   public func putValue(_ value: Any, forKey key: Swift.String)
   public func appendValues(values newValues: [Swift.String : Any])
   public func getAllValues() -> [Swift.String : Any]
+  public func toJsonString() -> Swift.String?
+  public static func fromJsonString(_ json: Swift.String?) -> DSSDK.JourneyContext?
   @objc deinit
 }
 public struct JourneyTransaction : Swift.Codable {
@@ -603,8 +608,9 @@ public struct JourneyTransactionInfo : Swift.Codable {
   public var journeyId: Swift.String
   public var state: Swift.String
   public var submissionTime: Foundation.TimeInterval
-  public func encode(to encoder: any Swift.Encoder) throws
+  public var journeyContext: DSSDK.JourneyContext?
   public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public typealias DataMap = [Swift.String : Swift.String]
 public struct ManagedApi : Swift.Codable {
@@ -960,6 +966,25 @@ public class DSException : Swift.Error {
   }
   @_Concurrency.MainActor @preconcurrency public init(categoryGroups: [DSSDK.MeDataCategoryGroup] = [], isLoading: Swift.Bool = true, errorMessage: Swift.String? = nil)
   public typealias Body = @_opaqueReturnTypeOf("$s5DSSDK10MeDataViewV4bodyQrvp", 0) __
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class MeDataViewController : DSSDK.BaseWebViewController {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public func refresh()
+  @objc deinit
+}
+@objc @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency open class BaseWebViewController : UIKit.UIViewController, WebKit.WKNavigationDelegate, WebKit.WKUIDelegate, WebKit.WKScriptMessageHandler {
+  @_Concurrency.MainActor @preconcurrency public var completion: ((Swift.Bool) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency public func getJourneyContext() -> DSSDK.JourneyContext?
+  @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, didFinish navigation: WebKit.WKNavigation!)
+  @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, didFail navigation: WebKit.WKNavigation!, withError error: any Swift.Error)
+  @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, didFailProvisionalNavigation navigation: WebKit.WKNavigation!, withError error: any Swift.Error)
+  @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptAlertPanelWithMessage message: Swift.String, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping () -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptConfirmPanelWithMessage message: Swift.String, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency @objc public func webView(_ webView: WebKit.WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: Swift.String, defaultText: Swift.String?, initiatedByFrame frame: WebKit.WKFrameInfo, completionHandler: @escaping (Swift.String?) -> Swift.Void)
+  @_Concurrency.MainActor @preconcurrency @objc public func userContentController(_ userContentController: WebKit.WKUserContentController, didReceive message: WebKit.WKScriptMessage)
+  @objc deinit
 }
 extension DSSDK.DeviceDataType : Swift.Equatable {}
 extension DSSDK.DeviceDataType : Swift.Hashable {}

@@ -173,8 +173,7 @@
       container.querySelector("#text").innerText = question.text;
       container.querySelector("#desc").innerText = question.description || "";
       clearInputs();
-      const valueDef = question.meDataDef.valueDef;
-
+      const valueDef = question.meDataDef?.valueDef ?? question.valueDef;
       if (valueDef.enumerated) {
         inputsDiv.className = "enumerated";
         valueDef.enumeratedValues.forEach((val, idx) => {
@@ -233,8 +232,7 @@
     }
 
     function getAnswerText(question, answer) {
-      const valueDef = question.meDataDef.valueDef;
-
+      const valueDef = question.meDataDef?.valueDef ?? question.valueDef;
       if (valueDef.enumerated) {
         if (Array.isArray(answer)) {
           return answer.map(id => {
@@ -260,7 +258,7 @@
 
     function saveAnswer(question) {
       const rawAnswer = getAnswer();
-      const key = question.meDataDef?.name;
+      const key = question.meDataDef?.name ?? question.name;
       if (key && rawAnswer != null) {
         const finalAnswer = getAnswerText(question, rawAnswer);
         answers[key] = finalAnswer;
