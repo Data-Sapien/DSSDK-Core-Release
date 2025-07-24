@@ -2,21 +2,92 @@
 <html>
 <head>
   <meta charset='UTF-8' />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>MeDataView</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 16px; background: #F2F3F4; font-size: 16px; }
-    .loader { text-align: center; margin-top: 2rem; font-size: 1.4rem; color: #666; }
-    .error { color: red; text-align: center; padding: 1.5rem; font-size: 1.4rem; }
-    .section { margin-bottom: 2rem; }
-    .section-header { font-size: 1rem; font-weight: 700; color: #7A7A7A; margin: 2rem 0 1.2rem; text-transform: uppercase; padding-left: 0.2rem; }
-    .row { display: flex; align-items: flex-start; background: white; border-radius: 14px; padding: 1rem 1.2rem; margin-bottom: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-    .icon { width: 24px; height: 24px; margin-right: 12px; object-fit: contain; border-radius: 6px; }
-    .text-block { display: flex; flex-direction: column; flex: 1; }
-    .label { font-size: 1rem; font-weight: 600; color: #111; margin-bottom: 0.2rem; }
-    .value { font-size: 0.95rem; color: #3A3A3A; line-height: 1.5; white-space: pre-wrap; }
-    .value.empty { color: #999; font-style: italic; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">  <title>MeDataView</title>
+      <style>
+        html, body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          margin: 0;
+          padding: 16px;
+          background: #F2F3F4;
+          font-size: 16px;
+          overflow-x: hidden; /* ✅ Disable horizontal scroll */
+          max-width: 100vw;   /* ✅ Clamp to viewport width */
+        }
+
+        .loader {
+          text-align: center;
+          margin-top: 2rem;
+          font-size: 1.4rem;
+          color: #666;
+        }
+
+        .error {
+          color: red;
+          text-align: center;
+          padding: 1.5rem;
+          font-size: 1.4rem;
+        }
+
+        .section {
+          margin-bottom: 2rem;
+        }
+
+        .section-header {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #7A7A7A;
+          margin: 2rem 0 1.2rem;
+          text-transform: uppercase;
+          padding-left: 0.2rem;
+        }
+
+        .row {
+          display: flex;
+          align-items: flex-start;
+          background: white;
+          border-radius: 14px;
+          padding: 1rem 1.2rem;
+          margin-bottom: 1rem;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+          flex-wrap: wrap; /* ✅ If content overflows, wrap to next line */
+        }
+
+        .icon {
+          width: 24px;
+          height: 24px;
+          margin-right: 12px;
+          object-fit: contain;
+          border-radius: 6px;
+          flex-shrink: 0;
+        }
+
+        .text-block {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-width: 0; /* ✅ Prevent overflow in flex containers */
+        }
+
+        .label {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #111;
+          margin-bottom: 0.2rem;
+        }
+
+        .value {
+          font-size: 0.95rem;
+          color: #3A3A3A;
+          line-height: 1.5;
+          white-space: pre-wrap;
+          word-break: break-word;
+        }
+
+        .value.empty {
+          color: #999;
+          font-style: italic;
+        }
+      </style>
 </head>
 <body>
   <div id='content'></div>
