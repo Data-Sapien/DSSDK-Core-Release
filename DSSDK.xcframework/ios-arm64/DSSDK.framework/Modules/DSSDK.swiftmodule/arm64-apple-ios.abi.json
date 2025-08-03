@@ -7707,6 +7707,27 @@
           },
           {
             "kind": "Function",
+            "name": "deleteAllData",
+            "printedName": "deleteAllData()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK10DataSapienV09deleteAllB0yyFZ",
+            "mangledName": "$s5DSSDK10DataSapienV09deleteAllB0yyFZ",
+            "moduleName": "DSSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "getSegmentService",
             "printedName": "getSegmentService()",
             "children": [

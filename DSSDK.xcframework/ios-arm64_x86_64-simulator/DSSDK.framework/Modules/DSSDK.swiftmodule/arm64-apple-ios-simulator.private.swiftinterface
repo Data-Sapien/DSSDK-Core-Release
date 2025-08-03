@@ -276,6 +276,7 @@ public struct DataSapien {
   public static func arda()
   public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
   public static func setPushToken(_ pushToken: Swift.String)
+  public static func deleteAllData()
   public static func getSegmentService() -> DSSDK.SegmentService
   public static func getMeDataService() -> DSSDK.MeDataService
   public static func getJourneyService() -> DSSDK.JourneyService
