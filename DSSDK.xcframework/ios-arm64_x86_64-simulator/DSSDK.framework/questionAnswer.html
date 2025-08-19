@@ -164,16 +164,31 @@
     const backBtn = document.getElementById("backBtn");
     const nextBtn = document.getElementById("nextBtn");
 
+    function normalizeValueDef(valueDef) {
+      if (!valueDef || !valueDef.enumerated || !Array.isArray(valueDef.enumeratedValues)) {
+        return valueDef;
+      }
+      const fixed = valueDef.enumeratedValues.map((v, i) => {
+        // ensure text exists
+        const text = v.text ?? v.name ?? `Option ${i + 1}`;
+        // ensure id exists and is stable
+        const id = v.id ?? v.name ?? v.text ?? String(i);
+        return { ...v, id, text };
+      });
+      return { ...valueDef, enumeratedValues: fixed };
+    }
+    
     function clearInputs() {
       inputsDiv.innerHTML = "";
       inputsDiv.className = "";
     }
 
-    function renderQuestionForm(question) {
-      container.querySelector("#text").innerText = question.text;
-      container.querySelector("#desc").innerText = question.description || "";
+    function renderQuestionForm(questionDef) {
+      container.querySelector("#text").innerText = questionDef.question.text;
+      container.querySelector("#desc").innerText = questionDef.question.description || "";
       clearInputs();
-      const valueDef = question.meDataDef?.valueDef ?? question.valueDef;
+      const valueDef = normalizeValueDef(questionDef.valueDef);
+
       if (valueDef.enumerated) {
         inputsDiv.className = "enumerated";
         valueDef.enumeratedValues.forEach((val, idx) => {
@@ -231,34 +246,34 @@
       return inputs[0].value || null;
     }
 
-    function getAnswerText(question, answer) {
-      const valueDef = question.meDataDef?.valueDef ?? question.valueDef;
-      if (valueDef.enumerated) {
-        if (Array.isArray(answer)) {
-          return answer.map(id => {
-            const match = valueDef.enumeratedValues.find(v => v.id === id);
-            return match ? match.text : id;
-          });
-        } else {
-          const match = valueDef.enumeratedValues.find(v => v.id === answer);
-          return match ? match.text : answer;
-        }
-      }
-      
-      // ✅ Convert date string to epoch time
-      if (valueDef.type === "DATETIME" && typeof answer === "string") {
-        const date = new Date(answer);
-        if (!isNaN(date.getTime())) {
-          return Math.floor(date.getTime() / 1000); // return epoch in seconds
-        }
-      }
+      function getAnswerText(question, answer) {
+        const valueDef = question.valueDef ? normalizeValueDef(question.valueDef) : question.valueDef;
 
-      return answer;
-    }
+        if (valueDef && valueDef.enumerated) {
+          const findTextById = id => {
+            const m = valueDef.enumeratedValues.find(v => v.id === id);
+            return m ? m.text : id;
+          };
+
+          if (Array.isArray(answer)) {
+            return answer.map(findTextById);
+          } else {
+            return findTextById(answer);
+          }
+        }
+
+        // DATETIME → epoch (unchanged)
+        if (valueDef && valueDef.type === "DATETIME" && typeof answer === "string") {
+          const date = new Date(answer);
+          if (!isNaN(date.getTime())) return Math.floor(date.getTime() / 1000);
+        }
+
+        return answer;
+      }
 
     function saveAnswer(question) {
       const rawAnswer = getAnswer();
-      const key = question.meDataDef?.name ?? question.name;
+      const key = question.contextKey;
       if (key && rawAnswer != null) {
         const finalAnswer = getAnswerText(question, rawAnswer);
         answers[key] = finalAnswer;

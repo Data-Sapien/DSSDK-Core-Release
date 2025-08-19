@@ -234,9 +234,6 @@ extension DSSDK.ManagedApiService : DSSDK.JavaScriptExportable {
 extension DSSDK.MeDataService : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
 }
-extension DSSDK.QuestionService : DSSDK.JavaScriptExportable {
-  public func registerMethods(to context: JavaScriptCore.JSContext)
-}
 public protocol JavaScriptExportable {
   func registerMethods(to context: JavaScriptCore.JSContext)
 }
@@ -283,10 +280,9 @@ public struct DataSapien {
   public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
   public static func getRuleEngineService() -> DSSDK.RuleEngineService
   public static func getExchangeService() -> DSSDK.ExchangeService
-  public static func getQuestionService() -> DSSDK.QuestionService
   public static func getManagedApiService() -> DSSDK.ManagedApiService
   public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
-  public func setup()
+  public static func setup(completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
 }
 @_hasMissingDesignatedInitializers public class DataSapienConfig {
   public static let shared: DSSDK.DataSapienConfig
@@ -367,11 +363,9 @@ extension DSSDK.DataSapienConfig {
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
   public static let shared: DSSDK.JourneyService
-  public func fetchJourneys(onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getJourneysByTag(tag: Swift.String, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func fetchJourneys(policy: DSSDK.JourneyFetchPolicy = .refreshThenReturn, tagsAll: [Swift.String] = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
   public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
   public func executeJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
-  public func executeExchange(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), exchange: DSSDK.Exchange, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class ManagedApiService {
@@ -384,7 +378,6 @@ extension DSSDK.DataSapienConfig {
   public static let shared: DSSDK.MeDataService
   public func getMeDataCategoryGroups(onSuccess: @escaping ([DSSDK.MeDataCategoryGroup]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func fetchMeDataDefinitions(onSuccess: @escaping ([DSSDK.MeDataDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func refreshMeDataDefinitions()
   public func getMeDataDefinitions() -> [DSSDK.MeDataDefinition]?
   public func getMeDataDefinitionByName(name: Swift.String) -> DSSDK.MeDataDefinition?
   public func saveMeDataValue(meDataContainer: DSSDK.MeDataContainer, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
@@ -401,12 +394,6 @@ extension DSSDK.DataSapienConfig {
   public func clearMeDataValueByName(name: Swift.String)
   public func searchMeDataLongitudinally(withID medataId: Swift.String, searchTerms: [Swift.String], completion: @escaping ([Swift.String]) -> Swift.Void)
   public func getMedataViewController()
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class QuestionService {
-  public static let shared: DSSDK.QuestionService
-  public func fetchQuestions(onSuccess: @escaping ([DSSDK.Question]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getQuestionByMeDataName(meDataDefinitionName: Swift.String) -> DSSDK.Question?
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class RuleEngineService {
@@ -495,15 +482,12 @@ extension DSSDK.ExchangeMetadata {
   }
 }
 public struct Question : Swift.Codable, Swift.Hashable {
-  public var id: Swift.String
-  public var name: Swift.String
+  public var id: Swift.String?
+  public var name: Swift.String?
   public var text: Swift.String
   public var description: Swift.String?
   public var imageUrl: Swift.String?
-  public var meDataDef: DSSDK.MeDataDefinition?
-  public var valueDef: DSSDK.ValueDefinition?
   public static func == (lhs: DSSDK.Question, rhs: DSSDK.Question) -> Swift.Bool
-  public func getValueDef() -> DSSDK.ValueDefinition?
   public func hash(into hasher: inout Swift.Hasher)
   public func encode(to encoder: any Swift.Encoder) throws
   public var hashValue: Swift.Int {
@@ -569,7 +553,7 @@ public struct Host : Swift.Codable {
 }
 public struct Journey : Swift.Codable {
   public var id: Swift.String
-  public var bpmnXml: Swift.String
+  public var flow: DSSDK.JourneyFlow
   public var metadata: DSSDK.JourneyMetadata?
   public var tags: [Swift.String]?
   public func encode(to encoder: any Swift.Encoder) throws
@@ -596,6 +580,30 @@ public class JourneyContext {
   public func toJsonString() -> Swift.String?
   public static func fromJsonString(_ json: Swift.String?) -> DSSDK.JourneyContext?
   @objc deinit
+}
+public struct JourneyFlow : Swift.Codable {
+  public var xml: Swift.String
+  public var data: [DSSDK.FlowData]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct FlowData : Swift.Codable {
+  public var name: Swift.String
+  public var source: Swift.String
+  public var origin: Swift.String
+  public var type: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct JourneyQuestion : Swift.Codable {
+  public var id: Swift.String
+  public var question: DSSDK.Question
+  public var valueDef: DSSDK.ValueDefinition?
+  public var required: Swift.Bool?
+  public var randomiseAnswers: Swift.Bool?
+  public var minAnswerTimeMs: Swift.Double?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct JourneyTransaction : Swift.Codable {
   public var id: Swift.String
@@ -655,7 +663,7 @@ public struct DataTypeConstraints : Swift.Codable, Swift.Hashable {
   public init(from decoder: any Swift.Decoder) throws
 }
 public struct EnumeratedValue : Swift.Codable, Swift.Hashable {
-  public var id: Swift.String
+  public var id: Swift.String?
   public var text: Swift.String
   public var description: Swift.String?
   public var imageUrl: Swift.String?
@@ -709,6 +717,8 @@ public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
   public var sharable: Swift.Bool
   public var hidden: Swift.Bool?
   public var iconUrl: Swift.String?
+  public var storageSettings: DSSDK.MeDataStorageSettings?
+  public var question: DSSDK.Question?
   public static func == (lhs: DSSDK.MeDataDefinition, rhs: DSSDK.MeDataDefinition) -> Swift.Bool
   public func getMeDataDefinitionType() -> DSSDK.MeDataType?
   public func createMeData(values: [Any], valueNotAvailable: Swift.Bool = false, saveDate: Swift.Int64 = Date.currentEpochTime) throws -> DSSDK.MeDataContainer
@@ -723,6 +733,21 @@ extension DSSDK.MeDataDefinition {
   public var iconFullURL: Foundation.URL? {
     get
   }
+}
+extension DSSDK.MeDataStorageSettings {
+  public func toEntity() -> DSSDK.MeDataStorageSettingsEntity
+}
+public struct MeDataStorageSettings : Swift.Codable, Swift.Hashable {
+  public var onlyIfChanged: Swift.Bool
+  public var longLimit: Swift.Int?
+  public init(onlyIfChanged: Swift.Bool = false, longLimit: Swift.Int? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: DSSDK.MeDataStorageSettings, b: DSSDK.MeDataStorageSettings) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
 }
 public enum MeDataType : Swift.String, Swift.Codable {
   case NATIVE
@@ -747,12 +772,26 @@ public struct MultiValueConstraints : Swift.Codable, Swift.Hashable {
   }
   public init(from decoder: any Swift.Decoder) throws
 }
+public struct QuestionDefinition : Swift.Codable, Swift.Hashable {
+  public var valueDef: DSSDK.ValueDefinition
+  public var question: DSSDK.Question
+  public var isMeData: Swift.Bool
+  public var contextKey: Swift.String
+  public init(valueDef: DSSDK.ValueDefinition, question: DSSDK.Question, isMeData: Swift.Bool = false, contextKey: Swift.String)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: DSSDK.QuestionDefinition, b: DSSDK.QuestionDefinition) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
 public struct ValueDefinition : Swift.Codable, Swift.Hashable {
   public var type: Swift.String?
   public var constraints: DSSDK.DataTypeConstraints?
-  public var multivalued: Swift.Bool
+  public var multivalued: Swift.Bool?
   public var multiValueConstraints: DSSDK.MultiValueConstraints?
-  public var enumerated: Swift.Bool
+  public var enumerated: Swift.Bool?
   public var enumeratedValues: [DSSDK.EnumeratedValue]?
   public var enumeratedValueConstraints: DSSDK.EnumeratedValueConstraints?
   public static func == (lhs: DSSDK.ValueDefinition, rhs: DSSDK.ValueDefinition) -> Swift.Bool
@@ -797,7 +836,35 @@ public struct MeDataValueInfo : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+@_hasMissingDesignatedInitializers public class Criteria {
+  final public let field: Swift.String
+  final public let criteriaOperator: Swift.String
+  final public let value: Swift.String
+  public var description: Swift.String {
+    get
+  }
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class Filter {
+  final public let type: Swift.String?
+  final public let filters: [DSSDK.Filter]?
+  final public let filter: DSSDK.Filter?
+  final public let criteria: DSSDK.Criteria?
+  public var description: Swift.String {
+    get
+  }
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
 public struct Segment : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var text: Swift.String
+  public var conditionJson: Swift.String?
+  public var condition: DSSDK.Filter?
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
@@ -852,6 +919,102 @@ public struct SegmentInfo : Swift.Codable {
   @objc override dynamic public init()
   @objc deinit
 }
+@objc @_inheritsConvenienceInitializers final public class JourneyEntity : RealmSwift.Object {
+  @RealmSwift.Persisted final public var id: Swift.String {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var flow: DSSDK.JourneyFlowEntity? {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var metadata: DSSDK.JourneyMetadataEntity? {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var tags: RealmSwift.List<Swift.String> {
+    get
+    set
+    _modify
+  }
+  @objc override dynamic public init()
+  convenience public init(id: Swift.String, flow: DSSDK.JourneyFlowEntity?, metadata: DSSDK.JourneyMetadataEntity?, tags: RealmSwift.List<Swift.String>)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class JourneyMetadataEntity : RealmSwift.EmbeddedObject {
+  @RealmSwift.Persisted final public var title: Swift.String {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var desc: Swift.String? {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var imageUrl: Swift.String? {
+    get
+    set
+    _modify
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class JourneyFlowEntity : RealmSwift.EmbeddedObject {
+  @RealmSwift.Persisted final public var xml: Swift.String {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var data: RealmSwift.List<DSSDK.FlowDataEntity> {
+    get
+    set
+    _modify
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class FlowDataEntity : RealmSwift.EmbeddedObject {
+  @RealmSwift.Persisted final public var name: Swift.String {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var source: Swift.String {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var origin: Swift.String {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var type: Swift.String {
+    get
+    set
+    _modify
+  }
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension DSSDK.JourneyEntity {
+  final public func toDto() -> DSSDK.Journey
+  public static func fromDto(_ dto: DSSDK.Journey) -> DSSDK.JourneyEntity
+  final public func apply(from dto: DSSDK.Journey)
+}
+extension DSSDK.JourneyMetadataEntity {
+  final public func toDto() -> DSSDK.JourneyMetadata
+}
+extension DSSDK.JourneyFlowEntity {
+  final public func toDto() -> DSSDK.JourneyFlow
+}
+extension DSSDK.FlowDataEntity {
+  final public func toDto() -> DSSDK.FlowData
+}
 @objc @_inheritsConvenienceInitializers public class JourneyTransactionEntity : RealmSwift.Object {
   @objc override dynamic public init()
   @objc deinit
@@ -879,6 +1042,24 @@ public enum DataTypeEntity : Swift.String {
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataDefinitionEntity : RealmSwift.Object {
+  public func toDto() -> DSSDK.MeDataDefinition
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class MeDataStorageSettingsEntity : RealmSwift.Object {
+  @RealmSwift.Persisted final public var onlyIfChanged: Swift.Bool {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var longLimit: Swift.Int? {
+    get
+    set
+    _modify
+  }
+  convenience public init(onlyIfChanged: Swift.Bool = false, longLimit: Swift.Int? = nil)
+  final public func toDto() -> DSSDK.MeDataStorageSettings
+  public static func fromDto(_ dto: DSSDK.MeDataStorageSettings) -> DSSDK.MeDataStorageSettingsEntity
+  @objc override dynamic public init()
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataEntity : RealmSwift.Object {
@@ -987,6 +1168,20 @@ public class DSException : Swift.Error {
   @_Concurrency.MainActor @preconcurrency @objc public func userContentController(_ userContentController: WebKit.WKUserContentController, didReceive message: WebKit.WKScriptMessage)
   @objc deinit
 }
+public enum JourneyFetchPolicy {
+  case localOnly
+  case refreshThenReturn
+  public static func == (a: DSSDK.JourneyFetchPolicy, b: DSSDK.JourneyFetchPolicy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct JourneyQuery {
+  public init()
+  public func requireAllTags(_ tags: [Swift.String]) -> DSSDK.JourneyQuery
+  public func fetchPolicy(_ p: DSSDK.JourneyFetchPolicy) -> DSSDK.JourneyQuery
+}
 extension DSSDK.DeviceDataType : Swift.Equatable {}
 extension DSSDK.DeviceDataType : Swift.Hashable {}
 extension DSSDK.DeviceDataType : Swift.RawRepresentable {}
@@ -1004,8 +1199,14 @@ extension DSSDK.DataType : Swift.RawRepresentable {}
 extension DSSDK.MeDataType : Swift.Equatable {}
 extension DSSDK.MeDataType : Swift.Hashable {}
 extension DSSDK.MeDataType : Swift.RawRepresentable {}
+extension DSSDK.Criteria : Swift.Encodable {}
+extension DSSDK.Criteria : Swift.Decodable {}
+extension DSSDK.Filter : Swift.Encodable {}
+extension DSSDK.Filter : Swift.Decodable {}
 extension DSSDK.DataTypeEntity : Swift.Equatable {}
 extension DSSDK.DataTypeEntity : Swift.Hashable {}
 extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
 extension DSSDK.ExchangeFlowManager : Swift.Sendable {}
 extension DSSDK.MeDataView : Swift.Sendable {}
+extension DSSDK.JourneyFetchPolicy : Swift.Equatable {}
+extension DSSDK.JourneyFetchPolicy : Swift.Hashable {}
