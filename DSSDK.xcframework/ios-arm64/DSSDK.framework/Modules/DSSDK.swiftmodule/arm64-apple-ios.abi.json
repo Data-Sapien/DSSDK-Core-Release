@@ -7811,28 +7811,6 @@
           },
           {
             "kind": "Function",
-            "name": "getExchangeService",
-            "printedName": "getExchangeService()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "ExchangeService",
-                "printedName": "DSSDK.ExchangeService",
-                "usr": "s:5DSSDK15ExchangeServiceC"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK10DataSapienV18getExchangeServiceAA0eF0CyFZ",
-            "mangledName": "$s5DSSDK10DataSapienV18getExchangeServiceAA0eF0CyFZ",
-            "moduleName": "DSSDK",
-            "static": true,
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
             "name": "getManagedApiService",
             "printedName": "getManagedApiService()",
             "children": [

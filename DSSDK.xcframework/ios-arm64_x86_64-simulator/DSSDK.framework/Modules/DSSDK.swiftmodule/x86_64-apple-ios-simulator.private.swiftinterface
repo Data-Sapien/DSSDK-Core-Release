@@ -279,7 +279,6 @@ public struct DataSapien {
   public static func getJourneyService() -> DSSDK.JourneyService
   public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
   public static func getRuleEngineService() -> DSSDK.RuleEngineService
-  public static func getExchangeService() -> DSSDK.ExchangeService
   public static func getManagedApiService() -> DSSDK.ManagedApiService
   public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
   public static func setup(completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
