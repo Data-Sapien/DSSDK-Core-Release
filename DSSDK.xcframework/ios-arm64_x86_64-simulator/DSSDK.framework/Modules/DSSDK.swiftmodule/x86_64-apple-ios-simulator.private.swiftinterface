@@ -252,6 +252,12 @@ public protocol WebViewModuleProvider : ObjectiveC.NSObject {
   static func provideUserScripts() -> [WebKit.WKUserScript]
   static func provideHandlers(webView: WebKit.WKWebView) -> [Swift.String : any WebKit.WKScriptMessageHandler]
 }
+@_hasMissingDesignatedInitializers public class BackupService {
+  public static let shared: DSSDK.BackupService
+  public func getBackupJsonString(completion: @escaping (Swift.String?) -> Swift.Void)
+  public func saveBackup(backupJsonString: Swift.String, completion: @escaping (Swift.Bool) -> Swift.Void)
+  @objc deinit
+}
 public class CollectorRegistry {
   public init()
   public func removeCollector(collector: any DSSDK.MeDataValueCollector)
@@ -269,12 +275,16 @@ public class CollectorRegistry {
   public func requestLocation()
   @objc deinit
 }
+public enum SDKInternalVersion {
+  public static let version: Swift.String
+}
 public struct DataSapien {
-  public static func arda()
   public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
   public static func setPushToken(_ pushToken: Swift.String)
   public static func deleteAllData()
+  public static func deleteTransactionsAndMeData()
   public static func getSegmentService() -> DSSDK.SegmentService
+  public static func getBackupService() -> DSSDK.BackupService
   public static func getMeDataService() -> DSSDK.MeDataService
   public static func getJourneyService() -> DSSDK.JourneyService
   public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
@@ -362,8 +372,11 @@ extension DSSDK.DataSapienConfig {
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
   public static let shared: DSSDK.JourneyService
-  public func fetchJourneys(policy: DSSDK.JourneyFetchPolicy = .refreshThenReturn, tagsAll: [Swift.String] = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
+  public func fetchJourneys(policy: DSSDK.JourneyFetchPolicy = .refreshThenReturn, tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
+  public func fetchJourneysSafe(tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
   public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
+  public func doesJourneyCompleted(id: Swift.String) -> Swift.Bool
+  public func getAllJourneyTransactions() -> [DSSDK.JourneyTransaction]?
   public func executeJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
   @objc deinit
 }
@@ -405,6 +418,15 @@ extension DSSDK.DataSapienConfig {
   public func fetchSegments(onSuccess: @escaping ([DSSDK.Segment]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func fetchAndSubscribeToSegments(onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
+}
+public struct DSBackup : Swift.Codable {
+  public var host: DSSDK.Host?
+  public var meDatas: [DSSDK.MeData]?
+  public var journeyTransactions: [DSSDK.JourneyTransaction]?
+  public var sdkVersion: Swift.Int
+  public var backupDate: Foundation.TimeInterval
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public struct BaseResponse<T> : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
   public var created: [DSSDK.BaseVersionedResponse<T>]
@@ -570,8 +592,10 @@ extension DSSDK.JourneyMetadata {
     get
   }
 }
-public class JourneyContext {
+public class JourneyContext : Swift.Codable {
   public init(values: [Swift.String : Any] = [:])
+  required public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
   public func getValue<T>(forKey key: Swift.String) -> T?
   public func putValue(_ value: Any, forKey key: Swift.String)
   public func appendValues(values newValues: [Swift.String : Any])
@@ -579,6 +603,18 @@ public class JourneyContext {
   public func toJsonString() -> Swift.String?
   public static func fromJsonString(_ json: Swift.String?) -> DSSDK.JourneyContext?
   @objc deinit
+}
+public enum JSONValue : Swift.Codable {
+  case null
+  case bool(Swift.Bool)
+  case number(Swift.Double)
+  case string(Swift.String)
+  case array([DSSDK.JSONValue])
+  case object([Swift.String : DSSDK.JSONValue])
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func from(any: Any) throws -> DSSDK.JSONValue
+  public func toAny() -> Any
 }
 public struct JourneyFlow : Swift.Codable {
   public var xml: Swift.String
@@ -1176,6 +1212,17 @@ public enum JourneyFetchPolicy {
     get
   }
 }
+public enum JourneyStatus : Swift.String {
+  case completed
+  case draft
+  case notStarted
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public typealias JourneyStatusFilter = Swift.Set<DSSDK.JourneyStatus>
 public struct JourneyQuery {
   public init()
   public func requireAllTags(_ tags: [Swift.String]) -> DSSDK.JourneyQuery
@@ -1209,3 +1256,6 @@ extension DSSDK.ExchangeFlowManager : Swift.Sendable {}
 extension DSSDK.MeDataView : Swift.Sendable {}
 extension DSSDK.JourneyFetchPolicy : Swift.Equatable {}
 extension DSSDK.JourneyFetchPolicy : Swift.Hashable {}
+extension DSSDK.JourneyStatus : Swift.Equatable {}
+extension DSSDK.JourneyStatus : Swift.Hashable {}
+extension DSSDK.JourneyStatus : Swift.RawRepresentable {}
