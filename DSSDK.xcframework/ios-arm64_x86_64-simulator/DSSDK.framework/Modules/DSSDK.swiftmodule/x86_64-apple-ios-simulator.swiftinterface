@@ -25,6 +25,7 @@ import WebKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
+import llama
 public class DeviceDataCollector : DSSDK.MeDataValueCollector {
   public init()
   public typealias T = Any
@@ -225,6 +226,9 @@ extension Swift.String {
 extension DSSDK.ExchangeService : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
 }
+extension DSSDK.IntelligenceService : DSSDK.JavaScriptExportable {
+  nonisolated final public func registerMethods(to context: JavaScriptCore.JSContext)
+}
 extension DSSDK.JourneyContext : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
 }
@@ -233,6 +237,13 @@ extension DSSDK.ManagedApiService : DSSDK.JavaScriptExportable {
 }
 extension DSSDK.MeDataService : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+@_inheritsConvenienceInitializers @available(iOS 17.0, *)
+@objc(IntelligenceWebViewModuleProvider) public class IntelligenceWebViewModuleProvider : ObjectiveC.NSObject, @preconcurrency DSSDK.WebViewModuleProvider {
+  @objc override dynamic public init()
+  @_Concurrency.MainActor public static func provideUserScripts() -> [WebKit.WKUserScript]
+  @_Concurrency.MainActor public static func provideHandlers(webView: WebKit.WKWebView) -> [Swift.String : any WebKit.WKScriptMessageHandler]
+  @objc deinit
 }
 public protocol JavaScriptExportable {
   func registerMethods(to context: JavaScriptCore.JSContext)
@@ -282,8 +293,9 @@ public struct DataSapien {
   public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
   public static func setPushToken(_ pushToken: Swift.String)
   public static func deleteAllData()
-  public static func deleteTransactionsAndMeData()
+  public static func deleteDataBeforeBackup()
   public static func getSegmentService() -> DSSDK.SegmentService
+  public static func getIntelligenceService() -> DSSDK.IntelligenceService
   public static func getBackupService() -> DSSDK.BackupService
   public static func getMeDataService() -> DSSDK.MeDataService
   public static func getJourneyService() -> DSSDK.JourneyService
@@ -370,8 +382,20 @@ extension DSSDK.DataSapienConfig {
   public static let shared: DSSDK.HostService
   @objc deinit
 }
+@_hasMissingDesignatedInitializers final public class IntelligenceService {
+  public static let shared: DSSDK.IntelligenceService
+  final public func isModelDownloaded(modelName: Swift.String) -> Swift.Bool
+  final public func getDownloadedModelsList() -> [Swift.String]
+  final public func download(modelName: Swift.String, sourceURL: Swift.String, status: @escaping @Sendable (Swift.Double) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func unloadModel(completion: (() -> Swift.Void)? = nil)
+  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class JourneyService {
   public static let shared: DSSDK.JourneyService
+  public func downloadModel()
+  public func isModelDownloaded()
+  public func invokeModel()
   public func fetchJourneys(policy: DSSDK.JourneyFetchPolicy = .refreshThenReturn, tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
   public func fetchJourneysSafe(tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
   public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
@@ -404,6 +428,7 @@ extension DSSDK.DataSapienConfig {
   public func collectMeData(definition: DSSDK.MeDataDefinition, onSuccess: @escaping ([Swift.String : Any]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func collectAllNatives(onComplete: (() -> Swift.Void)? = nil)
   public func clearMeDataValueByName(name: Swift.String)
+  public func getMeDataInfos(meDataDefinitionName: Swift.String, from: Foundation.Date, to: Foundation.Date) -> [DSSDK.MeDataValueInfo]
   public func searchMeDataLongitudinally(withID medataId: Swift.String, searchTerms: [Swift.String], completion: @escaping ([Swift.String]) -> Swift.Void)
   public func getMedataViewController()
   @objc deinit
@@ -655,6 +680,33 @@ public struct JourneyTransactionInfo : Swift.Codable {
   public var journeyContext: DSSDK.JourneyContext?
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum LlamaModelStatus : Swift.Codable, Swift.Hashable {
+  case downloaded
+  case downloading(progress: Swift.Double)
+  case availableForDownload
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: DSSDK.LlamaModelStatus, b: DSSDK.LlamaModelStatus) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LlamaModel : Swift.Codable, Swift.Hashable {
+  public var name: Swift.String
+  public var sourceURL: Foundation.URL?
+  public var filename: Swift.String
+  public var status: DSSDK.LlamaModelStatus
+  public var localFileURL: Foundation.URL?
+  public init(name: Swift.String, sourceURL: Foundation.URL?, filename: Swift.String, status: DSSDK.LlamaModelStatus, localFileURL: Foundation.URL? = nil)
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: DSSDK.LlamaModel, b: DSSDK.LlamaModel) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
 }
 public typealias DataMap = [Swift.String : Swift.String]
 public struct ManagedApi : Swift.Codable {
@@ -1227,6 +1279,43 @@ public struct JourneyQuery {
   public init()
   public func requireAllTags(_ tags: [Swift.String]) -> DSSDK.JourneyQuery
   public func fetchPolicy(_ p: DSSDK.JourneyFetchPolicy) -> DSSDK.JourneyQuery
+}
+final public class LlamaDownloader {
+  public init(storage: any DSSDK.LlamaStorage, session: Foundation.URLSession = .shared)
+  final public func downloadModel(from remote: Foundation.URL, as filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws -> Foundation.URL
+  @objc deinit
+}
+public protocol LlamaStorage {
+  var modelsDirectory: Foundation.URL { get }
+  func listModelFiles() throws -> [Foundation.URL]
+  func urlForLocalFilename(_ filename: Swift.String) -> Foundation.URL
+}
+final public class DefaultLlamaStorage : DSSDK.LlamaStorage {
+  final public let modelsDirectory: Foundation.URL
+  public init(modelsDirectory: Foundation.URL? = nil)
+  final public func listModelFiles() throws -> [Foundation.URL]
+  final public func urlForLocalFilename(_ filename: Swift.String) -> Foundation.URL
+  @objc deinit
+}
+public protocol LlamaServiceDelegate : AnyObject {
+  func llamaServiceDidAppendLog(_ text: Swift.String)
+  func llamaServiceDidUpdateModels(_ models: [DSSDK.LlamaModel])
+}
+final public class LlamaUseCase {
+  weak final public var delegate: (any DSSDK.LlamaServiceDelegate)?
+  final public func unloadModel() async
+  public init(storage: any DSSDK.LlamaStorage = DefaultLlamaStorage())
+  final public func setCatalog(_ catalog: [DSSDK.LlamaModel])
+  final public func scanDiskAndMerge()
+  final public func currentModels() -> [DSSDK.LlamaModel]
+  final public func downloadModel(for filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws
+  final public func loadModel(filename: Swift.String) throws
+  final public func loadModel(fileURL: Foundation.URL) throws
+  final public func clearContext() async
+  final public func complete(prompt: Swift.String, onToken: @escaping (Swift.String) -> Swift.Void) async -> Swift.String
+  final public func completeStreaming(prompt: Swift.String, deliverOnMain: Swift.Bool = true, onPartial: @escaping (Swift.String) -> Swift.Void, onComplete: @escaping (_ fullText: Swift.String, _ summary: Swift.String) -> Swift.Void) async
+  final public func bench() async -> Swift.String
+  @objc deinit
 }
 extension DSSDK.DeviceDataType : Swift.Equatable {}
 extension DSSDK.DeviceDataType : Swift.Hashable {}
