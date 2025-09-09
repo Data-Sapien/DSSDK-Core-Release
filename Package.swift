@@ -8,8 +8,6 @@ let package = Package(
         .library(name: "DSSDKCore", targets: ["DSSDKCore"])
     ],
     dependencies: [
-        .package(url: "https://github.com/ml-explore/mlx-swift.git", exact: "0.21.2"),
-        .package(url: "https://github.com/Data-Sapien/mlx-swift-lib.git", branch: "main"),
     ],
     targets: [
         // 1) Vendorled Realm frameworks
@@ -26,9 +24,6 @@ let package = Package(
                 "DSSDK",
                 "Realm",
                 "RealmSwift",
-                .product(name: "MLX", package: "mlx-swift"),
-                .product(name: "MLXLLM", package: "mlx-swift-lib"),
-                .product(name: "MLXLMCommon", package: "mlx-swift-lib"),
             ],
             path: "Sources/DSSDKCore",
             resources: [
