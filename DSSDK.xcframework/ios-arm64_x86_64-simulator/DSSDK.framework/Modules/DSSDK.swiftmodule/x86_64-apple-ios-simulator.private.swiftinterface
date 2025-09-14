@@ -13,6 +13,7 @@ import MachO
 import MediaPlayer
 import Network
 import NotificationCenter
+import OSLog
 import RealmSwift
 import SafariServices
 import Security
@@ -20,6 +21,7 @@ import Swift
 import SwiftUI
 import SystemConfiguration
 import UIKit
+import UniformTypeIdentifiers
 import UserNotifications
 import WebKit
 import _Concurrency
@@ -381,13 +383,17 @@ extension DSSDK.DataSapienConfig {
   public static let shared: DSSDK.HostService
   @objc deinit
 }
-@_hasMissingDesignatedInitializers final public class IntelligenceService {
+final public class IntelligenceService {
   public static let shared: DSSDK.IntelligenceService
+  public init(storage: any DSSDK.LlamaStorage = DefaultLlamaStorage(), catalog: any DSSDK.LlamaModelCatalog = DefaultLlamaModelCatalog(map: [:]))
   final public func isModelDownloaded(modelName: Swift.String) -> Swift.Bool
   final public func getDownloadedModelsList() -> [Swift.String]
+  @discardableResult
+  final public func installBundledModel(resource: Swift.String, ext: Swift.String = "gguf", as filename: Swift.String? = nil, in bundle: Foundation.Bundle = .main, progress: ((Swift.Double) -> Swift.Void)? = nil) throws -> Foundation.URL
   final public func download(modelName: Swift.String, sourceURL: Swift.String, status: @escaping @Sendable (Swift.Double) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func unloadModel(completion: (() -> Swift.Void)? = nil)
-  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func invoke(modelName: Swift.String, messages: [DSSDK.LlamaChatMessage], onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
@@ -679,33 +685,6 @@ public struct JourneyTransactionInfo : Swift.Codable {
   public var journeyContext: DSSDK.JourneyContext?
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
-}
-public enum LlamaModelStatus : Swift.Codable, Swift.Hashable {
-  case downloaded
-  case downloading(progress: Swift.Double)
-  case availableForDownload
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-  public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: DSSDK.LlamaModelStatus, b: DSSDK.LlamaModelStatus) -> Swift.Bool
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-public struct LlamaModel : Swift.Codable, Swift.Hashable {
-  public var name: Swift.String
-  public var sourceURL: Foundation.URL?
-  public var filename: Swift.String
-  public var status: DSSDK.LlamaModelStatus
-  public var localFileURL: Foundation.URL?
-  public init(name: Swift.String, sourceURL: Foundation.URL?, filename: Swift.String, status: DSSDK.LlamaModelStatus, localFileURL: Foundation.URL? = nil)
-  public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: DSSDK.LlamaModel, b: DSSDK.LlamaModel) -> Swift.Bool
-  public func encode(to encoder: any Swift.Encoder) throws
-  public var hashValue: Swift.Int {
-    get
-  }
-  public init(from decoder: any Swift.Decoder) throws
 }
 public typealias DataMap = [Swift.String : Swift.String]
 public struct ManagedApi : Swift.Codable {
@@ -1223,6 +1202,223 @@ public class DSException : Swift.Error {
   override public init(errorCode: Swift.Int = DSException.COL_HEALTH_DATA_ERROR_CODE, message: Swift.String = "Collector health data error occured", info: Swift.String? = nil)
   @objc deinit
 }
+public enum LlamaBackend {
+  public static func initialize()
+  public static func shutdown()
+  public static var supportsMmap: Swift.Bool {
+    get
+  }
+  public static var supportsMlock: Swift.Bool {
+    get
+  }
+  public static var supportsGpuOffload: Swift.Bool {
+    get
+  }
+  public static var supportsRpc: Swift.Bool {
+    get
+  }
+  public static var maxDevices: Swift.Int {
+    get
+  }
+  public static var maxParallelSequences: Swift.Int {
+    get
+  }
+  public static func timeMicros() -> Swift.Int64
+  public static func systemInfo() -> Swift.String
+  public static func attachAutoThreadpool(to context: DSSDK.LlamaContext)
+  public static func detachThreadpool(from context: DSSDK.LlamaContext)
+}
+final public class LlamaBatch {
+  final public var size: Swift.Int32 {
+    get
+  }
+  public init(initialSize: Swift.Int32)
+  public init(embeddingCapacity capacity: Swift.Int32, embeddingSize: Swift.Int32, maxSequences: Swift.Int32 = 1)
+  @objc deinit
+  final public func reset()
+  final public func setLastTokenLogits(_ logits: Swift.Bool)
+  final public func setEmbedding(_ vector: [Swift.Float])
+}
+public struct LlamaChatMessage : Swift.Sendable {
+  public enum Role : Swift.String, Swift.Sendable {
+    case system
+    case user
+    case assistant
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public let role: DSSDK.LlamaChatMessage.Role
+  public let content: Swift.String
+  public init(role: DSSDK.LlamaChatMessage.Role, content: Swift.String)
+}
+public struct LlamaConfig : Swift.Equatable, Swift.Sendable {
+  public let batchSize: Swift.UInt32
+  public let maxTokenCount: Swift.UInt32
+  public let useGPU: Swift.Bool
+  public init(batchSize: Swift.UInt32, maxTokenCount: Swift.UInt32, useGPU: Swift.Bool = true)
+  public static func == (a: DSSDK.LlamaConfig, b: DSSDK.LlamaConfig) -> Swift.Bool
+}
+public enum LlamaContextError : Swift.Error {
+  case decodingError
+  case logitsUnavailable
+  case saveStateFailed
+  case loadStateFailed
+  case loraAdapterFailed(Swift.String)
+}
+@_hasMissingDesignatedInitializers final public class LlamaContext {
+  final public let model: DSSDK.LlamaModel
+  @objc deinit
+  final public func contextSize() -> Swift.UInt32
+  final public func batchSize() -> Swift.UInt32
+  final public func ubatchSize() -> Swift.UInt32
+  final public func maxParallelSequences() -> Swift.UInt32
+  final public func maxSequences() -> Swift.UInt32
+  final public func clearKVCache()
+  final public func clearKVCacheFromPosition(_ position: Swift.Int32)
+  final public func decode(batch: DSSDK.LlamaBatch) throws
+  final public func encode(batch: DSSDK.LlamaBatch) throws
+  final public func logits(at index: Swift.Int32) -> [Swift.Float]?
+  final public func lastLogits() -> [Swift.Float]?
+  final public func embeddings(at index: Swift.Int32) -> [Swift.Float]?
+  final public func synchronize()
+  final public func setThreads(nThreads: Swift.Int32, nThreadsBatch: Swift.Int32)
+  final public func nThreads() -> Swift.Int32
+  final public func nThreadsBatch() -> Swift.Int32
+  final public func setEmbeddingsOutput(_ enabled: Swift.Bool)
+  final public func setCausalAttention(_ enabled: Swift.Bool)
+  final public func setWarmup(_ enabled: Swift.Bool)
+  final public func setAbortCallback(_ callback: @escaping () -> Swift.Bool)
+  final public func apply(loraAdapter: DSSDK.LlamaLoraAdapter, scale: Swift.Float = 1.0) throws
+  final public func remove(loraAdapter: DSSDK.LlamaLoraAdapter) throws
+  final public func removeAllLoraAdapters()
+  final public func apply(controlVector data: [Swift.Float], n_embd: Swift.Int32, startLayer: Swift.Int32, endLayer: Swift.Int32) throws
+  final public func clearControlVector() throws
+  final public func stateSize() -> Swift.Int
+  final public func saveState() -> Foundation.Data
+  @discardableResult
+  final public func loadState(_ data: Foundation.Data) -> Swift.Bool
+  final public func performanceReset()
+  final public func performancePrint()
+  final public func attachAutoThreadpool()
+  final public func detachThreadpool()
+}
+public enum LlamaError : Swift.Error {
+  case couldNotInitializeContext
+  case contextSizeLimitExeeded
+  case decodingError
+  case emptyMessageArray
+  public static func == (a: DSSDK.LlamaError, b: DSSDK.LlamaError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LlamaGrammarConfig : Swift.Equatable, Swift.Sendable {
+  public let grammar: Swift.String
+  public let grammarRoot: Swift.String
+  public init(grammar: Swift.String, grammarRoot: Swift.String = "root")
+  public static func == (a: DSSDK.LlamaGrammarConfig, b: DSSDK.LlamaGrammarConfig) -> Swift.Bool
+}
+public enum LlamaLoraError : Swift.Error {
+  case couldNotLoadAdapter
+  public static func == (a: DSSDK.LlamaLoraError, b: DSSDK.LlamaLoraError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+final public class LlamaLoraAdapter {
+  public init(model: DSSDK.LlamaModel, path: Swift.String) throws
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class LlamaMemory {
+  final public func clear(data: Swift.Bool)
+  final public var canShift: Swift.Bool {
+    get
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class LlamaModel {
+  @objc deinit
+  final public func trainedContextSize() -> Swift.Int32
+  final public func description() -> Swift.String
+  final public func shouldAddBos() -> Swift.Bool
+  final public func vocabularySize() -> Swift.Int32
+  final public func applyChatTemplate(to messages: [DSSDK.LlamaChatMessage], addAssistant: Swift.Bool? = nil) -> Swift.String
+  final public func applyChatTemplate(name: Swift.String, to messages: [DSSDK.LlamaChatMessage], addAssistant: Swift.Bool? = nil) -> Swift.String
+  final public func numberOfParameters() -> Swift.UInt64
+  final public func nEmbed() -> Swift.Int32
+  final public func nLayer() -> Swift.Int32
+  final public func nHead() -> Swift.Int32
+  final public func nHeadKV() -> Swift.Int32
+  final public func nSWA() -> Swift.Int32
+  final public func ropeFreqScaleTrain() -> Swift.Float
+  final public func nClassifierOutputs() -> Swift.UInt32
+  final public func classifierLabel(at index: Swift.UInt32) -> Swift.String?
+  final public func modelSizeBytes() -> Swift.UInt64
+  final public func hasEncoder() -> Swift.Bool
+  final public func hasDecoder() -> Swift.Bool
+  final public func isRecurrent() -> Swift.Bool
+  final public func isDiffusion() -> Swift.Bool
+  final public func metaValue(forKey key: Swift.String) -> Swift.String?
+  final public func metaCount() -> Swift.Int32
+  final public func metaKey(at index: Swift.Int32) -> Swift.String?
+  final public func metaValue(at index: Swift.Int32) -> Swift.String?
+  final public func save(to path: Swift.String)
+  final public func builtinChatTemplates(maxCount: Swift.Int = 64) -> [Swift.String]
+  public static func splitPath(pathPrefix: Swift.String, splitNo: Swift.Int32, splitCount: Swift.Int32) -> Swift.String
+  public static func splitPrefix(splitPath: Swift.String, splitNo: Swift.Int32, splitCount: Swift.Int32) -> Swift.String?
+}
+public struct LlamaRepetitionPenaltyConfig : Swift.Equatable, Swift.Sendable {
+  public let lastN: Swift.Int32
+  public let repeatPenalty: Swift.Float
+  public let freqPenalty: Swift.Float
+  public let presentPenalty: Swift.Float
+  public init(lastN: Swift.Int32 = 64, repeatPenalty: Swift.Float = 1.1, freqPenalty: Swift.Float = 0.0, presentPenalty: Swift.Float = 0.0)
+  public static func == (a: DSSDK.LlamaRepetitionPenaltyConfig, b: DSSDK.LlamaRepetitionPenaltyConfig) -> Swift.Bool
+}
+@_hasMissingDesignatedInitializers final public class LlamaSampler {
+  public init(config: DSSDK.LlamaSamplingConfig, model: DSSDK.LlamaModel)
+  @objc deinit
+  final public func name() -> Swift.String
+  final public func reset()
+  final public func clone() -> DSSDK.LlamaSampler?
+  final public func perfDataDescription() -> Swift.String
+  final public func count() -> Swift.Int
+  final public func name(at index: Swift.Int32) -> Swift.String
+  final public func remove(at index: Swift.Int32)
+}
+public struct LlamaSamplingConfig : Swift.Equatable, Swift.Sendable {
+  public let temperature: Swift.CFloat
+  public let seed: Swift.UInt32
+  public let topP: Swift.Float
+  public let topK: Swift.Int32?
+  public let minKeep: Swift.Int
+  public let grammarConfig: DSSDK.LlamaGrammarConfig?
+  public let repetitionPenaltyConfig: DSSDK.LlamaRepetitionPenaltyConfig?
+  public init(temperature: Swift.CFloat, seed: Swift.UInt32, topP: Swift.Float = 0.95, topK: Swift.Int32? = nil, minKeep: Swift.Int = 1, grammarConfig: DSSDK.LlamaGrammarConfig? = nil, repetitionPenaltyConfig: DSSDK.LlamaRepetitionPenaltyConfig? = LlamaRepetitionPenaltyConfig())
+  public static func == (a: DSSDK.LlamaSamplingConfig, b: DSSDK.LlamaSamplingConfig) -> Swift.Bool
+}
+final public actor LlamaService {
+  public init(modelUrl: Foundation.URL, config: DSSDK.LlamaConfig)
+  final public func processMessages(_ messages: [DSSDK.LlamaChatMessage]) async throws
+  final public func respond<T>(to messages: [DSSDK.LlamaChatMessage], generating type: T.Type) async throws -> T where T : Swift.Decodable, T : Swift.Encodable
+  final public func respond(to messages: [DSSDK.LlamaChatMessage], samplingConfig: DSSDK.LlamaSamplingConfig) async throws -> Swift.String
+  final public func streamCompletion<T>(of messages: [DSSDK.LlamaChatMessage], generating: T.Type) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error> where T : Swift.Decodable, T : Swift.Encodable
+  final public func streamCompletion(of messages: [DSSDK.LlamaChatMessage], samplingConfig: DSSDK.LlamaSamplingConfig) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error>
+  final public func stopCompletion() async
+  @objc deinit
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  @_semantics("defaultActor") nonisolated final public var unownedExecutor: _Concurrency.UnownedSerialExecutor {
+    get
+  }
+}
+extension _Concurrency.Task {
+  public func cancelAndWait() async
+}
 @_Concurrency.MainActor public class ExchangeFlowManager {
   @_Concurrency.MainActor public init(exchange: DSSDK.Exchange, NVC: UIKit.UIViewController, onComplete: @escaping (() -> Swift.Void))
   @_Concurrency.MainActor public func startExchange()
@@ -1279,10 +1475,38 @@ public struct JourneyQuery {
   public func requireAllTags(_ tags: [Swift.String]) -> DSSDK.JourneyQuery
   public func fetchPolicy(_ p: DSSDK.JourneyFetchPolicy) -> DSSDK.JourneyQuery
 }
+final public class LlamaCppUseCase {
+  public init(storage: any DSSDK.LlamaStorage, catalog: any DSSDK.LlamaModelCatalog)
+  final public func streamChat(modelURL: Foundation.URL, messages: [DSSDK.LlamaChatMessage], batchSize: Swift.UInt32 = 256, maxTokens: Swift.UInt32 = 4096, useGPU: Swift.Bool = true, temperature: Swift.Float = 0.8, seed: Swift.UInt32? = nil, onReady: @escaping () -> Swift.Void, onToken: @escaping (Swift.String) -> Swift.Void, onFinal: @escaping (Swift.Result<Swift.String, any Swift.Error>) -> Swift.Void) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error>
+  @discardableResult
+  final public func downloadModel(for filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws -> Foundation.URL
+  @discardableResult
+  final public func useModelFromBundle(resource: Swift.String, ext: Swift.String = "gguf", as filename: Swift.String? = nil, overwrite: Swift.Bool = true, onProgress: ((Swift.Double) -> Swift.Void)? = nil, in bundle: Foundation.Bundle = .main) throws -> Foundation.URL
+  final public func listLocalModels() throws -> [Foundation.URL]
+  final public func urlForLocalFilename(_ filename: Swift.String) -> Foundation.URL
+  final public func deleteLocalModel(named filename: Swift.String) throws
+  @discardableResult
+  final public func ensureModel(filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws -> Foundation.URL
+  @objc deinit
+}
+public protocol LlamaModelCatalog {
+  func remoteURL(for filename: Swift.String) throws -> Foundation.URL
+}
+public struct DefaultLlamaModelCatalog : DSSDK.LlamaModelCatalog {
+  public enum Error : Swift.Error {
+    case notFound(Swift.String)
+  }
+  public init(map: [Swift.String : Foundation.URL])
+  public func remoteURL(for filename: Swift.String) throws -> Foundation.URL
+}
 final public class LlamaDownloader {
   public init(storage: any DSSDK.LlamaStorage, session: Foundation.URLSession = .shared)
   final public func downloadModel(from remote: Foundation.URL, as filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws -> Foundation.URL
   @objc deinit
+}
+extension DSSDK.LlamaDownloader {
+  final public func installModelFromBundle(resource: Swift.String, ext: Swift.String = "gguf", as filename: Swift.String? = nil, in bundle: Foundation.Bundle = .main, overwrite: Swift.Bool = true, onProgress: ((Swift.Double) -> Swift.Void)? = nil) throws -> Foundation.URL
+  final public func importModelFromFileURL(_ fileURL: Foundation.URL, as filename: Swift.String? = nil, overwrite: Swift.Bool = true, onProgress: ((Swift.Double) -> Swift.Void)? = nil) throws -> Foundation.URL
 }
 public protocol LlamaStorage {
   var modelsDirectory: Foundation.URL { get }
@@ -1294,26 +1518,6 @@ final public class DefaultLlamaStorage : DSSDK.LlamaStorage {
   public init(modelsDirectory: Foundation.URL? = nil)
   final public func listModelFiles() throws -> [Foundation.URL]
   final public func urlForLocalFilename(_ filename: Swift.String) -> Foundation.URL
-  @objc deinit
-}
-public protocol LlamaServiceDelegate : AnyObject {
-  func llamaServiceDidAppendLog(_ text: Swift.String)
-  func llamaServiceDidUpdateModels(_ models: [DSSDK.LlamaModel])
-}
-final public class LlamaUseCase {
-  weak final public var delegate: (any DSSDK.LlamaServiceDelegate)?
-  final public func unloadModel() async
-  public init(storage: any DSSDK.LlamaStorage = DefaultLlamaStorage())
-  final public func setCatalog(_ catalog: [DSSDK.LlamaModel])
-  final public func scanDiskAndMerge()
-  final public func currentModels() -> [DSSDK.LlamaModel]
-  final public func downloadModel(for filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws
-  final public func loadModel(filename: Swift.String) throws
-  final public func loadModel(fileURL: Foundation.URL) throws
-  final public func clearContext() async
-  final public func complete(prompt: Swift.String, onToken: @escaping (Swift.String) -> Swift.Void) async -> Swift.String
-  final public func completeStreaming(prompt: Swift.String, deliverOnMain: Swift.Bool = true, onPartial: @escaping (Swift.String) -> Swift.Void, onComplete: @escaping (_ fullText: Swift.String, _ summary: Swift.String) -> Swift.Void) async
-  final public func bench() async -> Swift.String
   @objc deinit
 }
 extension DSSDK.DeviceDataType : Swift.Equatable {}
@@ -1340,6 +1544,13 @@ extension DSSDK.Filter : Swift.Decodable {}
 extension DSSDK.DataTypeEntity : Swift.Equatable {}
 extension DSSDK.DataTypeEntity : Swift.Hashable {}
 extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
+extension DSSDK.LlamaChatMessage.Role : Swift.Equatable {}
+extension DSSDK.LlamaChatMessage.Role : Swift.Hashable {}
+extension DSSDK.LlamaChatMessage.Role : Swift.RawRepresentable {}
+extension DSSDK.LlamaError : Swift.Equatable {}
+extension DSSDK.LlamaError : Swift.Hashable {}
+extension DSSDK.LlamaLoraError : Swift.Equatable {}
+extension DSSDK.LlamaLoraError : Swift.Hashable {}
 extension DSSDK.ExchangeFlowManager : Swift.Sendable {}
 extension DSSDK.MeDataView : Swift.Sendable {}
 extension DSSDK.JourneyFetchPolicy : Swift.Equatable {}
