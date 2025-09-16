@@ -258,6 +258,7 @@ public class JavaScriptRunner {
   public func runScript(_ script: Swift.String) throws -> JavaScriptCore.JSValue
   public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void) throws
   public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Swift.String?) -> Swift.Void, onError: @escaping (Swift.String) -> Swift.Void) throws -> JavaScriptCore.JSValue
+  public func runScriptSync(_ script: Swift.String) -> Swift.Bool
   @objc deinit
 }
 public protocol WebViewModuleProvider : ObjectiveC.NSObject {
@@ -398,10 +399,7 @@ final public class IntelligenceService {
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
   public static let shared: DSSDK.JourneyService
-  public func downloadModel()
-  public func isModelDownloaded()
-  public func invokeModel()
-  public func fetchJourneys(policy: DSSDK.JourneyFetchPolicy = .refreshThenReturn, tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
+  public func fetchJourneys(policy: DSSDK.JourneyFetchPolicy = .refreshThenReturn, tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func fetchJourneysSafe(tagsAll: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onError: ((any Swift.Error) -> Swift.Void)? = nil, onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void)
   public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
   public func doesJourneyCompleted(id: Swift.String) -> Swift.Bool
@@ -411,7 +409,7 @@ final public class IntelligenceService {
 }
 @_hasMissingDesignatedInitializers public class ManagedApiService {
   public static let shared: DSSDK.ManagedApiService
-  public func fetchAndSave()
+  public func fetchAndSave(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getManagedApi(name: Swift.String) -> DSSDK.DataMap?
   @objc deinit
 }
@@ -441,6 +439,7 @@ final public class IntelligenceService {
 @_hasMissingDesignatedInitializers public class RuleEngineService {
   public static let shared: DSSDK.RuleEngineService
   public func runRules()
+  public func fetchRules(onSuccess: @escaping ([DSSDK.Rule]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class SegmentService {
@@ -923,6 +922,11 @@ public struct MeDataValueInfo : Swift.Codable {
   @objc deinit
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class Rule : Swift.Codable {
+  required public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  @objc deinit
 }
 public struct Segment : Swift.Codable {
   public var id: Swift.String
