@@ -265,6 +265,12 @@ public protocol WebViewModuleProvider : ObjectiveC.NSObject {
   static func provideUserScripts() -> [WebKit.WKUserScript]
   static func provideHandlers(webView: WebKit.WKWebView) -> [Swift.String : any WebKit.WKScriptMessageHandler]
 }
+@_hasMissingDesignatedInitializers public class AudienceService {
+  public static let shared: DSSDK.AudienceService
+  public func fetchSegments(onSuccess: @escaping ([DSSDK.Segment]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func fetchAndSubscribeToSegments(onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class BackupService {
   public static let shared: DSSDK.BackupService
   public func getBackupJsonString(completion: @escaping (Swift.String?) -> Swift.Void)
@@ -296,13 +302,12 @@ public struct DataSapien {
   public static func setPushToken(_ pushToken: Swift.String)
   public static func deleteAllData()
   public static func deleteDataBeforeBackup()
-  public static func getSegmentService() -> DSSDK.SegmentService
+  public static func getAudienceService() -> DSSDK.AudienceService
   public static func getIntelligenceService() -> DSSDK.IntelligenceService
   public static func getBackupService() -> DSSDK.BackupService
   public static func getMeDataService() -> DSSDK.MeDataService
   public static func getJourneyService() -> DSSDK.JourneyService
   public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
-  public static func getRuleEngineService() -> DSSDK.RuleEngineService
   public static func getManagedApiService() -> DSSDK.ManagedApiService
   public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
   public static func setup(completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
@@ -395,6 +400,8 @@ final public class IntelligenceService {
   final public func unloadModel(completion: (() -> Swift.Void)? = nil)
   final public func invoke(modelName: Swift.String, systemPrompt: Swift.String, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func invoke(modelName: Swift.String, messages: [DSSDK.LlamaChatMessage], onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func runRules()
+  final public func fetchRules(onSuccess: @escaping ([DSSDK.Rule]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
@@ -404,7 +411,8 @@ final public class IntelligenceService {
   public func getLatestJourneyTransactionInfo(id: Swift.String) -> DSSDK.JourneyTransactionInfo?
   public func doesJourneyCompleted(id: Swift.String) -> Swift.Bool
   public func getAllJourneyTransactions() -> [DSSDK.JourneyTransaction]?
-  public func executeJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void))
+  public func submitJourney(journey: DSSDK.Journey, context: [Swift.String : Any], onComplete: @escaping (([Swift.String : Any]) -> Swift.Void), onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func executeJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onComplete: @escaping (([Swift.String : Any]) -> Swift.Void), onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class ManagedApiService {
@@ -434,18 +442,6 @@ final public class IntelligenceService {
   public func getMeDataInfos(meDataDefinitionName: Swift.String, from: Foundation.Date, to: Foundation.Date) -> [DSSDK.MeDataValueInfo]
   public func searchMeDataLongitudinally(withID medataId: Swift.String, searchTerms: [Swift.String], completion: @escaping ([Swift.String]) -> Swift.Void)
   public func getMedataViewController()
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class RuleEngineService {
-  public static let shared: DSSDK.RuleEngineService
-  public func runRules()
-  public func fetchRules(onSuccess: @escaping ([DSSDK.Rule]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  @objc deinit
-}
-@_hasMissingDesignatedInitializers public class SegmentService {
-  public static let shared: DSSDK.SegmentService
-  public func fetchSegments(onSuccess: @escaping ([DSSDK.Segment]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func fetchAndSubscribeToSegments(onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
 public struct DSBackup : Swift.Codable {
@@ -606,6 +602,7 @@ public struct Journey : Swift.Codable {
   public var flow: DSSDK.JourneyFlow
   public var metadata: DSSDK.JourneyMetadata?
   public var tags: [Swift.String]?
+  public var zpdRequest: DSSDK.ZPDRequest?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -613,6 +610,24 @@ public struct JourneyMetadata : Swift.Codable {
   public var title: Swift.String
   public var description: Swift.String?
   public var imageUrl: Swift.String?
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ZPDRequest : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct JourneyFlow : Swift.Codable {
+  public var xml: Swift.String
+  public var data: [DSSDK.FlowData]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct FlowData : Swift.Codable {
+  public var name: Swift.String
+  public var source: Swift.String
+  public var origin: Swift.String
+  public var type: Swift.String
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -645,27 +660,11 @@ public enum JSONValue : Swift.Codable {
   public static func from(any: Any) throws -> DSSDK.JSONValue
   public func toAny() -> Any
 }
-public struct JourneyFlow : Swift.Codable {
-  public var xml: Swift.String
-  public var data: [DSSDK.FlowData]
+public struct JourneyTransactionRequest : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct FlowData : Swift.Codable {
-  public var name: Swift.String
-  public var source: Swift.String
-  public var origin: Swift.String
-  public var type: Swift.String
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-public struct JourneyQuestion : Swift.Codable {
-  public var id: Swift.String
-  public var question: DSSDK.Question
-  public var valueDef: DSSDK.ValueDefinition?
-  public var required: Swift.Bool?
-  public var randomiseAnswers: Swift.Bool?
-  public var minAnswerTimeMs: Swift.Double?
+public struct FlowValue : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -1009,8 +1008,14 @@ public struct SegmentInfo : Swift.Codable {
     set
     _modify
   }
+  @RealmSwift.Persisted final public var zpdRequest: DSSDK.ZPDRequestEntity? {
+    get
+    set
+    _modify
+  }
   @objc override dynamic public init()
-  convenience public init(id: Swift.String, flow: DSSDK.JourneyFlowEntity?, metadata: DSSDK.JourneyMetadataEntity?, tags: RealmSwift.List<Swift.String>)
+  convenience public init(id: Swift.String, flow: DSSDK.JourneyFlowEntity?, metadata: DSSDK.JourneyMetadataEntity?, tags: [Swift.String] = [], zpdRequest: DSSDK.ZPDRequestEntity? = nil)
+  convenience public init(dto: DSSDK.Journey)
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers final public class JourneyMetadataEntity : RealmSwift.EmbeddedObject {
@@ -1029,6 +1034,19 @@ public struct SegmentInfo : Swift.Codable {
     set
     _modify
   }
+  convenience public init(title: Swift.String, desc: Swift.String?, imageUrl: Swift.String?)
+  convenience public init(dto: DSSDK.JourneyMetadata)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers final public class ZPDRequestEntity : RealmSwift.EmbeddedObject {
+  @RealmSwift.Persisted final public var requested: RealmSwift.List<DSSDK.FlowDataEntity> {
+    get
+    set
+    _modify
+  }
+  convenience public init(requested: [DSSDK.FlowData]?)
+  convenience public init(dto: DSSDK.ZPDRequest)
   @objc override dynamic public init()
   @objc deinit
 }
@@ -1043,6 +1061,8 @@ public struct SegmentInfo : Swift.Codable {
     set
     _modify
   }
+  convenience public init(xml: Swift.String, data: [DSSDK.FlowData])
+  convenience public init(dto: DSSDK.JourneyFlow)
   @objc override dynamic public init()
   @objc deinit
 }
@@ -1067,6 +1087,8 @@ public struct SegmentInfo : Swift.Codable {
     set
     _modify
   }
+  convenience public init(name: Swift.String, source: Swift.String, origin: Swift.String, type: Swift.String)
+  convenience public init(dto: DSSDK.FlowData)
   @objc override dynamic public init()
   @objc deinit
 }
@@ -1077,6 +1099,9 @@ extension DSSDK.JourneyEntity {
 }
 extension DSSDK.JourneyMetadataEntity {
   final public func toDto() -> DSSDK.JourneyMetadata
+}
+extension DSSDK.ZPDRequestEntity {
+  final public func toDto() -> DSSDK.ZPDRequest
 }
 extension DSSDK.JourneyFlowEntity {
   final public func toDto() -> DSSDK.JourneyFlow
@@ -1464,6 +1489,7 @@ public enum JourneyFetchPolicy {
   }
 }
 public enum JourneyStatus : Swift.String {
+  case sent
   case completed
   case draft
   case notStarted
