@@ -390,18 +390,21 @@ extension DSSDK.DataSapienConfig {
   @objc deinit
 }
 final public class IntelligenceService {
+  public static let systemPrompt: Swift.String
   public static let shared: DSSDK.IntelligenceService
   public init(storage: any DSSDK.LlamaStorage = DefaultLlamaStorage(), catalog: any DSSDK.LlamaModelCatalog = DefaultLlamaModelCatalog(map: [:]))
   final public func isModelDownloaded(modelName: Swift.String) -> Swift.Bool
   final public func getDownloadedModelsList() -> [Swift.String]
   @discardableResult
   final public func installBundledModel(resource: Swift.String, ext: Swift.String = "gguf", as filename: Swift.String? = nil, in bundle: Foundation.Bundle = .main, progress: ((Swift.Double) -> Swift.Void)? = nil) throws -> Foundation.URL
-  final public func download(modelName: Swift.String, sourceURL: Swift.String, status: @escaping @Sendable (Swift.Double) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func download(modelName: Swift.String, status: @escaping @Sendable (Swift.Double) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func unloadModel(completion: (() -> Swift.Void)? = nil)
-  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String = IntelligenceService.systemPrompt, message: Swift.String, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func invoke(modelName: Swift.String, messages: [DSSDK.LlamaChatMessage], onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func runRules()
   final public func fetchRules(onSuccess: @escaping ([DSSDK.Rule]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func fetchAndSaveIntelligenceModels(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func getIntelligenceModel(name: Swift.String) -> DSSDK.IntelligenceModel?
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class JourneyService {
@@ -424,6 +427,7 @@ final public class IntelligenceService {
 @_hasMissingDesignatedInitializers public class MeDataService {
   public static let shared: DSSDK.MeDataService
   public func getMeDataCategoryGroups(onSuccess: @escaping ([DSSDK.MeDataCategoryGroup]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func generateMeDataPrompt(completion: @escaping (Swift.String?) -> Swift.Void)
   public func fetchMeDataDefinitions(onSuccess: @escaping ([DSSDK.MeDataDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataDefinitions() -> [DSSDK.MeDataDefinition]?
   public func getMeDataDefinitionByName(name: Swift.String) -> DSSDK.MeDataDefinition?
@@ -899,6 +903,10 @@ public struct MeDataValueInfo : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+public struct IntelligenceModel : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
 @_hasMissingDesignatedInitializers public class Criteria {
   final public let field: Swift.String
   final public let criteriaOperator: Swift.String
@@ -1165,6 +1173,10 @@ public enum DataTypeEntity : Swift.String {
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class MeDataValueInfoEntity : RealmSwift.Object {
   @objc override public static func indexedProperties() -> [Swift.String]
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers public class IntelligenceModelEntity : RealmSwift.Object {
+  @objc override dynamic public init()
   @objc deinit
 }
 public class DSException : Swift.Error {

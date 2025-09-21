@@ -176,6 +176,26 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "AVFoundation",
         "printedName": "AVFoundation",
         "declKind": "Import",
@@ -6081,6 +6101,16 @@
       },
       {
         "kind": "Import",
+        "name": "RealmSwift",
+        "printedName": "RealmSwift",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -11263,6 +11293,57 @@
         "children": [
           {
             "kind": "Var",
+            "name": "systemPrompt",
+            "printedName": "systemPrompt",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK19IntelligenceServiceC12systemPromptSSvpZ",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC12systemPromptSSvpZ",
+            "moduleName": "DSSDK",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK19IntelligenceServiceC12systemPromptSSvgZ",
+                "mangledName": "$s5DSSDK19IntelligenceServiceC12systemPromptSSvgZ",
+                "moduleName": "DSSDK",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
             "name": "shared",
             "printedName": "shared",
             "children": [
@@ -11496,18 +11577,12 @@
           {
             "kind": "Function",
             "name": "download",
-            "printedName": "download(modelName:sourceURL:status:completion:onError:)",
+            "printedName": "download(modelName:status:completion:onError:)",
             "children": [
               {
                 "kind": "TypeNominal",
                 "name": "Void",
                 "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
               },
               {
                 "kind": "TypeNominal",
@@ -11571,8 +11646,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK19IntelligenceServiceC8download9modelName9sourceURL6status10completion7onErrorySS_SSySdYbcySSYbcys0L0_pYbctF",
-            "mangledName": "$s5DSSDK19IntelligenceServiceC8download9modelName9sourceURL6status10completion7onErrorySS_SSySdYbcySSYbcys0L0_pYbctF",
+            "usr": "s:5DSSDK19IntelligenceServiceC8download9modelName6status10completion7onErrorySS_ySdYbcySSYbcys0J0_pYbctF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC8download9modelName6status10completion7onErrorySS_ySdYbcySSYbcys0J0_pYbctF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -11630,7 +11705,7 @@
           {
             "kind": "Function",
             "name": "invoke",
-            "printedName": "invoke(modelName:systemPrompt:onReady:streaming:completion:onError:)",
+            "printedName": "invoke(modelName:systemPrompt:message:onReady:streaming:completion:onError:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11641,6 +11716,13 @@
                 "kind": "TypeNominal",
                 "name": "String",
                 "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
                 "usr": "s:SS"
               },
               {
@@ -11722,8 +11804,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7onReady9streaming10completion0I5ErrorySS_SSyycySSYbcySSYbcys0M0_pYbctF",
-            "mangledName": "$s5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7onReady9streaming10completion0I5ErrorySS_SSyycySSYbcySSYbcys0M0_pYbctF",
+            "usr": "s:5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7message7onReady9streaming10completion0J5ErrorySS_S2SyycySSYbcySSYbcys0N0_pYbctF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7message7onReady9streaming10completion0J5ErrorySS_S2SyycySSYbcySSYbcys0N0_pYbctF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -11942,6 +12024,108 @@
             "declKind": "Func",
             "usr": "s:5DSSDK19IntelligenceServiceC10fetchRules9onSuccess0F5ErroryySayAA4RuleCGSgc_ys0H0_pcSgtF",
             "mangledName": "$s5DSSDK19IntelligenceServiceC10fetchRules9onSuccess0F5ErroryySayAA4RuleCGSgc_ys0H0_pcSgtF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "fetchAndSaveIntelligenceModels",
+            "printedName": "fetchAndSaveIntelligenceModels(onSuccess:onError:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((any Swift.Error) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(any Swift.Error) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK19IntelligenceServiceC012fetchAndSaveB6Models9onSuccess0H5Erroryyyc_ys0J0_pcSgtF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC012fetchAndSaveB6Models9onSuccess0H5Erroryyyc_ys0J0_pcSgtF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getIntelligenceModel",
+            "printedName": "getIntelligenceModel(name:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DSSDK.IntelligenceModel?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IntelligenceModel",
+                    "printedName": "DSSDK.IntelligenceModel",
+                    "usr": "s:5DSSDK17IntelligenceModelV"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK19IntelligenceServiceC03getB5Model4nameAA0bE0VSgSS_tF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC03getB5Model4nameAA0bE0VSgSS_tF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -13017,6 +13201,52 @@
             "declAttributes": [
               "AccessControl",
               "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "generateMeDataPrompt",
+            "printedName": "generateMeDataPrompt(completion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(Swift.String?) -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.String?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK13MeDataServiceC08generatebC6Prompt10completionyySSSgc_tF",
+            "mangledName": "$s5DSSDK13MeDataServiceC08generatebC6Prompt10completionyySSSgc_tF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -36340,6 +36570,111 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "IntelligenceModel",
+        "printedName": "IntelligenceModel",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IntelligenceModel",
+                "printedName": "DSSDK.IntelligenceModel",
+                "usr": "s:5DSSDK17IntelligenceModelV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5DSSDK17IntelligenceModelV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s5DSSDK17IntelligenceModelV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "DSSDK",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK17IntelligenceModelV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s5DSSDK17IntelligenceModelV6encode2toys7Encoder_p_tKF",
+            "moduleName": "DSSDK",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:5DSSDK17IntelligenceModelV",
+        "mangledName": "$s5DSSDK17IntelligenceModelV",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -47523,6 +47858,272 @@
         ],
         "superclassUsr": "c:objc(cs)RealmSwiftObject",
         "hasMissingDesignatedInitializers": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "Realm.RealmSwiftObject",
+          "Realm.RLMObjectBase",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RealmSubscribable",
+            "printedName": "RealmSubscribable",
+            "usr": "s:10RealmSwift0A12SubscribableP",
+            "mangledName": "$s10RealmSwift0A12SubscribableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObjcBridgeable",
+            "printedName": "_ObjcBridgeable",
+            "usr": "s:10RealmSwift15_ObjcBridgeableP",
+            "mangledName": "$s10RealmSwift15_ObjcBridgeableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "KeypathSortable",
+            "printedName": "KeypathSortable",
+            "usr": "s:10RealmSwift15KeypathSortableP",
+            "mangledName": "$s10RealmSwift15KeypathSortableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ObservableObject",
+            "printedName": "ObservableObject",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ObjectWillChangePublisher",
+                "printedName": "ObjectWillChangePublisher",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WillChange",
+                    "printedName": "RealmSwift.RealmPublishers.WillChange<Realm.RealmSwiftObject>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RealmSwiftObject",
+                        "printedName": "Realm.RealmSwiftObject",
+                        "usr": "c:objc(cs)RealmSwiftObject"
+                      }
+                    ],
+                    "usr": "s:10RealmSwift0A10PublishersO10WillChangeV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7Combine16ObservableObjectP",
+            "mangledName": "$s7Combine16ObservableObjectP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_PersistableInsideOptional",
+            "printedName": "_PersistableInsideOptional",
+            "usr": "s:10RealmSwift26_PersistableInsideOptionalP",
+            "mangledName": "$s10RealmSwift26_PersistableInsideOptionalP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_DefaultConstructible",
+            "printedName": "_DefaultConstructible",
+            "usr": "s:10RealmSwift21_DefaultConstructibleP",
+            "mangledName": "$s10RealmSwift21_DefaultConstructibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_RealmSchemaDiscoverable",
+            "printedName": "_RealmSchemaDiscoverable",
+            "usr": "s:10RealmSwift01_A18SchemaDiscoverableP",
+            "mangledName": "$s10RealmSwift01_A18SchemaDiscoverableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_Persistable",
+            "printedName": "_Persistable",
+            "usr": "s:10RealmSwift12_PersistableP",
+            "mangledName": "$s10RealmSwift12_PersistableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_HasPersistedType",
+            "printedName": "_HasPersistedType",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "PersistedType",
+                "printedName": "PersistedType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RealmSwiftObject",
+                    "printedName": "Realm.RealmSwiftObject",
+                    "usr": "c:objc(cs)RealmSwiftObject"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:10RealmSwift17_HasPersistedTypeP",
+            "mangledName": "$s10RealmSwift17_HasPersistedTypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_RealmCollectionValueInsideOptional",
+            "printedName": "_RealmCollectionValueInsideOptional",
+            "usr": "s:10RealmSwift01_A29CollectionValueInsideOptionalP",
+            "mangledName": "$s10RealmSwift01_A29CollectionValueInsideOptionalP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RealmCollectionValue",
+            "printedName": "RealmCollectionValue",
+            "usr": "s:10RealmSwift0A15CollectionValueP",
+            "mangledName": "$s10RealmSwift0A15CollectionValueP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ThreadConfined",
+            "printedName": "ThreadConfined",
+            "usr": "s:10RealmSwift14ThreadConfinedP",
+            "mangledName": "$s10RealmSwift14ThreadConfinedP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RealmFetchable",
+            "printedName": "RealmFetchable",
+            "usr": "s:10RealmSwift0A9FetchableP",
+            "mangledName": "$s10RealmSwift0A9FetchableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObservedResultsValue",
+            "printedName": "_ObservedResultsValue",
+            "usr": "s:10RealmSwift21_ObservedResultsValueP",
+            "mangledName": "$s10RealmSwift21_ObservedResultsValueP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "RealmSwift",
+        "printedName": "RealmSwift",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "IntelligenceModelEntity",
+        "printedName": "IntelligenceModelEntity",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "IntelligenceModelEntity",
+                "printedName": "DSSDK.IntelligenceModelEntity",
+                "usr": "c:@M@DSSDK@objc(cs)IntelligenceModelEntity"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "c:@M@DSSDK@objc(cs)IntelligenceModelEntity(im)init",
+            "mangledName": "$s5DSSDK23IntelligenceModelEntityCACycfc",
+            "moduleName": "DSSDK",
+            "overriding": true,
+            "implicit": true,
+            "objc_name": "init",
+            "declAttributes": [
+              "Dynamic",
+              "ObjC",
+              "Override"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "c:@M@DSSDK@objc(cs)IntelligenceModelEntity",
+        "mangledName": "$s5DSSDK23IntelligenceModelEntityC",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)RealmSwiftObject",
         "inheritsConvenienceInitializers": true,
         "superclassNames": [
           "Realm.RealmSwiftObject",
@@ -59390,6 +59991,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "Date",
         "printedName": "Date",
@@ -61754,7 +62365,7 @@
       "kind": "IntegerLiteral",
       "offset": 243,
       "length": 1,
-      "value": "3"
+      "value": "4"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/ext\/LoggerExtensions.swift",
@@ -61807,29 +62418,36 @@
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
+      "kind": "StringLiteral",
+      "offset": 194,
+      "length": 30,
+      "value": "\"You are a helpful assistant.\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
       "kind": "Dictionary",
-      "offset": 606,
+      "offset": 730,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
       "kind": "StringLiteral",
-      "offset": 1296,
+      "offset": 1420,
       "length": 6,
       "value": "\"gguf\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
       "kind": "FloatLiteral",
-      "offset": 4715,
+      "offset": 5259,
       "length": 3,
       "value": "0.8"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
       "kind": "IntegerLiteral",
-      "offset": 4764,
+      "offset": 5308,
       "length": 2,
       "value": "64"
     },
@@ -62140,6 +62758,13 @@
       "offset": 390,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/dto\/modelapi\/IntelligenceModel.swift",
+      "kind": "StringLiteral",
+      "offset": 464,
+      "length": 13,
+      "value": "\"description\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/dto\/ruleengine\/Action.swift",
@@ -62611,6 +63236,13 @@
       "value": "[]"
     },
     {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/entity\/modelapi\/IntelligenceModelEntity.swift",
+      "kind": "BooleanLiteral",
+      "offset": 212,
+      "length": 4,
+      "value": "true"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/model\/entity\/ruleengine\/RuleEntity.swift",
       "kind": "BooleanLiteral",
       "offset": 168,
@@ -62872,91 +63504,105 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 764,
+      "offset": 4725,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 1117,
+      "offset": 5078,
       "length": 38,
       "value": "\"Could not load model at \""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 1154,
+      "offset": 5115,
       "length": 17,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 1304,
+      "offset": 5265,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 1335,
+      "offset": 5296,
       "length": 1,
       "value": "4"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 1342,
+      "offset": 5303,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 1355,
+      "offset": 5316,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 1390,
+      "offset": 5351,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 1405,
+      "offset": 5366,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 1452,
+      "offset": 5413,
       "length": 28,
       "value": "\"Using \""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 1471,
+      "offset": 5432,
       "length": 7,
       "value": "\" threads\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5605,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5741,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "BooleanLiteral",
-      "offset": 1951,
+      "offset": 5918,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 2095,
+      "offset": 6062,
       "length": 25,
       "value": "\"Could not load context!\""
     },
