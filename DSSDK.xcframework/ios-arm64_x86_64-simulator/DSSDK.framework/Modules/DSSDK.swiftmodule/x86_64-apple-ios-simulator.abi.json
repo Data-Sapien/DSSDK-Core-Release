@@ -6860,6 +6860,23 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "WebKit",
+        "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "Import",
         "name": "WebKit",
         "printedName": "WebKit",
         "declKind": "Import",
