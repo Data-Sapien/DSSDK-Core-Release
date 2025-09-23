@@ -399,12 +399,13 @@ final public class IntelligenceService {
   final public func installBundledModel(resource: Swift.String, ext: Swift.String = "gguf", as filename: Swift.String? = nil, in bundle: Foundation.Bundle = .main, progress: ((Swift.Double) -> Swift.Void)? = nil) throws -> Foundation.URL
   final public func download(modelName: Swift.String, status: @escaping @Sendable (Swift.Double) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func unloadModel(completion: (() -> Swift.Void)? = nil)
-  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String = IntelligenceService.systemPrompt, message: Swift.String, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
-  final public func invoke(modelName: Swift.String, messages: [DSSDK.LlamaChatMessage], onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func invoke(modelName: Swift.String, systemPrompt: Swift.String = IntelligenceService.systemPrompt, message: Swift.String, useGPU: Swift.Bool, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
+  final public func invoke(modelName: Swift.String, messages: [DSSDK.LlamaChatMessage], useGPU: Swift.Bool, onReady: @escaping () -> Swift.Void, streaming: @escaping @Sendable (Swift.String) -> (), completion: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func runRules()
   final public func fetchRules(onSuccess: @escaping ([DSSDK.Rule]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   final public func fetchAndSaveIntelligenceModels(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   final public func getIntelligenceModel(name: Swift.String) -> DSSDK.IntelligenceModel?
+  final public func getAllIntelligenceModels() -> [DSSDK.IntelligenceModel]
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class JourneyService {

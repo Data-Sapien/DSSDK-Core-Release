@@ -6931,6 +6931,23 @@
       },
       {
         "kind": "Import",
+        "name": "WebKit",
+        "printedName": "WebKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "JavaScriptCore",
         "printedName": "JavaScriptCore",
         "declKind": "Import",
@@ -11722,7 +11739,7 @@
           {
             "kind": "Function",
             "name": "invoke",
-            "printedName": "invoke(modelName:systemPrompt:message:onReady:streaming:completion:onError:)",
+            "printedName": "invoke(modelName:systemPrompt:message:useGPU:onReady:streaming:completion:onError:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11747,6 +11764,12 @@
                 "name": "String",
                 "printedName": "Swift.String",
                 "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
               },
               {
                 "kind": "TypeFunc",
@@ -11821,8 +11844,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7message7onReady9streaming10completion0J5ErrorySS_S2SyycySSYbcySSYbcys0N0_pYbctF",
-            "mangledName": "$s5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7message7onReady9streaming10completion0J5ErrorySS_S2SyycySSYbcySSYbcys0N0_pYbctF",
+            "usr": "s:5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7message6useGPU7onReady9streaming10completion0L5ErrorySS_S2SSbyycySSYbcySSYbcys0P0_pYbctF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC6invoke9modelName12systemPrompt7message6useGPU7onReady9streaming10completion0L5ErrorySS_S2SSbyycySSYbcySSYbcys0P0_pYbctF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -11834,7 +11857,7 @@
           {
             "kind": "Function",
             "name": "invoke",
-            "printedName": "invoke(modelName:messages:onReady:streaming:completion:onError:)",
+            "printedName": "invoke(modelName:messages:useGPU:onReady:streaming:completion:onError:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -11862,6 +11885,12 @@
                 "usr": "s:Sa"
               },
               {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
                 "kind": "TypeFunc",
                 "name": "Function",
                 "printedName": "() -> ()",
@@ -11934,8 +11963,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK19IntelligenceServiceC6invoke9modelName8messages7onReady9streaming10completion0H5ErrorySS_SayAA16LlamaChatMessageVGyycySSYbcySSYbcys0L0_pYbctF",
-            "mangledName": "$s5DSSDK19IntelligenceServiceC6invoke9modelName8messages7onReady9streaming10completion0H5ErrorySS_SayAA16LlamaChatMessageVGyycySSYbcySSYbcys0L0_pYbctF",
+            "usr": "s:5DSSDK19IntelligenceServiceC6invoke9modelName8messages6useGPU7onReady9streaming10completion0J5ErrorySS_SayAA16LlamaChatMessageVGSbyycySSYbcySSYbcys0N0_pYbctF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC6invoke9modelName8messages6useGPU7onReady9streaming10completion0J5ErrorySS_SayAA16LlamaChatMessageVGSbyycySSYbcySSYbcys0N0_pYbctF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -12143,6 +12172,36 @@
             "declKind": "Func",
             "usr": "s:5DSSDK19IntelligenceServiceC03getB5Model4nameAA0bE0VSgSS_tF",
             "mangledName": "$s5DSSDK19IntelligenceServiceC03getB5Model4nameAA0bE0VSgSS_tF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "getAllIntelligenceModels",
+            "printedName": "getAllIntelligenceModels()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[DSSDK.IntelligenceModel]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "IntelligenceModel",
+                    "printedName": "DSSDK.IntelligenceModel",
+                    "usr": "s:5DSSDK17IntelligenceModelV"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK19IntelligenceServiceC06getAllB6ModelsSayAA0B5ModelVGyF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC06getAllB6ModelsSayAA0B5ModelVGyF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -62457,14 +62516,14 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
       "kind": "FloatLiteral",
-      "offset": 5259,
+      "offset": 5332,
       "length": 3,
       "value": "0.8"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/lib\/IntelligenceService.swift",
       "kind": "IntegerLiteral",
-      "offset": 5308,
+      "offset": 5381,
       "length": 2,
       "value": "64"
     },
@@ -63521,58 +63580,51 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 4725,
+      "offset": 4738,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 4823,
+      "offset": 4836,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 4859,
+      "offset": 4872,
       "length": 50,
       "value": "\"Running on simulator, force use n_gpu_layers = 0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 5078,
+      "offset": 5091,
       "length": 38,
       "value": "\"Could not load model at \""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 5115,
+      "offset": 5128,
       "length": 17,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 5265,
+      "offset": 5278,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 5296,
+      "offset": 5309,
       "length": 1,
       "value": "4"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
-      "kind": "IntegerLiteral",
-      "offset": 5303,
-      "length": 1,
-      "value": "2"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
@@ -63584,56 +63636,91 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 5351,
+      "offset": 5329,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 5366,
+      "offset": 5364,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5379,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 5413,
+      "offset": 5426,
       "length": 28,
       "value": "\"Using \""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 5432,
+      "offset": 5445,
       "length": 7,
       "value": "\" threads\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 5605,
+      "offset": 5618,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "IntegerLiteral",
-      "offset": 5741,
+      "offset": 5754,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "BooleanLiteral",
-      "offset": 5918,
+      "offset": 5971,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "BooleanLiteral",
+      "offset": 6048,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
       "kind": "StringLiteral",
-      "offset": 6062,
+      "offset": 6099,
+      "length": 86,
+      "value": "\"GPU layers = \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "StringLiteral",
+      "offset": 6141,
+      "length": 1,
+      "value": "\", offload_kqv = \""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "StringLiteral",
+      "offset": 6184,
+      "length": 17,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/SwiftLlama\/Llama.swift",
+      "kind": "StringLiteral",
+      "offset": 6341,
       "length": 25,
       "value": "\"Could not load context!\""
     },
@@ -63825,6 +63912,13 @@
       "offset": 313,
       "length": 6,
       "value": "\"code\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/ui\/BaseWebViewController.swift",
+      "kind": "StringLiteral",
+      "offset": 3288,
+      "length": 17,
+      "value": "\"admin_script.js\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/usecase\/journey\/JourneyUseCase.swift",
