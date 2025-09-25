@@ -8,24 +8,19 @@ let package = Package(
         .library(name: "DSSDKCore", targets: ["DSSDKCore"])
     ],
     dependencies: [
+        .package(url: "https://github.com/realm/realm-swift.git", from: "10.51.0")
     ],
     targets: [
-        // 1) Vendorled Realm frameworks
-        .binaryTarget(name: "Realm", path: "./Realm.xcframework"),
-        .binaryTarget(name: "RealmSwift", path: "./RealmSwift.xcframework"),
         .binaryTarget(name: "llama", path: "./llama.xcframework"),
-
-        // 2) Your SDK’s XCFramework
         .binaryTarget(name: "DSSDK", path: "./DSSDK.xcframework"),
 
-        // 3) A tiny wrapper that re-exports DSSDK & Realm
         .target(
             name: "DSSDKCore",
             dependencies: [
                 "DSSDK",
-                "Realm",
-                "RealmSwift",
                 "llama",
+                .product(name: "Realm", package: "realm-swift"),
+                .product(name: "RealmSwift", package: "realm-swift"),
             ],
             path: "Sources/DSSDKCore",
             resources: [
