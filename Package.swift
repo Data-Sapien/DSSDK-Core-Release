@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "DSSDKCore", targets: ["DSSDKCore"])
     ],
     dependencies: [
-        .package(url: "https://github.com/realm/realm-swift.git", from: "10.51.0")
+        // Realm yok!
     ],
     targets: [
         .binaryTarget(name: "llama", path: "./llama.xcframework"),
@@ -18,9 +18,7 @@ let package = Package(
             name: "DSSDKCore",
             dependencies: [
                 "DSSDK",
-                "llama",
-                .product(name: "Realm", package: "realm-swift"),
-                .product(name: "RealmSwift", package: "realm-swift"),
+                "llama"
             ],
             path: "Sources/DSSDKCore",
             resources: [
@@ -30,3 +28,4 @@ let package = Package(
         ),
     ]
 )
+
