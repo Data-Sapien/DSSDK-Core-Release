@@ -118,7 +118,7 @@
 
           if (group.meDataDefinition && group.meDataDefinition.iconUrl) {
             const rowRef = row; // capture current row for async callback
-            window.Helpers.getMediaUrl(group.meDataDefinition.iconUrl, function(resolvedUrl) {
+            window.MediaUtil.getImageUrl(group.meDataDefinition.iconUrl, function(resolvedUrl) {
               if (!resolvedUrl) return;
 
               console.log(`[iconb] ${resolvedUrl}`);
@@ -148,10 +148,10 @@
 
           // Extract last value
           let values = [];
-          if (group.meData && group.meData.meDataValueInfo && group.meData.lastValueId) {
-            for (const info of group.meData.meDataValueInfo) {
+          if (group.meData && group.meData.records && group.meData.lastValueId) {
+            for (const info of group.meData.records) {
               if (info.id === group.meData.lastValueId) {
-                values = info.meDataValue || [];
+                values = info.values || [];
                 break;
               }
             }
@@ -179,17 +179,31 @@
       }
     }
 
-    function loadMeDataGroups() {
-      renderLoading();
-      if (!window.MeDataService || !window.MeDataService.getMeDataCategoryGroups) {
-        renderError('MeDataService is not available.');
-        return;
+      async function loadMeDataGroups() {
+        renderLoading();
+
+        // Promise tabanlı fonksiyon var mı?
+        if (!window.MeDataService || typeof window.MeDataService.getMeDataCategoryGroups !== 'function') {
+          renderError('MeDataService is not available.');
+          return;
+        }
+
+        try {
+          // ✅ Artık Promise dönüyor
+          const groups = await window.MeDataService.getMeDataCategoryGroups();
+
+          // null/undefined durumunda boş liste ver
+          if (!groups || !Array.isArray(groups)) {
+            renderGroups([]);
+            return;
+          }
+
+          renderGroups(groups);
+        } catch (e) {
+          renderError(e?.message || String(e));
+        }
       }
-      window.MeDataService.getMeDataCategoryGroups(function(result) {
-        if (result.error) renderError(result.error);
-        else renderGroups(result);
-      });
-    }
+      
     loadMeDataGroups();
   </script>
 </body>

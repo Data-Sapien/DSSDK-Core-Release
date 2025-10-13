@@ -124,8 +124,6 @@
       background-color: #f9f9f9;
       color: #000;
       appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
       margin-top: 6px;
       margin-bottom: 6px;
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
@@ -169,15 +167,13 @@
         return valueDef;
       }
       const fixed = valueDef.enumeratedValues.map((v, i) => {
-        // ensure text exists
         const text = v.text ?? v.name ?? `Option ${i + 1}`;
-        // ensure id exists and is stable
         const id = v.id ?? v.name ?? v.text ?? String(i);
         return { ...v, id, text };
       });
       return { ...valueDef, enumeratedValues: fixed };
     }
-    
+
     function clearInputs() {
       inputsDiv.innerHTML = "";
       inputsDiv.className = "";
@@ -246,38 +242,57 @@
       return inputs[0].value || null;
     }
 
-      function getAnswerText(question, answer) {
-        const valueDef = question.valueDef ? normalizeValueDef(question.valueDef) : question.valueDef;
+    function getAnswerText(question, answer) {
+      const valueDef = question.valueDef ? normalizeValueDef(question.valueDef) : question.valueDef;
 
-        if (valueDef && valueDef.enumerated) {
-          const findTextById = id => {
-            const m = valueDef.enumeratedValues.find(v => v.id === id);
-            return m ? m.text : id;
-          };
+      if (valueDef && valueDef.enumerated) {
+        const findTextById = id => {
+          const m = valueDef.enumeratedValues.find(v => v.id === id);
+          return m ? m.text : id;
+        };
 
-          if (Array.isArray(answer)) {
-            return answer.map(findTextById);
-          } else {
-            return findTextById(answer);
-          }
+        if (Array.isArray(answer)) {
+          return answer.map(findTextById);
+        } else {
+          return findTextById(answer);
         }
-
-        // DATETIME → epoch (unchanged)
-        if (valueDef && valueDef.type === "DATETIME" && typeof answer === "string") {
-          const date = new Date(answer);
-          if (!isNaN(date.getTime())) return Math.floor(date.getTime() / 1000);
-        }
-
-        return answer;
       }
 
-    function saveAnswer(question) {
+      if (valueDef && valueDef.type === "DATETIME" && typeof answer === "string") {
+        const date = new Date(answer);
+        if (!isNaN(date.getTime())) return Math.floor(date.getTime() / 1000);
+      }
+
+      return answer;
+    }
+
+    async function saveAnswer(question) {
       const rawAnswer = getAnswer();
       const key = question.contextKey;
-      if (key && rawAnswer != null) {
-        const finalAnswer = getAnswerText(question, rawAnswer);
-        answers[key] = finalAnswer;
-        console.log("Saved:", key, "=>", finalAnswer);
+      if (!key || rawAnswer == null) return;
+
+      const finalAnswer = getAnswerText(question, rawAnswer);
+      answers[key] = finalAnswer;
+      console.log("Saved:", key, "=>", finalAnswer);
+
+      // ✅ MeData kayıt işlemi
+      if (question.isMeData === true) {
+        const name = String(key || question.meDataName || "").trim();
+        if (!name) {
+          console.warn("⚠️ MeData skip: empty name");
+          return;
+        }
+        const values = Array.isArray(finalAnswer) ? finalAnswer : [finalAnswer];
+        try {
+          if (window.MeDataService && typeof window.MeDataService.saveMeDataRecord === "function") {
+            const ok = await window.MeDataService.saveMeDataRecord(name, values);
+            console.log("✅ MeDataService.saveMeDataRecord:", ok);
+          } else {
+            console.warn("⚠️ MeDataService not available");
+          }
+        } catch (e) {
+          console.error("❌ MeData save failed:", e);
+        }
       }
     }
 
@@ -288,13 +303,13 @@
       }
     };
 
-    nextBtn.onclick = () => {
+    nextBtn.onclick = async () => {
       if (!isAnswered()) {
         alert("Please answer the question before continuing.");
         return;
       }
 
-      saveAnswer(questions[currentIndex]);
+      await saveAnswer(questions[currentIndex]);
 
       if (currentIndex === questions.length - 1) {
         window.webkit.messageHandlers.formHandler.postMessage({
