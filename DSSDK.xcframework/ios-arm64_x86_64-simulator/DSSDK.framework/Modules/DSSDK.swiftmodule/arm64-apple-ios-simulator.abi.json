@@ -22916,6 +22916,13 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
         "kind": "TypeDecl",
         "name": "ManagedAPIService",
         "printedName": "ManagedAPIService",
@@ -43746,6 +43753,63 @@
           },
           {
             "kind": "Var",
+            "name": "tokenNotFound",
+            "printedName": "tokenNotFound",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DSSDK.DSError.Type) -> (Swift.String) -> DSSDK.DSError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> DSSDK.DSError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DSError",
+                        "printedName": "DSSDK.DSError",
+                        "usr": "s:5DSSDK7DSErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(message: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DSSDK.DSError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DSError",
+                        "printedName": "DSSDK.DSError",
+                        "usr": "s:5DSSDK7DSErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5DSSDK7DSErrorO13tokenNotFoundyACSS_tcACmF",
+            "mangledName": "$s5DSSDK7DSErrorO13tokenNotFoundyACSS_tcACmF",
+            "moduleName": "DSSDK"
+          },
+          {
+            "kind": "Var",
             "name": "backupError",
             "printedName": "backupError",
             "children": [
@@ -43970,6 +44034,120 @@
             "declKind": "EnumElement",
             "usr": "s:5DSSDK7DSErrorO9hostErroryACSS_tcACmF",
             "mangledName": "$s5DSSDK7DSErrorO9hostErroryACSS_tcACmF",
+            "moduleName": "DSSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "invalidAuthUrl",
+            "printedName": "invalidAuthUrl",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DSSDK.DSError.Type) -> (Swift.String) -> DSSDK.DSError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> DSSDK.DSError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DSError",
+                        "printedName": "DSSDK.DSError",
+                        "usr": "s:5DSSDK7DSErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(message: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DSSDK.DSError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DSError",
+                        "printedName": "DSSDK.DSError",
+                        "usr": "s:5DSSDK7DSErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5DSSDK7DSErrorO14invalidAuthUrlyACSS_tcACmF",
+            "mangledName": "$s5DSSDK7DSErrorO14invalidAuthUrlyACSS_tcACmF",
+            "moduleName": "DSSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "invalidroot",
+            "printedName": "invalidroot",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DSSDK.DSError.Type) -> (Swift.String) -> DSSDK.DSError",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(Swift.String) -> DSSDK.DSError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DSError",
+                        "printedName": "DSSDK.DSError",
+                        "usr": "s:5DSSDK7DSErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(message: Swift.String)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DSSDK.DSError.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "DSError",
+                        "printedName": "DSSDK.DSError",
+                        "usr": "s:5DSSDK7DSErrorO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5DSSDK7DSErrorO11invalidrootyACSS_tcACmF",
+            "mangledName": "$s5DSSDK7DSErrorO11invalidrootyACSS_tcACmF",
             "moduleName": "DSSDK"
           },
           {
@@ -67974,7 +68152,7 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-managedapi\/ManagedAPIService.swift",
       "kind": "BooleanLiteral",
-      "offset": 1186,
+      "offset": 1255,
       "length": 5,
       "value": "false"
     },

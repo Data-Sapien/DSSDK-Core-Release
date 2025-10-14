@@ -1175,10 +1175,13 @@ public enum DSError : Swift.Error, Foundation.LocalizedError {
   case invalidParameter(name: Swift.String)
   case networkError(message: Swift.String)
   case persistenceError(message: Swift.String)
+  case tokenNotFound(message: Swift.String)
   case backupError(message: Swift.String)
   case meDataError(message: Swift.String)
   case journeyError(message: Swift.String)
   case hostError(message: Swift.String)
+  case invalidAuthUrl(message: Swift.String)
+  case invalidroot(message: Swift.String)
   case journeyNotFound(message: Swift.String)
   public var errorDescription: Swift.String? {
     get
