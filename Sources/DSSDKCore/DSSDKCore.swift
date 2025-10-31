@@ -8,10 +8,3 @@
 @_exported import DSSDK
 
 public enum _DSSDKCore {}  // keep this so SPM still sees at least one Swift file
-
-
-extension DataSapien {
-    @MainActor public static func getIntelligenceService() -> IntelligenceService {
-        return IntelligenceService.shared
-    }
-}
