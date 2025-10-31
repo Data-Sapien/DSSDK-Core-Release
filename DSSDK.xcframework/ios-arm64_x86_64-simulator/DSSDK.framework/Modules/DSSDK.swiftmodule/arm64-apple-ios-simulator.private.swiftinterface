@@ -14,6 +14,7 @@ import MediaPlayer
 import Network
 import NotificationCenter
 import OSLog
+import QuartzCore
 import RealmSwift
 import SafariServices
 import Security
@@ -44,12 +45,9 @@ public struct SegmentSubscription : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
 }
 @_hasMissingDesignatedInitializers public class AudienceService {
-  public static let shared: DSSDK.AudienceService
-  public func fetchSegmentDefinitions(onSuccess: @escaping ([DSSDK.SegmentDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getSegmentDefinitions(fetch: Swift.Bool, onSuccess: @escaping ([DSSDK.SegmentDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getSegmentDefinition(fetch: Swift.Bool, name: Swift.String, onSuccess: @escaping (DSSDK.SegmentDefinition?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func fetchSegmentSubscriptions(onSuccess: @escaping ([DSSDK.SegmentSubscription]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getSegmentSubscriptions(fetch: Swift.Bool, onSuccess: @escaping ([DSSDK.SegmentSubscription]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func syncSegmentDefinitions(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getSegmentDefinitions(onSuccess: @escaping ([DSSDK.SegmentDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getSegmentDefinition(name: Swift.String, onSuccess: @escaping (DSSDK.SegmentDefinition?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func syncSegmentSubscriptions(fetch: Swift.Bool = false, onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
@@ -59,14 +57,13 @@ extension DSSDK.BackupService : DSSDK.JavaScriptExportable {
 public struct DSBackup : Swift.Codable {
   public var host: DSSDK.Host?
   public var meDatas: [DSSDK.MeData]?
-  public var journeyTransactions: [DSSDK.JourneySubmission]?
+  public var journeyTransactions: [DSSDK.JourneyExecution]?
   public var sdkVersion: Swift.Int
   public var backupDate: Foundation.TimeInterval
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 @_hasMissingDesignatedInitializers public class BackupService {
-  public static let shared: DSSDK.BackupService
   public func createBackup(onSuccess: @escaping (Swift.String?) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
   public func restore(json: Swift.String, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
   @objc deinit
@@ -80,7 +77,6 @@ public struct Host : Swift.Codable {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class HostService {
-  public static let shared: DSSDK.HostService
   @objc deinit
 }
 extension DSSDK.IntelligenceService : DSSDK.JavaScriptExportable {
@@ -272,13 +268,14 @@ public struct LlamaSamplingConfig : Swift.Equatable, Swift.Sendable {
   public static func == (a: DSSDK.LlamaSamplingConfig, b: DSSDK.LlamaSamplingConfig) -> Swift.Bool
 }
 final public actor LlamaService {
-  public init(modelUrl: Foundation.URL, config: DSSDK.LlamaConfig)
+  public init(modelUrl: Foundation.URL, params: DSSDK.ModelParams)
   final public func processMessages(_ messages: [DSSDK.Prompt]) async throws
   final public func respond<T>(to messages: [DSSDK.Prompt], generating type: T.Type) async throws -> T where T : Swift.Decodable, T : Swift.Encodable
   final public func respond(to messages: [DSSDK.Prompt], samplingConfig: DSSDK.LlamaSamplingConfig) async throws -> Swift.String
   final public func streamCompletion<T>(of messages: [DSSDK.Prompt], generating: T.Type) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error> where T : Swift.Decodable, T : Swift.Encodable
   final public func streamCompletion(of messages: [DSSDK.Prompt], samplingConfig: DSSDK.LlamaSamplingConfig) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error>
   final public func stopCompletion() async
+  final public func isLlamaInitialized() -> Swift.Bool
   @objc deinit
   @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
   @_semantics("defaultActor") nonisolated final public var unownedExecutor: _Concurrency.UnownedSerialExecutor {
@@ -315,46 +312,11 @@ public struct InferenceParams {
   public var maxTokens: Swift.Int
   public init(temperature: Swift.Float = 0.8, maxTokens: Swift.Int = 10_000)
 }
-@_hasMissingDesignatedInitializers public class Criteria {
-  final public let field: Swift.String
-  final public let criteriaOperator: Swift.String
-  final public let value: Swift.String
-  public var description: Swift.String {
-    get
-  }
-  @objc deinit
-  public func encode(to encoder: any Swift.Encoder) throws
-  required public init(from decoder: any Swift.Decoder) throws
-}
-@_hasMissingDesignatedInitializers public class Filter {
-  final public let type: Swift.String?
-  final public let filters: [DSSDK.Filter]?
-  final public let filter: DSSDK.Filter?
-  final public let criteria: DSSDK.Criteria?
-  public var description: Swift.String {
-    get
-  }
-  @objc deinit
-  public func encode(to encoder: any Swift.Encoder) throws
-  required public init(from decoder: any Swift.Decoder) throws
-}
-public struct ManagedAIModel : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-@_hasMissingDesignatedInitializers public class Rule : Swift.Codable {
-  required public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class IntelligenceModelEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
 final public class LlamaCppUseCase {
   public init(storage: any DSSDK.LlamaStorage, catalog: any DSSDK.LlamaModelCatalog)
-  final public func streamChat(modelURL: Foundation.URL, messages: [DSSDK.Prompt], batchSize: Swift.UInt32 = 256, maxTokens: Swift.UInt32 = 4096, useGPU: Swift.Bool = true, temperature: Swift.Float = 0.8, seed: Swift.UInt32? = nil, onReady: @escaping () -> Swift.Void, onToken: @escaping (Swift.String) -> Swift.Void, onFinal: @escaping (Swift.Result<Swift.String, any Swift.Error>) -> Swift.Void) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error>
-  final public func loadModel(filename: Swift.String, batchSize: Swift.UInt32 = 256, maxTokens: Swift.UInt32 = 4096, useGPU: Swift.Bool = true) async throws
+  final public func loadModel(filename: Swift.String, modelParams: DSSDK.ModelParams = .init()) async throws
+  final public func unloadModel() async
+  final public func invokeModel(prompts: [DSSDK.Prompt], inference: DSSDK.InferenceParams = .init(), seed: Swift.UInt32? = nil, onReady: @escaping () -> Swift.Void, onToken: @escaping (Swift.String) -> Swift.Void, onFinal: @escaping (Swift.Result<Swift.String, any Swift.Error>) -> Swift.Void) async throws -> _Concurrency.AsyncThrowingStream<Swift.String, any Swift.Error>
   @discardableResult
   final public func downloadModel(for filename: Swift.String, onProgress: @escaping (Swift.Double) -> Swift.Void) async throws -> Foundation.URL
   @discardableResult
@@ -397,31 +359,65 @@ final public class DefaultLlamaStorage : DSSDK.LlamaStorage {
   final public func urlForLocalFilename(_ filename: Swift.String) -> Foundation.URL
   @objc deinit
 }
-final public class IntelligenceService {
+@_hasMissingDesignatedInitializers final public class IntelligenceService {
   public static let systemPrompt: Swift.String
-  public static let shared: DSSDK.IntelligenceService
-  public init(storage: any DSSDK.LlamaStorage = DefaultLlamaStorage(), catalog: any DSSDK.LlamaModelCatalog = DefaultLlamaModelCatalog(map: [:]))
   final public func isModelFilesDownloaded(name: Swift.String) -> Swift.Bool
   final public func unloadModel(completion: (() -> Swift.Void)? = nil)
   final public func loadModel(name modelName: Swift.String, modelParams: DSSDK.ModelParams? = nil, onSuccess: @escaping @Sendable (Swift.Bool) -> Swift.Void, onError: @escaping @Sendable (any Swift.Error) -> Swift.Void)
   final public func downloadModelFiles(name: Swift.String, onProgress: @escaping @Sendable (Swift.Double) -> (), onSuccess: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func deleteModelFiles(name: Swift.String, onSuccess: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func getDownloadedModelsList() -> [Swift.String]
-  final public func invokeModel(name modelName: Swift.String, prompts: [DSSDK.Prompt], modelParams: DSSDK.ModelParams? = nil, inferenceParams: DSSDK.InferenceParams = .init(), onReady: @escaping () -> Swift.Void, onStream: @escaping @Sendable (Swift.String) -> Swift.Void, onSuccess: @escaping @Sendable (Swift.String) -> Swift.Void, onError: @escaping @Sendable (any Swift.Error) -> Swift.Void)
-  final public func fetchManagedAIModels(onSuccess: @escaping ([DSSDK.ManagedAIModel]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  final public func getManagedAIModels(fetch: Swift.Bool, onSuccess: @escaping ([DSSDK.ManagedAIModel]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  final public func getManagedAIModel(fetch: Swift.Bool, name: Swift.String, onSuccess: @escaping (DSSDK.ManagedAIModel?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  final public func fetchRules(onSuccess: @escaping ([DSSDK.Rule]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  final public func getRules(fetch: Swift.Bool, onSuccess: @escaping ([DSSDK.Rule]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  final public func getRule(fetch: Swift.Bool, name: Swift.String, onSuccess: @escaping (DSSDK.Rule?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  final public func runRule(fetch: Swift.Bool, name: Swift.String, onSuccess: @escaping (DSSDK.Rule?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func invokeModel(name modelName: Swift.String, prompts: [DSSDK.Prompt], inferenceParams: DSSDK.InferenceParams = .init(), onReady: @escaping () -> Swift.Void, onStream: @escaping @Sendable (Swift.String) -> Swift.Void, onSuccess: @escaping @Sendable (Swift.String) -> Swift.Void, onError: @escaping @Sendable (any Swift.Error) -> Swift.Void)
+  final public func syncManagedAIModels(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func getManagedAIModels(onSuccess: @escaping ([DSSDK.ManagedAIModel]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func getManagedAIModel(name: Swift.String, onSuccess: @escaping (DSSDK.ManagedAIModel?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func syncRules(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func getRules(onSuccess: @escaping ([DSSDK.Rule]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func getRule(name: Swift.String, onSuccess: @escaping (DSSDK.Rule?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  final public func runRule(name: Swift.String, onSuccess: @escaping (DSSDK.Rule?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   final public func runRules(onlyInit: Swift.Bool, onSuccess: @escaping ([DSSDK.Rule]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @discardableResult
   final public func installBundledModel(resource: Swift.String, ext: Swift.String = "gguf", as filename: Swift.String? = nil, in bundle: Foundation.Bundle = .main, progress: ((Swift.Double) -> Swift.Void)? = nil) throws -> Foundation.URL
   @objc deinit
 }
+public struct PerformanceMetrics : Swift.Sendable {
+  public let modelName: Swift.String
+  public let useGPU: Swift.Bool
+  public let promptTokensEstimated: Swift.Int
+  public let promptTokenCountIsApprox: Swift.Bool
+  public let promptChars: Swift.Int
+  public let generatedTokens: Swift.Int
+  public let generatedChars: Swift.Int
+  public let warmupMillis: Swift.Double
+  public let ttftMillis: Swift.Double
+  public let generationMillis: Swift.Double
+  public let totalMillis: Swift.Double
+  public let tokensPerSecond: Swift.Double
+}
+extension DSSDK.IntelligenceService {
+  final public func invokeModelWithPerformanceResult(name modelName: Swift.String, prompts: [DSSDK.Prompt], modelParams: DSSDK.ModelParams? = nil, inferenceParams: DSSDK.InferenceParams = .init(), onReady: @escaping () -> Swift.Void, onStream: @escaping @Sendable (Swift.String) -> Swift.Void, onSuccess: @escaping @Sendable (Swift.String, DSSDK.PerformanceMetrics) -> Swift.Void, onError: @escaping @Sendable (any Swift.Error) -> Swift.Void)
+}
 extension DSSDK.JourneyContext : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+extension DSSDK.JourneyService : DSSDK.JavaScriptExportable {
+  public func registerMethods(to context: JavaScriptCore.JSContext)
+}
+public struct JourneyExecution : Swift.Codable {
+  public var id: Swift.String
+  public var name: Swift.String
+  public var transactionInfo: [DSSDK.JourneyExecutionRecord]
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct JourneyExecutionRecord : Swift.Codable {
+  public var id: Swift.String
+  public var journeyId: Swift.String
+  public var state: Swift.String
+  public var submissionTime: Foundation.TimeInterval
+  public var journeyContext: DSSDK.JourneyContext?
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct Journey : Swift.Codable {
   public var id: Swift.String
@@ -429,7 +425,10 @@ public struct Journey : Swift.Codable {
   public var flow: DSSDK.JourneyFlow
   public var metadata: DSSDK.JourneyMetadata?
   public var tags: [Swift.String]?
-  public var zpdRequest: DSSDK.ZPDRequest?
+  public var zpdRequest: DSSDK.JourneyZPDRequest?
+  public var createdAt: Swift.Double
+  public var updatedAt: Swift.Double?
+  public var publishedAt: Swift.Double?
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -440,7 +439,7 @@ public struct JourneyMetadata : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct ZPDRequest : Swift.Codable {
+public struct JourneyZPDRequest : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -487,30 +486,21 @@ public enum JSONValue : Swift.Codable {
   public static func from(any: Any) throws -> DSSDK.JSONValue
   public func toAny() -> Any
 }
-public struct JourneyTransactionRequest : Swift.Codable {
+public struct JourneyZPD : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct FlowValue : Swift.Codable {
+public struct SharedData : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-public struct JourneySubmission : Swift.Codable {
-  public var id: Swift.String
-  public var name: Swift.String
-  public var latestTransactionInfoId: Swift.String
-  public var transactionInfo: [DSSDK.JourneySubmissionRecord]
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
+@objc @_inheritsConvenienceInitializers public class JourneyExecutionEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
 }
-public struct JourneySubmissionRecord : Swift.Codable {
-  public var id: Swift.String
-  public var journeyId: Swift.String
-  public var state: Swift.String
-  public var submissionTime: Foundation.TimeInterval
-  public var journeyContext: DSSDK.JourneyContext?
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
+@objc @_inheritsConvenienceInitializers public class JourneyExecutionRecordEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
 }
 @objc @_inheritsConvenienceInitializers final public class JourneyEntity : RealmSwift.Object {
   @RealmSwift.Persisted final public var id: Swift.String {
@@ -539,6 +529,21 @@ public struct JourneySubmissionRecord : Swift.Codable {
     _modify
   }
   @RealmSwift.Persisted final public var zpdRequest: DSSDK.ZPDRequestEntity? {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var createdAt: Swift.Double {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var updatedAt: Swift.Double? {
+    get
+    set
+    _modify
+  }
+  @RealmSwift.Persisted final public var publishedAt: Swift.Double? {
     get
     set
     _modify
@@ -576,7 +581,7 @@ public struct JourneySubmissionRecord : Swift.Codable {
     _modify
   }
   convenience public init(requested: [DSSDK.FlowData]?)
-  convenience public init(dto: DSSDK.ZPDRequest)
+  convenience public init(dto: DSSDK.JourneyZPDRequest)
   @objc override dynamic public init()
   @objc deinit
 }
@@ -631,7 +636,7 @@ extension DSSDK.JourneyMetadataEntity {
   final public func toDto() -> DSSDK.JourneyMetadata
 }
 extension DSSDK.ZPDRequestEntity {
-  final public func toDto() -> DSSDK.ZPDRequest
+  final public func toDto() -> DSSDK.JourneyZPDRequest
 }
 extension DSSDK.JourneyFlowEntity {
   final public func toDto() -> DSSDK.JourneyFlow
@@ -639,18 +644,9 @@ extension DSSDK.JourneyFlowEntity {
 extension DSSDK.FlowDataEntity {
   final public func toDto() -> DSSDK.FlowData
 }
-@objc @_inheritsConvenienceInitializers public class JourneyTransactionEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
-@objc @_inheritsConvenienceInitializers public class JourneyTransactionInfoEntity : RealmSwift.Object {
-  @objc override dynamic public init()
-  @objc deinit
-}
 public enum JourneyStatus : Swift.String {
   case sent
   case completed
-  case draft
   case notStarted
   public init?(rawValue: Swift.String)
   public typealias RawValue = Swift.String
@@ -660,13 +656,21 @@ public enum JourneyStatus : Swift.String {
 }
 public typealias JourneyStatusFilter = Swift.Set<DSSDK.JourneyStatus>
 @_hasMissingDesignatedInitializers public class JourneyService {
-  public static let shared: DSSDK.JourneyService
-  public func fetchJourneys(tags: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getJourneys(fetch: Swift.Bool, tags: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getJourney(fetch: Swift.Bool, name: Swift.String, onSuccess: @escaping (DSSDK.Journey?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func runJourney(_ viewController: UIKit.UIViewController, context: DSSDK.JourneyContext = JourneyContext(), journey: DSSDK.Journey, onSuccess: @escaping (([Swift.String : Any]) -> Swift.Void), onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getJourneySubmissionRecord(name: Swift.String, onSuccess: @escaping (DSSDK.JourneySubmissionRecord?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getJourneyState(name: Swift.String, onSuccess: @escaping (DSSDK.JourneyStatus) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func syncJourneys(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getJourneys(tags: [Swift.String] = [], statuses: DSSDK.JourneyStatusFilter = [], onSuccess: @escaping ([DSSDK.Journey]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getJourney(name: Swift.String, onSuccess: @escaping (DSSDK.Journey?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getJourneyExecutionRecord(name: Swift.String, onSuccess: @escaping (DSSDK.JourneyExecutionRecord?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getJourneyExecutionRecords(name: Swift.String, onSuccess: @escaping ([DSSDK.JourneyExecutionRecord]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getJourneyStatus(name: Swift.String, onSuccess: @escaping (DSSDK.JourneyStatus) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func runJourney(_ viewController: UIKit.UIViewController, data: [Swift.String : Any] = [:], name: Swift.String, onSuccess: @escaping (([Swift.String : Any]) -> Swift.Void), onError: @escaping ((any Swift.Error) -> Swift.Void))
+  @objc deinit
+}
+public struct ManagedAIModel : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@objc @_inheritsConvenienceInitializers public class ManagedAIModelEntity : RealmSwift.Object {
+  @objc override dynamic public init()
   @objc deinit
 }
 extension DSSDK.ManagedAPIService : DSSDK.JavaScriptExportable {
@@ -677,10 +681,14 @@ public struct ManagedApi : Swift.Codable {
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+@objc @_inheritsConvenienceInitializers public class ManagedApiEntity : RealmSwift.Object {
+  @objc override dynamic public init()
+  @objc deinit
+}
 @_hasMissingDesignatedInitializers public class ManagedAPIService {
-  public static let shared: DSSDK.ManagedAPIService
-  public func fetchManagedAPIs(onSuccess: @escaping ([DSSDK.ManagedApi]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getManagedAPI(name: Swift.String, fetch: Swift.Bool = false, onSuccess: @escaping (DSSDK.DataMap?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func syncManagedAPIs(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getManagedAPIs(onSuccess: @escaping ([DSSDK.DataMap]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getManagedAPI(name: Swift.String, onSuccess: @escaping (DSSDK.DataMap?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   @objc deinit
 }
 public class DeviceDataCollector : DSSDK.MeDataValueCollector {
@@ -904,6 +912,7 @@ public struct DataTypeConstraints : Swift.Codable, Swift.Hashable {
 public struct EnumeratedValue : Swift.Codable, Swift.Hashable {
   public var id: Swift.String?
   public var text: Swift.String
+  public var name: Swift.String
   public var description: Swift.String?
   public var imageUrl: Swift.String?
   public static func == (lhs: DSSDK.EnumeratedValue, rhs: DSSDK.EnumeratedValue) -> Swift.Bool
@@ -962,7 +971,7 @@ public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
   public var question: DSSDK.Question?
   public static func == (lhs: DSSDK.MeDataDefinition, rhs: DSSDK.MeDataDefinition) -> Swift.Bool
   public func getMeDataDefinitionType() -> DSSDK.MeDataType?
-  public func createMeData(values: [Any]?) throws -> DSSDK.MeDataContainer
+  public func createMeData(values: Any?) throws -> DSSDK.MeDataContainer
   public func hash(into hasher: inout Swift.Hasher)
   public func encode(to encoder: any Swift.Encoder) throws
   public var hashValue: Swift.Int {
@@ -1128,7 +1137,6 @@ public enum DataTypeEntity : Swift.String {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class ContinuousMeDataService {
-  public static let shared: DSSDK.ContinuousMeDataService
   public func requestLocationPermission(completion: @escaping (Swift.Bool) -> Swift.Void)
   public func startLocationCollection()
   public func checkLocationServicesEnabled(completion: @escaping (Swift.Bool) -> Swift.Void)
@@ -1136,19 +1144,46 @@ public enum DataTypeEntity : Swift.String {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class MeDataService {
-  public static let shared: DSSDK.MeDataService
-  public func saveMeDataRecord(name: Swift.String, values: [Any]?, onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func fetchMeDataDefinitions(onSuccess: @escaping ([DSSDK.MeDataDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getMeDataDefinitions(fetch: Swift.Bool, onSuccess: @escaping ([DSSDK.MeDataDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getMeDataDefinition(fetch: Swift.Bool, name: Swift.String, onSuccess: @escaping (DSSDK.MeDataDefinition?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func saveMeDataRecord(name: Swift.String, values: Any?, onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func syncMeDataDefinitions(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getMeDataDefinitions(onSuccess: @escaping ([DSSDK.MeDataDefinition]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getMeDataDefinition(name: Swift.String, onSuccess: @escaping (DSSDK.MeDataDefinition?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataCategories(onSuccess: @escaping ([DSSDK.MeDataCategory]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getMeDataDefinitionByCategory(name: Swift.String, onSuccess: @escaping ([DSSDK.MeDataDefinition]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func getMeDataDefinitionsByCategory(name: Swift.String, onSuccess: @escaping ([DSSDK.MeDataDefinition]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataRecords(name: Swift.String, onSuccess: @escaping ([DSSDK.MeDataRecord]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getLastMeDataRecord(name: Swift.String, onSuccess: @escaping (DSSDK.MeDataRecord?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func collectMeData(meDataDefinitionNames: [Swift.String], onSuccess: @escaping ([Swift.String : Any]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataCategoryGroups(onSuccess: @escaping ([DSSDK.MeDataCategoryGroup]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataPrompt(onSuccess: @escaping (DSSDK.Prompt?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMedataViewController()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Criteria {
+  final public let field: Swift.String
+  final public let criteriaOperator: Swift.String
+  final public let value: Swift.String
+  public var description: Swift.String {
+    get
+  }
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class Filter {
+  final public let type: Swift.String?
+  final public let filters: [DSSDK.Filter]?
+  final public let filter: DSSDK.Filter?
+  final public let criteria: DSSDK.Criteria?
+  public var description: Swift.String {
+    get
+  }
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers public class Rule : Swift.Codable {
+  required public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
   @objc deinit
 }
 public enum SyncKey {
@@ -1163,6 +1198,58 @@ final public class SDKDao {
   public init()
   final public func read(_ key: DSSDK.SyncKey) -> Swift.Int64
   final public func updateNow(_ key: DSSDK.SyncKey)
+  @objc deinit
+}
+open class DataSapienException : Swift.Error {
+  final public let errorCode: Swift.Int
+  open var message: Swift.String
+  open var cause: (any Swift.Error)?
+  public init(errorCode: Swift.Int, message: Swift.String, cause: (any Swift.Error)? = nil)
+  open func toJson(pretty: Swift.Bool = false) -> Swift.String
+  public var localizedDescription: Swift.String {
+    get
+  }
+  @objc deinit
+}
+public enum DataSapienErrorCodes {
+  public static let GENERAL_ERROR_CODE: Swift.Int
+  public static let SDK_INITIALIZATION_ERROR_CODE: Swift.Int
+  public static let API_ERROR_CODE: Swift.Int
+  public static let DAO_ERROR_CODE: Swift.Int
+  public static let NOT_FOUND_ERROR_CODE: Swift.Int
+  public static let NOT_AVAILABLE_ERROR_CODE: Swift.Int
+  public static let TYPE_MISMATCH_ERROR_CODE: Swift.Int
+  public static let NOT_LOADED_ERROR_CODE: Swift.Int
+  public static let INVALID_DATA_ERROR_CODE: Swift.Int
+  public static let PERMISSION_ERROR_CODE: Swift.Int
+  public static let JAVASCRIPT_ERROR_CODE: Swift.Int
+  public static let JSON_PARSE_ERROR_CODE: Swift.Int
+  public static let XML_PARSE_ERROR_CODE: Swift.Int
+  public static let NO_DATA_ERROR_CODE: Swift.Int
+  public static let SENDER_ID_ERROR_CODE: Swift.Int
+  public static let SECURE_DATA_STORAGE_ERROR_CODE: Swift.Int
+  public static let MISSING_PARAMS_ERROR_CODE: Swift.Int
+  public static let LLAMA_CPP_ERROR_CODE: Swift.Int
+  public static let JOURNEY_EXECUTION_ERROR_CODE: Swift.Int
+}
+final public class APIException : DSSDK.DataSapienException {
+  public init(message: Swift.String? = nil, cause: (any Swift.Error)? = nil, endpoint: Swift.String? = nil, body: Swift.String? = nil, status: Swift.Int? = nil)
+  @objc deinit
+}
+final public class DAOException : DSSDK.DataSapienException {
+  public init(message: Swift.String? = nil, cause: (any Swift.Error)? = nil, table: Swift.String? = nil, operation: Swift.String? = nil)
+  @objc deinit
+}
+final public class NotFoundException : DSSDK.DataSapienException {
+  public init(message: Swift.String? = nil, cause: (any Swift.Error)? = nil, name: Swift.String? = nil, where location: Swift.String? = nil)
+  @objc deinit
+}
+final public class JavaScriptException : DSSDK.DataSapienException {
+  public init(message: Swift.String? = nil, cause: (any Swift.Error)? = nil, script: Swift.String? = nil, line: Swift.Int? = nil, column: Swift.Int? = nil, parameters: [Swift.String : Any]? = nil)
+  @objc deinit
+}
+final public class JourneyExecutionException : DSSDK.DataSapienException {
+  public init(message: Swift.String? = nil, journeyId: Swift.String? = nil, elementId: Swift.String? = nil, targetRef: Swift.String? = nil, script: Swift.String? = nil, cause: (any Swift.Error)? = nil)
   @objc deinit
 }
 public enum DSError : Swift.Error, Foundation.LocalizedError {
@@ -1183,6 +1270,11 @@ public enum DSError : Swift.Error, Foundation.LocalizedError {
   case invalidAuthUrl(message: Swift.String)
   case invalidroot(message: Swift.String)
   case journeyNotFound(message: Swift.String)
+  case journeyNoStartElement
+  case journeyElementFailed(id: Swift.String)
+  case journeyNoOutgoingFlows(from: Swift.String)
+  case journeyTargetElementNotFound(id: Swift.String)
+  case journeyNoFlowMatched
   public var errorDescription: Swift.String? {
     get
   }
@@ -1294,9 +1386,11 @@ public protocol JavaScriptExportableProvider : ObjectiveC.NSObject {
 public class JavaScriptRunner {
   public init()
   public func registerClass(_ exportable: any DSSDK.JavaScriptExportable)
-  public func runScript(_ script: Swift.String) throws -> JavaScriptCore.JSValue
-  public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void, withProgressView: @escaping (Swift.Bool, Swift.String) -> Swift.Void) throws
-  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Swift.String?) -> Swift.Void, onError: @escaping (Swift.String) -> Swift.Void) throws -> JavaScriptCore.JSValue
+  public func getDataSapienExcepotionFromReject(reason: Swift.String) -> DSSDK.JavaScriptException
+  public func getDataSapienExceptionFromJSValue(jsvalue: JavaScriptCore.JSValue) -> DSSDK.JavaScriptException
+  public func runScript(_ script: Swift.String, onComplete: @escaping () -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
+  public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void, withProgressView: @escaping (Swift.Bool, Swift.String) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
+  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Swift.String?) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
   public func runScriptSync(_ script: Swift.String) -> Swift.Bool
   @objc deinit
 }
@@ -1395,10 +1489,12 @@ public enum SDKInternalVersion {
   public static let version: Swift.String
 }
 public struct DataSapien {
-  public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig? = nil)
+  public static func initialize(dataSapienConfig: DSSDK.DataSapienConfig)
   public static func setPushToken(_ pushToken: Swift.String)
   public static func deleteAllData()
   public static func deleteDataBeforeBackup()
+  public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
+  public static func setup(completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
   public static func getAudienceService() -> DSSDK.AudienceService
   public static func getIntelligenceService() -> DSSDK.IntelligenceService
   public static func getBackupService() -> DSSDK.BackupService
@@ -1406,8 +1502,6 @@ public struct DataSapien {
   public static func getJourneyService() -> DSSDK.JourneyService
   public static func getContinuousMeDataService() -> DSSDK.ContinuousMeDataService
   public static func getManagedApiService() -> DSSDK.ManagedAPIService
-  public static func getJavaScriptRunner(customExportables: [any DSSDK.JavaScriptExportable]? = nil) -> DSSDK.JavaScriptRunner
-  public static func setup(completion: @escaping (Swift.Result<Swift.Void, any Swift.Error>) -> Swift.Void)
 }
 @_hasMissingDesignatedInitializers public class DataSapienConfig {
   public static let shared: DSSDK.DataSapienConfig
@@ -1465,9 +1559,6 @@ extension DSSDK.DataSapienConfig {
   @_Concurrency.MainActor public init(exchange: DSSDK.Exchange, NVC: UIKit.UIViewController, onComplete: @escaping (() -> Swift.Void))
   @_Concurrency.MainActor public func startExchange()
   @objc deinit
-}
-extension DSSDK.ExchangeService : DSSDK.JavaScriptExportable {
-  public func registerMethods(to context: JavaScriptCore.JSContext)
 }
 public struct Audience : Swift.Codable {
   public var id: Swift.String
@@ -1617,22 +1708,6 @@ public struct QuestionnaireResult : Swift.Codable {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class ExchangeService {
-  public static let shared: DSSDK.ExchangeService
-  public func fetchExchanges(onSuccess: @escaping ([DSSDK.Exchange]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getAllExchanges() -> [DSSDK.Exchange]?
-  public func getExchagesByTag(tag: Swift.String) -> [DSSDK.Exchange]?
-  public func getNativeMeDataCollector(exchange: DSSDK.Exchange) -> [any DSSDK.MeDataValueCollector]?
-  public func getScriptedMeDataCollector(exchange: DSSDK.Exchange) -> [any DSSDK.MeDataValueCollector]?
-  public func getQaBasedMeDataCollector(exchange: DSSDK.Exchange) -> [DSSDK.Question]?
-  public func getExchangeMeDataDefinitions(exchange: DSSDK.Exchange) -> [DSSDK.MeDataDefinition]
-  public func getQaBasedMeDataByName(name: Swift.String, exchange: DSSDK.Exchange) -> DSSDK.Question?
-  public func getSurveyQuestions(exchange: DSSDK.Exchange) -> [DSSDK.Question]?
-  public func completeExchangeAndGetLatestInfo(exchange: DSSDK.Exchange?) -> DSSDK.ExchangeTransactionInfo?
-  public func saveExchangeMeDataValue(exchange: DSSDK.Exchange?, meDataDefinition: DSSDK.MeDataDefinition, values: [Any], onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func saveSurveyAnswer(exchange: DSSDK.Exchange?, question: DSSDK.Question?, answers: [Swift.String], onSuccess: @escaping (Swift.Bool) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
-  public func getLatestExchangeTransactionInfo(exchangeId: Swift.String) -> DSSDK.ExchangeTransactionInfo?
-  public func clearExchangeTransactions()
-  public func clearExchangeTransaction(by id: Swift.String)
   @objc deinit
 }
 @_Concurrency.MainActor @preconcurrency public struct MeDataView : SwiftUICore.View {
@@ -1668,10 +1743,6 @@ extension DSSDK.LlamaLoraError : Swift.Hashable {}
 extension DSSDK.Prompt.Role : Swift.Equatable {}
 extension DSSDK.Prompt.Role : Swift.Hashable {}
 extension DSSDK.Prompt.Role : Swift.RawRepresentable {}
-extension DSSDK.Criteria : Swift.Encodable {}
-extension DSSDK.Criteria : Swift.Decodable {}
-extension DSSDK.Filter : Swift.Encodable {}
-extension DSSDK.Filter : Swift.Decodable {}
 extension DSSDK.JourneyStatus : Swift.Equatable {}
 extension DSSDK.JourneyStatus : Swift.Hashable {}
 extension DSSDK.JourneyStatus : Swift.RawRepresentable {}
@@ -1695,6 +1766,10 @@ extension DSSDK.MeDataType : Swift.RawRepresentable {}
 extension DSSDK.DataTypeEntity : Swift.Equatable {}
 extension DSSDK.DataTypeEntity : Swift.Hashable {}
 extension DSSDK.DataTypeEntity : Swift.RawRepresentable {}
+extension DSSDK.Criteria : Swift.Encodable {}
+extension DSSDK.Criteria : Swift.Decodable {}
+extension DSSDK.Filter : Swift.Encodable {}
+extension DSSDK.Filter : Swift.Decodable {}
 extension DSSDK.SyncKey : Swift.Equatable {}
 extension DSSDK.SyncKey : Swift.Hashable {}
 extension DSSDK.ExchangeFlowManager : Swift.Sendable {}

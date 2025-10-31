@@ -1,158 +1,170 @@
 <html>
 <head>
-  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+        * {
+          box-sizing: border-box;
+          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #fff;
-      color: #000;
-    }
+        body {
+          margin: 0;
+          padding: 0;
+          background-color: #fff;
+          color: #000;
+        }
 
-    .page {
-      padding: 20px;
-      padding-bottom: 120px;
-    }
+        .page {
+          padding: 20px;
+          padding-bottom: 120px;
+        }
 
-    #text {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
+        #text {
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 24px;
+        }
 
-    #desc {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 12px;
-    }
+        #desc {
+          font-size: 14px;
+          color: #666;
+          margin-bottom: 12px;
+        }
 
-    #inputs.enumerated {
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      overflow: hidden;
-    }
+        #inputs.enumerated {
+          border: 1px solid #e0e0e0;
+          border-radius: 12px;
+          overflow: hidden;
+        }
 
-    .input-row {
-      padding: 16px;
-      font-size: 17px;
-      border-bottom: 1px solid #e0e0e0;
-    }
+        .input-row {
+          padding: 16px;
+          font-size: 17px;
+          border-bottom: 1px solid #e0e0e0;
+        }
 
-    .input-row:last-child {
-      border-bottom: none;
-    }
+        .input-row:last-child {
+          border-bottom: none;
+        }
 
-    /* Layout for radio/checkbox */
-    .input-row.option-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+        /* Layout for radio/checkbox */
+        .input-row.option-row {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+        }
 
-    /* Layout for text/number/date */
-    .input-row.input-field-row {
-      display: flex;
-      flex-direction: column;
-    }
+        /* Optional: make label clickable */
+        .input-row.option-row label {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          flex: 1;
+        }
 
-    .input-row input[type="radio"],
-    .input-row input[type="checkbox"] {
-      appearance: none;
-      width: 22px;
-      height: 22px;
-      border: 2px solid #FF9500;
-      border-radius: 50%;
-      position: relative;
-    }
+        /* Layout for text/number/date */
+        .input-row.input-field-row {
+          display: flex;
+          flex-direction: column;
+        }
 
-    .input-row input[type="radio"]:checked::before,
-    .input-row input[type="checkbox"]:checked::before {
-      content: "";
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      width: 10px;
-      height: 10px;
-      background-color: #FF9500;
-      border-radius: 50%;
-    }
+        .input-row input[type="radio"],
+        .input-row input[type="checkbox"] {
+          appearance: none;
+          width: 22px;
+          height: 22px;
+          border: 2px solid #FF9500;
+          border-radius: 50%;
+          position: relative;
+          flex-shrink: 0; /* 👈 Prevents squishing */
+          background-color: #fff;
+        }
 
-    .controls {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 16px 20px;
-      display: flex;
-      justify-content: space-between;
-      background: #fff;
-      border-top: 1px solid #e0e0e0;
-    }
+        .input-row input[type="radio"]:checked::before,
+        .input-row input[type="checkbox"]:checked::before {
+          content: "";
+          position: absolute;
+          top: 4px;
+          left: 4px;
+          width: 10px;
+          height: 10px;
+          background-color: #FF9500;
+          border-radius: 50%;
+        }
 
-    .controls button {
-      flex: 1;
-      margin: 0 6px;
-      padding: 14px 0;
-      font-size: 17px;
-      font-weight: 600;
-      border: none;
-      border-radius: 12px;
-      background-color: #FF9500;
-      color: #fff;
-    }
+        .controls {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 16px 20px;
+          display: flex;
+          justify-content: space-between;
+          background: #fff;
+          border-top: 1px solid #e0e0e0;
+        }
 
-    .controls button:disabled {
-      background-color: #ffe5e3;
-      color: #FF9500;
-      opacity: 0.6;
-    }
+        .controls button {
+          flex: 1;
+          margin: 0 6px;
+          padding: 14px 0;
+          font-size: 17px;
+          font-weight: 600;
+          border: none;
+          border-radius: 12px;
+          background-color: #FF9500;
+          color: #fff;
+        }
 
-    input[type="text"],
-    input[type="number"],
-    input[type="date"] {
-      width: 100%;
-      padding: 12px 14px;
-      font-size: 16px;
-      font-weight: 500;
-      border: 1px solid #d1d1d6;
-      border-radius: 10px;
-      background-color: #f9f9f9;
-      color: #000;
-      appearance: none;
-      margin-top: 6px;
-      margin-bottom: 6px;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      transition: border 0.3s ease;
-      outline: none;
-    }
+        .controls button:disabled {
+          background-color: #ffe5e3;
+          color: #FF9500;
+          opacity: 0.6;
+        }
 
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    input[type="date"]:focus {
-      border: 1px solid #FF9500;
-      background-color: #fff;
-    }
-  </style>
+        input[type="text"],
+        input[type="number"],
+        input[type="date"] {
+          width: 100%;
+          padding: 12px 14px;
+          font-size: 16px;
+          font-weight: 500;
+          border: 1px solid #d1d1d6;
+          border-radius: 10px;
+          background-color: #f9f9f9;
+          color: #000;
+          appearance: none;
+          margin-top: 6px;
+          margin-bottom: 6px;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+          transition: border 0.3s ease;
+          outline: none;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus {
+          border: 1px solid #FF9500;
+          background-color: #fff;
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
+<div class="page">
     <div id="container">
-      <div id="text"></div>
-      <div id="desc"></div>
-      <div id="inputs"></div>
+        <div id="text"></div>
+        <div id="desc"></div>
+        <div id="inputs"></div>
     </div>
     <div class="controls">
-      <button id="backBtn">Back</button>
-      <button id="nextBtn">Next</button>
+        <button id="backBtn">Back</button>
+        <button id="nextBtn">Next</button>
     </div>
-  </div>
+</div>
 
-  <script>
+<script>
     const questions = JSON.parse("JSONPLACEHOLDER");
     let currentIndex = 0;
     const answers = {};
@@ -192,7 +204,7 @@
           input.id = "input_" + idx;
           input.type = valueDef.multivalued ? "checkbox" : "radio";
           input.name = "input";
-          input.value = val.id;
+          input.value = val.name;
 
           const label = document.createElement("label");
           label.setAttribute("for", input.id);
@@ -223,7 +235,7 @@
 
     function updateButtonStates() {
       backBtn.disabled = currentIndex === 0;
-      nextBtn.innerText = currentIndex === questions.length - 1 ? "Complete" : "Next";
+      nextBtn.innerText = currentIndex === questions.length - 1 ? "Continue" : "Next";
     }
 
     function getAnswer() {
@@ -275,7 +287,6 @@
       answers[key] = finalAnswer;
       console.log("Saved:", key, "=>", finalAnswer);
 
-      // ✅ MeData kayıt işlemi
       if (question.isMeData === true) {
         const name = String(key || question.meDataName || "").trim();
         if (!name) {
@@ -285,8 +296,9 @@
         const values = Array.isArray(finalAnswer) ? finalAnswer : [finalAnswer];
         try {
           if (window.MeDataService && typeof window.MeDataService.saveMeDataRecord === "function") {
-            const ok = await window.MeDataService.saveMeDataRecord(name, values);
-            console.log("✅ MeDataService.saveMeDataRecord:", ok);
+            console.log("✅ MeDataService.saveMeDataRecord: final answer", finalAnswer);
+            await window.MeDataService.saveMeDataRecord(name, finalAnswer);
+            console.log("✅ MeDataService.saveMeDataRecord: ok");
           } else {
             console.warn("⚠️ MeDataService not available");
           }
@@ -328,6 +340,6 @@
     }
 
     renderQuestionForm(questions[currentIndex]);
-  </script>
+</script>
 </body>
-</html>
+</html> 
