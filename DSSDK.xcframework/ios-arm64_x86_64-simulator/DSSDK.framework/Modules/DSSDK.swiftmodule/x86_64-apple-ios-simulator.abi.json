@@ -1452,14 +1452,14 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
               }
             ],
             "declKind": "Var",
-            "usr": "s:5DSSDK8DSBackupV10sdkVersionSivp",
-            "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSivp",
+            "usr": "s:5DSSDK8DSBackupV10sdkVersionSSvp",
+            "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSSvp",
             "moduleName": "DSSDK",
             "declAttributes": [
               "HasStorage",
@@ -1474,14 +1474,14 @@
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:5DSSDK8DSBackupV10sdkVersionSivg",
-                "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSivg",
+                "usr": "s:5DSSDK8DSBackupV10sdkVersionSSvg",
+                "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSSvg",
                 "moduleName": "DSSDK",
                 "implicit": true,
                 "accessorKind": "get"
@@ -1498,14 +1498,14 @@
                   },
                   {
                     "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:5DSSDK8DSBackupV10sdkVersionSivs",
-                "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSivs",
+                "usr": "s:5DSSDK8DSBackupV10sdkVersionSSvs",
+                "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSSvs",
                 "moduleName": "DSSDK",
                 "implicit": true,
                 "accessorKind": "set"
@@ -1522,8 +1522,8 @@
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:5DSSDK8DSBackupV10sdkVersionSivM",
-                "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSivM",
+                "usr": "s:5DSSDK8DSBackupV10sdkVersionSSvM",
+                "mangledName": "$s5DSSDK8DSBackupV10sdkVersionSSvM",
                 "moduleName": "DSSDK",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -10868,7 +10868,7 @@
           {
             "kind": "Function",
             "name": "invokeModel",
-            "printedName": "invokeModel(name:prompts:inferenceParams:onReady:onStream:onSuccess:onError:)",
+            "printedName": "invokeModel(name:prompts:inferenceParams:onStream:onSuccess:onError:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -10901,23 +10901,6 @@
                 "printedName": "DSSDK.InferenceParams",
                 "hasDefaultArg": true,
                 "usr": "s:5DSSDK15InferenceParamsV"
-              },
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "() -> ()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ]
               },
               {
                 "kind": "TypeFunc",
@@ -10975,8 +10958,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK19IntelligenceServiceC11invokeModel4name7prompts15inferenceParams7onReady0J6Stream0J7Success0J5ErrorySS_SayAA6PromptVGAA09InferenceI0VyycySSYbcySSYbcys0N0_pYbctF",
-            "mangledName": "$s5DSSDK19IntelligenceServiceC11invokeModel4name7prompts15inferenceParams7onReady0J6Stream0J7Success0J5ErrorySS_SayAA6PromptVGAA09InferenceI0VyycySSYbcySSYbcys0N0_pYbctF",
+            "usr": "s:5DSSDK19IntelligenceServiceC11invokeModel4name7prompts15inferenceParams8onStream0J7Success0J5ErrorySS_SayAA6PromptVGAA09InferenceI0VySSYbcySSYbcys0M0_pYbctF",
+            "mangledName": "$s5DSSDK19IntelligenceServiceC11invokeModel4name7prompts15inferenceParams8onStream0J7Success0J5ErrorySS_SayAA6PromptVGAA09InferenceI0VySSYbcySSYbcys0M0_pYbctF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Final",
@@ -25892,13 +25875,13 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Array",
-                    "printedName": "[DSSDK.InstalledAppData]",
+                    "printedName": "[Swift.String]",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "InstalledAppData",
-                        "printedName": "DSSDK.InstalledAppData",
-                        "usr": "s:5DSSDK16InstalledAppDataV"
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
                       }
                     ],
                     "usr": "s:Sa"
@@ -25908,101 +25891,6 @@
             ],
             "usr": "s:5DSSDK20MeDataValueCollectorP",
             "mangledName": "$s5DSSDK20MeDataValueCollectorP"
-          }
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "InstalledAppData",
-        "printedName": "InstalledAppData",
-        "children": [
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(from:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "InstalledAppData",
-                "printedName": "DSSDK.InstalledAppData",
-                "usr": "s:5DSSDK16InstalledAppDataV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Decoder",
-                "printedName": "any Swift.Decoder",
-                "usr": "s:s7DecoderP"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:5DSSDK16InstalledAppDataV4fromACs7Decoder_p_tKcfc",
-            "mangledName": "$s5DSSDK16InstalledAppDataV4fromACs7Decoder_p_tKcfc",
-            "moduleName": "DSSDK",
-            "implicit": true,
-            "throwing": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Function",
-            "name": "encode",
-            "printedName": "encode(to:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Encoder",
-                "printedName": "any Swift.Encoder",
-                "usr": "s:s7EncoderP"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK16InstalledAppDataV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s5DSSDK16InstalledAppDataV6encode2toys7Encoder_p_tKF",
-            "moduleName": "DSSDK",
-            "implicit": true,
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:5DSSDK16InstalledAppDataV",
-        "mangledName": "$s5DSSDK16InstalledAppDataV",
-        "moduleName": "DSSDK",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Decodable",
-            "printedName": "Decodable",
-            "usr": "s:Se",
-            "mangledName": "$sSe"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Encodable",
-            "printedName": "Encodable",
-            "usr": "s:SE",
-            "mangledName": "$sSE"
           }
         ]
       },
@@ -51006,7 +50894,7 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(Swift.String?) -> ()",
+                "printedName": "(Any?) -> ()",
                 "children": [
                   {
                     "kind": "TypeNominal",
@@ -51016,13 +50904,12 @@
                   {
                     "kind": "TypeNominal",
                     "name": "Optional",
-                    "printedName": "Swift.String?",
+                    "printedName": "Any?",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
                       }
                     ],
                     "usr": "s:Sq"
@@ -51049,8 +50936,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK16JavaScriptRunnerC17runScriptedMeData_9onSuccess0I5ErrorySS_ySSSgcys0K0_pctF",
-            "mangledName": "$s5DSSDK16JavaScriptRunnerC17runScriptedMeData_9onSuccess0I5ErrorySS_ySSSgcys0K0_pctF",
+            "usr": "s:5DSSDK16JavaScriptRunnerC17runScriptedMeData_9onSuccess0I5ErrorySS_yypSgcys0K0_pctF",
+            "mangledName": "$s5DSSDK16JavaScriptRunnerC17runScriptedMeData_9onSuccess0I5ErrorySS_yypSgcys0K0_pctF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "AccessControl"
@@ -70560,7 +70447,7 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-intelligece\/IntelligenceService.swift",
       "kind": "StringLiteral",
-      "offset": 10356,
+      "offset": 10312,
       "length": 6,
       "value": "\"gguf\""
     },
@@ -70805,217 +70692,217 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17150,
+      "offset": 17142,
       "length": 14,
       "value": "\"device_brand\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17192,
+      "offset": 17184,
       "length": 17,
       "value": "\"device_language\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17236,
+      "offset": 17228,
       "length": 16,
       "value": "\"device_country\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17276,
+      "offset": 17268,
       "length": 20,
       "value": "\"device_sdk_version\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17322,
+      "offset": 17314,
       "length": 22,
       "value": "\"device_ab_test_group\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17381,
+      "offset": 17373,
       "length": 34,
       "value": "\"device_push_notification_enabled\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17442,
+      "offset": 17434,
       "length": 23,
       "value": "\"device_mobile_carrier\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17487,
+      "offset": 17479,
       "length": 11,
       "value": "\"device_os\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17528,
+      "offset": 17520,
       "length": 19,
       "value": "\"device_os_version\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17572,
+      "offset": 17564,
       "length": 14,
       "value": "\"device_model\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17617,
+      "offset": 17609,
       "length": 27,
       "value": "\"device_last_app_open_date\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17681,
+      "offset": 17673,
       "length": 26,
       "value": "\"device_screen_resolution\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17736,
+      "offset": 17728,
       "length": 17,
       "value": "\"device_timezone\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17783,
+      "offset": 17775,
       "length": 19,
       "value": "\"device_gmt_offset\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17835,
+      "offset": 17827,
       "length": 22,
       "value": "\"device_battery_level\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17890,
+      "offset": 17882,
       "length": 22,
       "value": "\"device_battery_state\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17943,
+      "offset": 17935,
       "length": 20,
       "value": "\"device_orientation\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17989,
+      "offset": 17981,
       "length": 15,
       "value": "\"device_rooted\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18033,
+      "offset": 18025,
       "length": 25,
       "value": "\"device_session_duration\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18095,
+      "offset": 18087,
       "length": 29,
       "value": "\"device_available_storage_mb\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18156,
+      "offset": 18148,
       "length": 21,
       "value": "\"device_network_type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18203,
+      "offset": 18195,
       "length": 18,
       "value": "\"device_uptime_ms\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18246,
+      "offset": 18238,
       "length": 14,
       "value": "\"device_muted\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18300,
+      "offset": 18292,
       "length": 29,
       "value": "\"device_ram_usage_percentage\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18363,
+      "offset": 18355,
       "length": 23,
       "value": "\"device_download_speed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18418,
+      "offset": 18410,
       "length": 21,
       "value": "\"device_upload_speed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18466,
+      "offset": 18458,
       "length": 16,
       "value": "\"device_ui_mode\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18512,
+      "offset": 18504,
       "length": 19,
       "value": "\"device_vpn_active\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18570,
+      "offset": 18562,
       "length": 28,
       "value": "\"device_headphone_connected\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18628,
+      "offset": 18620,
       "length": 19,
       "value": "\"device_ip_address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18690,
+      "offset": 18682,
       "length": 32,
       "value": "\"device_screen_brightness_level\""
     },
@@ -71673,7 +71560,7 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/common\/api\/DataSapienApi.swift",
       "kind": "IntegerLiteral",
-      "offset": 5994,
+      "offset": 6553,
       "length": 4,
       "value": "2048"
     },
@@ -72124,6 +72011,13 @@
       "offset": 3577,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/common\/DSConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 136,
+      "length": 7,
+      "value": "\"1.0.0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/deprecated\/exchange\/ExchangeFlowManager.swift",

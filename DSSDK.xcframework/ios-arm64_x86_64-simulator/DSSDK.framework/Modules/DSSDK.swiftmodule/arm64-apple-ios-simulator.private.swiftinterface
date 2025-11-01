@@ -58,7 +58,7 @@ public struct DSBackup : Swift.Codable {
   public var host: DSSDK.Host?
   public var meDatas: [DSSDK.MeData]?
   public var journeyTransactions: [DSSDK.JourneyExecution]?
-  public var sdkVersion: Swift.Int
+  public var sdkVersion: Swift.String
   public var backupDate: Foundation.TimeInterval
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
@@ -367,7 +367,7 @@ final public class DefaultLlamaStorage : DSSDK.LlamaStorage {
   final public func downloadModelFiles(name: Swift.String, onProgress: @escaping @Sendable (Swift.Double) -> (), onSuccess: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func deleteModelFiles(name: Swift.String, onSuccess: @escaping @Sendable (Swift.String) -> (), onError: @escaping @Sendable (any Swift.Error) -> ())
   final public func getDownloadedModelsList() -> [Swift.String]
-  final public func invokeModel(name modelName: Swift.String, prompts: [DSSDK.Prompt], inferenceParams: DSSDK.InferenceParams = .init(), onReady: @escaping () -> Swift.Void, onStream: @escaping @Sendable (Swift.String) -> Swift.Void, onSuccess: @escaping @Sendable (Swift.String) -> Swift.Void, onError: @escaping @Sendable (any Swift.Error) -> Swift.Void)
+  final public func invokeModel(name modelName: Swift.String, prompts: [DSSDK.Prompt], inferenceParams: DSSDK.InferenceParams = .init(), onStream: @escaping @Sendable (Swift.String) -> Swift.Void, onSuccess: @escaping @Sendable (Swift.String) -> Swift.Void, onError: @escaping @Sendable (any Swift.Error) -> Swift.Void)
   final public func syncManagedAIModels(onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   final public func getManagedAIModels(onSuccess: @escaping ([DSSDK.ManagedAIModel]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   final public func getManagedAIModel(name: Swift.String, onSuccess: @escaping (DSSDK.ManagedAIModel?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
@@ -746,7 +746,7 @@ public enum DeviceDataType : Swift.String {
 }
 public class InstalledAppDataCollector : DSSDK.MeDataValueCollector {
   public init()
-  public typealias T = [DSSDK.InstalledAppData]
+  public typealias T = [Swift.String]
   public var name: Swift.String
   public var requiredPermissions: [Swift.String]?
   public var permissionType: DSSDK.PermissionType?
@@ -754,10 +754,6 @@ public class InstalledAppDataCollector : DSSDK.MeDataValueCollector {
   public func collectData(meDataName: Swift.String?) -> DSSDK.MeDataValueResponse
   public func collectData(onSuccess: @escaping (DSSDK.MeDataValueResponse?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void))
   @objc deinit
-}
-public struct InstalledAppData : Swift.Codable {
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
 }
 public protocol PermissionRequestHandling : AnyObject {
   init()
@@ -1390,7 +1386,7 @@ public class JavaScriptRunner {
   public func getDataSapienExceptionFromJSValue(jsvalue: JavaScriptCore.JSValue) -> DSSDK.JavaScriptException
   public func runScript(_ script: Swift.String, onComplete: @escaping () -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
   public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void, withProgressView: @escaping (Swift.Bool, Swift.String) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
-  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Swift.String?) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
+  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Any?) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
   public func runScriptSync(_ script: Swift.String) -> Swift.Bool
   @objc deinit
 }
