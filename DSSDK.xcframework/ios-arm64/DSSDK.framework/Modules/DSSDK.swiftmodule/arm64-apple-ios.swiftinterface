@@ -400,9 +400,36 @@ extension DSSDK.IntelligenceService {
 extension DSSDK.JourneyContext : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
 }
+public class JavaScriptRunner {
+  public init()
+  public func registerClass(_ exportable: any DSSDK.JavaScriptExportable)
+  public func getDataSapienExcepotionFromReject(reason: Swift.String) -> DSSDK.JavaScriptException
+  public func getDataSapienExceptionFromJSValue(jsvalue: JavaScriptCore.JSValue) -> DSSDK.JavaScriptException
+  public func runScript(_ script: Swift.String, onComplete: @escaping () -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
+  public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void, withProgressView: @escaping (Swift.Bool, Swift.String) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
+  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Any?) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
+  public func runScriptSync(_ script: Swift.String) -> Swift.Bool
+  @objc deinit
+}
 extension DSSDK.JourneyService : DSSDK.JavaScriptExportable {
   public func registerMethods(to context: JavaScriptCore.JSContext)
 }
+@_hasMissingDesignatedInitializers public class Resources {
+  public static func getQuestionAnswerHtml() -> Foundation.URL?
+  public static func getMeDataDisplayHtml() -> Foundation.URL?
+  @objc deinit
+}
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.Optional where Wrapped == Swift.String {
+  public func getCSSFileURL() -> Foundation.URL?
+  public func getFormViewerFileURL() -> Foundation.URL?
+}
+#else
+extension Swift.Optional where Wrapped == Swift.String {
+  public func getCSSFileURL() -> Foundation.URL?
+  public func getFormViewerFileURL() -> Foundation.URL?
+}
+#endif
 public struct JourneyExecution : Swift.Codable {
   public var id: Swift.String
   public var name: Swift.String
@@ -1351,22 +1378,6 @@ extension Foundation.Date {
     get
   }
 }
-@_hasMissingDesignatedInitializers public class Resources {
-  public static func getQuestionAnswerHtml() -> Foundation.URL?
-  public static func getMeDataDisplayHtml() -> Foundation.URL?
-  @objc deinit
-}
-#if compiler(>=5.3) && $NoncopyableGenerics
-extension Swift.Optional where Wrapped == Swift.String {
-  public func getCSSFileURL() -> Foundation.URL?
-  public func getFormViewerFileURL() -> Foundation.URL?
-}
-#else
-extension Swift.Optional where Wrapped == Swift.String {
-  public func getCSSFileURL() -> Foundation.URL?
-  public func getFormViewerFileURL() -> Foundation.URL?
-}
-#endif
 extension Foundation.NSNotification.Name {
   public static let didReceiveAuthorizationCode: Foundation.Notification.Name
 }
@@ -1378,17 +1389,6 @@ public protocol JavaScriptExportable {
 }
 public protocol JavaScriptExportableProvider : ObjectiveC.NSObject {
   static func provideExportables() -> [any DSSDK.JavaScriptExportable]
-}
-public class JavaScriptRunner {
-  public init()
-  public func registerClass(_ exportable: any DSSDK.JavaScriptExportable)
-  public func getDataSapienExcepotionFromReject(reason: Swift.String) -> DSSDK.JavaScriptException
-  public func getDataSapienExceptionFromJSValue(jsvalue: JavaScriptCore.JSValue) -> DSSDK.JavaScriptException
-  public func runScript(_ script: Swift.String, onComplete: @escaping () -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
-  public func runScriptWithCallback(_ script: Swift.String, onComplete: @escaping (Swift.Bool) -> Swift.Void, withView: @escaping (Swift.String) -> Swift.Void, withProgressView: @escaping (Swift.Bool, Swift.String) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
-  public func runScriptedMeData(_ script: Swift.String, onSuccess: @escaping (Any?) -> Swift.Void, onError: @escaping (any Swift.Error) -> Swift.Void)
-  public func runScriptSync(_ script: Swift.String) -> Swift.Bool
-  @objc deinit
 }
 public struct JSCoreExportItem {
   public let jsFunctionName: Swift.String?
@@ -1508,6 +1508,8 @@ public struct DataSapien {
   public func setMediaUrl(mediaUrl: Swift.String?)
   public func setmainColor(mainColor: UIKit.UIColor?)
   public func setdebug(debug: Swift.Bool?)
+  public func getCustomCssURL() -> Foundation.URL?
+  public func setCustomCssURL(_ url: Foundation.URL?)
   public func gethostUrl() -> Swift.String?
   public func sethostUrl(hostUrl: Swift.String?)
   public func setAuthScope(scope: Swift.String?)
@@ -1535,6 +1537,7 @@ public struct DataSapien {
     public func registerCollectors(_ collectorRegistry: DSSDK.CollectorRegistry) -> DSSDK.DataSapienConfig.Builder
     public func setRuleCallback(_ callback: ((Swift.String) throws -> Swift.Bool)?) -> DSSDK.DataSapienConfig.Builder
     public func setFromLocal(_ fromLocal: Swift.Bool) -> DSSDK.DataSapienConfig.Builder
+    public func setCustomCssURL(_ url: Foundation.URL?) -> DSSDK.DataSapienConfig.Builder
     public func build() -> DSSDK.DataSapienConfig
     @objc deinit
   }
