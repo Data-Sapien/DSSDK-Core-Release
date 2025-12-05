@@ -27919,6 +27919,56 @@
                 "accessorKind": "_modify"
               }
             ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(recordValue:date:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MeDataRecordResponse",
+                "printedName": "DSSDK.MeDataRecordResponse",
+                "usr": "s:5DSSDK20MeDataRecordResponseV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int64?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int64",
+                    "printedName": "Swift.Int64",
+                    "usr": "s:s5Int64V"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5DSSDK20MeDataRecordResponseV11recordValue4dateACypSg_s5Int64VSgtcfc",
+            "mangledName": "$s5DSSDK20MeDataRecordResponseV11recordValue4dateACypSg_s5Int64VSgtcfc",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
           }
         ],
         "declKind": "Struct",
@@ -69892,140 +69942,140 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1269,
+      "offset": 1276,
       "length": 14,
       "value": "\"contact_list\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1304,
+      "offset": 1311,
       "length": 11,
       "value": "\"app_usage\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1344,
+      "offset": 1351,
       "length": 19,
       "value": "\"bluetooth_devices\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1384,
+      "offset": 1391,
       "length": 17,
       "value": "\"calendar_events\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1423,
+      "offset": 1430,
       "length": 12,
       "value": "\"photo_exif\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1461,
+      "offset": 1468,
       "length": 16,
       "value": "\"installed_apps\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1501,
+      "offset": 1508,
       "length": 14,
       "value": "\"network_ssid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1535,
+      "offset": 1542,
       "length": 10,
       "value": "\"call_log\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1568,
+      "offset": 1575,
       "length": 13,
       "value": "\"device_data\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1606,
+      "offset": 1613,
       "length": 15,
       "value": "\"reminder_data\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1650,
+      "offset": 1657,
       "length": 22,
       "value": "\"total_calorie_burned\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1701,
+      "offset": 1708,
       "length": 8,
       "value": "\"weight\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1738,
+      "offset": 1745,
       "length": 8,
       "value": "\"height\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1768,
+      "offset": 1775,
       "length": 12,
       "value": "\"step_count\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1802,
+      "offset": 1809,
       "length": 12,
       "value": "\"heart_rate\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1843,
+      "offset": 1850,
       "length": 20,
       "value": "\"resting_heart_rate\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1895,
+      "offset": 1902,
       "length": 24,
       "value": "\"cardio_fitness_vo2_max\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1945,
+      "offset": 1952,
       "length": 15,
       "value": "\"sleep_dutaion\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1984,
+      "offset": 1991,
       "length": 14,
       "value": "\"blood_oxygen\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 2018,
+      "offset": 2025,
       "length": 9,
       "value": "\"unknown\""
     },

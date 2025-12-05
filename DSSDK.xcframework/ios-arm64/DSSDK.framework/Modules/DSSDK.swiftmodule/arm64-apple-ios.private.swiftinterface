@@ -830,6 +830,7 @@ public enum ContinuousCollectorType : Swift.String {
 public struct MeDataRecordResponse {
   public var recordValue: Any?
   public var date: Swift.Int64?
+  public init(recordValue: Any? = nil, date: Swift.Int64? = nil)
 }
 public protocol MeDataValueCollector {
   associatedtype T
