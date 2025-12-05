@@ -22394,8 +22394,7 @@
             "mangledName": "$s5DSSDK14JourneyServiceC03getB15ExecutionRecord4name9onSuccess0H5ErrorySS_yAA0beF0VSgcys0J0_pcSgtF",
             "moduleName": "DSSDK",
             "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
+              "AccessControl"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -27701,6 +27700,253 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "MeDataRecordResponse",
+        "printedName": "MeDataRecordResponse",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "recordValue",
+            "printedName": "recordValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK20MeDataRecordResponseV11recordValueypSgvp",
+            "mangledName": "$s5DSSDK20MeDataRecordResponseV11recordValueypSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Any?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK20MeDataRecordResponseV11recordValueypSgvg",
+                "mangledName": "$s5DSSDK20MeDataRecordResponseV11recordValueypSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Any?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK20MeDataRecordResponseV11recordValueypSgvs",
+                "mangledName": "$s5DSSDK20MeDataRecordResponseV11recordValueypSgvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK20MeDataRecordResponseV11recordValueypSgvM",
+                "mangledName": "$s5DSSDK20MeDataRecordResponseV11recordValueypSgvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "date",
+            "printedName": "date",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int64?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int64",
+                    "printedName": "Swift.Int64",
+                    "usr": "s:s5Int64V"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK20MeDataRecordResponseV4dates5Int64VSgvp",
+            "mangledName": "$s5DSSDK20MeDataRecordResponseV4dates5Int64VSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Int64?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int64",
+                        "printedName": "Swift.Int64",
+                        "usr": "s:s5Int64V"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK20MeDataRecordResponseV4dates5Int64VSgvg",
+                "mangledName": "$s5DSSDK20MeDataRecordResponseV4dates5Int64VSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "Swift.Int64?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int64",
+                        "printedName": "Swift.Int64",
+                        "usr": "s:s5Int64V"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK20MeDataRecordResponseV4dates5Int64VSgvs",
+                "mangledName": "$s5DSSDK20MeDataRecordResponseV4dates5Int64VSgvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK20MeDataRecordResponseV4dates5Int64VSgvM",
+                "mangledName": "$s5DSSDK20MeDataRecordResponseV4dates5Int64VSgvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:5DSSDK20MeDataRecordResponseV",
+        "mangledName": "$s5DSSDK20MeDataRecordResponseV",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
         "name": "MeDataValueCollector",
         "printedName": "MeDataValueCollector",
         "children": [
@@ -27985,12 +28231,12 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(DSSDK.MeDataValueResponse.Type) -> (Any?) -> DSSDK.MeDataValueResponse",
+                "printedName": "(DSSDK.MeDataValueResponse.Type) -> ([DSSDK.MeDataRecordResponse]) -> DSSDK.MeDataValueResponse",
                 "children": [
                   {
                     "kind": "TypeFunc",
                     "name": "Function",
-                    "printedName": "(Any?) -> DSSDK.MeDataValueResponse",
+                    "printedName": "([DSSDK.MeDataRecordResponse]) -> DSSDK.MeDataValueResponse",
                     "children": [
                       {
                         "kind": "TypeNominal",
@@ -28000,16 +28246,17 @@
                       },
                       {
                         "kind": "TypeNominal",
-                        "name": "Optional",
-                        "printedName": "Any?",
+                        "name": "Array",
+                        "printedName": "[DSSDK.MeDataRecordResponse]",
                         "children": [
                           {
                             "kind": "TypeNominal",
-                            "name": "ProtocolComposition",
-                            "printedName": "Any"
+                            "name": "MeDataRecordResponse",
+                            "printedName": "DSSDK.MeDataRecordResponse",
+                            "usr": "s:5DSSDK20MeDataRecordResponseV"
                           }
                         ],
-                        "usr": "s:Sq"
+                        "usr": "s:Sa"
                       }
                     ]
                   },
@@ -28030,8 +28277,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK19MeDataValueResponseO7successyACypSgcACmF",
-            "mangledName": "$s5DSSDK19MeDataValueResponseO7successyACypSgcACmF",
+            "usr": "s:5DSSDK19MeDataValueResponseO7successyACSayAA0bc6RecordE0VGcACmF",
+            "mangledName": "$s5DSSDK19MeDataValueResponseO7successyACSayAA0bc6RecordE0VGcACmF",
             "moduleName": "DSSDK"
           },
           {
@@ -28163,21 +28410,22 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Any?",
+                "name": "Array",
+                "printedName": "[DSSDK.MeDataRecordResponse]",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "ProtocolComposition",
-                    "printedName": "Any"
+                    "name": "MeDataRecordResponse",
+                    "printedName": "DSSDK.MeDataRecordResponse",
+                    "usr": "s:5DSSDK20MeDataRecordResponseV"
                   }
                 ],
-                "usr": "s:Sq"
+                "usr": "s:Sa"
               }
             ],
             "declKind": "Func",
-            "usr": "s:5DSSDK19MeDataValueResponseO07successE0yACypSgFZ",
-            "mangledName": "$s5DSSDK19MeDataValueResponseO07successE0yACypSgFZ",
+            "usr": "s:5DSSDK19MeDataValueResponseO07successE0yACSayAA0bc6RecordE0VGFZ",
+            "mangledName": "$s5DSSDK19MeDataValueResponseO07successE0yACSayAA0bc6RecordE0VGFZ",
             "moduleName": "DSSDK",
             "static": true,
             "declAttributes": [
@@ -28771,8 +29019,8 @@
           },
           {
             "kind": "Var",
-            "name": "dailyAverageStepCount",
-            "printedName": "dailyAverageStepCount",
+            "name": "weeklyAverageStepCount",
+            "printedName": "weeklyAverageStepCount",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -28802,14 +29050,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO21dailyAverageStepCountyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO21dailyAverageStepCountyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO22weeklyAverageStepCountyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO22weeklyAverageStepCountyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "dailyAverageWalkingDistance",
-            "printedName": "dailyAverageWalkingDistance",
+            "name": "weeklyAverageHeartRate",
+            "printedName": "weeklyAverageHeartRate",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -28839,14 +29087,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO27dailyAverageWalkingDistanceyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO27dailyAverageWalkingDistanceyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO22weeklyAverageHeartRateyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO22weeklyAverageHeartRateyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "dailyAverageFlightsClimbed",
-            "printedName": "dailyAverageFlightsClimbed",
+            "name": "weeklyAverageRestingHeartRate",
+            "printedName": "weeklyAverageRestingHeartRate",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -28876,14 +29124,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO26dailyAverageFlightsClimbedyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO26dailyAverageFlightsClimbedyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO29weeklyAverageRestingHeartRateyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO29weeklyAverageRestingHeartRateyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "dailyAverageStandTime",
-            "printedName": "dailyAverageStandTime",
+            "name": "weeklyAverageCardioFitnessVo2Max",
+            "printedName": "weeklyAverageCardioFitnessVo2Max",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -28913,14 +29161,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO21dailyAverageStandTimeyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO21dailyAverageStandTimeyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO32weeklyAverageCardioFitnessVo2MaxyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO32weeklyAverageCardioFitnessVo2MaxyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "dailyAverageHeartRate",
-            "printedName": "dailyAverageHeartRate",
+            "name": "weeklyAverageSleepDuration",
+            "printedName": "weeklyAverageSleepDuration",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -28950,14 +29198,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO21dailyAverageHeartRateyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO21dailyAverageHeartRateyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO26weeklyAverageSleepDurationyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO26weeklyAverageSleepDurationyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "dailyAverageRestingHeartRate",
-            "printedName": "dailyAverageRestingHeartRate",
+            "name": "weeklyAverageBloodOxygen",
+            "printedName": "weeklyAverageBloodOxygen",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -28987,14 +29235,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO28dailyAverageRestingHeartRateyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO28dailyAverageRestingHeartRateyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO24weeklyAverageBloodOxygenyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO24weeklyAverageBloodOxygenyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "dailyAverageWalkingHeartRate",
-            "printedName": "dailyAverageWalkingHeartRate",
+            "name": "weeklyAverageWalkingDistance",
+            "printedName": "weeklyAverageWalkingDistance",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29024,8 +29272,119 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO28dailyAverageWalkingHeartRateyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO28dailyAverageWalkingHeartRateyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO28weeklyAverageWalkingDistanceyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO28weeklyAverageWalkingDistanceyA2CmF",
+            "moduleName": "DSSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "weeklyAverageFlightsClimbed",
+            "printedName": "weeklyAverageFlightsClimbed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CollectorType",
+                    "printedName": "DSSDK.CollectorType",
+                    "usr": "s:5DSSDK13CollectorTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DSSDK.CollectorType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CollectorType",
+                        "printedName": "DSSDK.CollectorType",
+                        "usr": "s:5DSSDK13CollectorTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5DSSDK13CollectorTypeO27weeklyAverageFlightsClimbedyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO27weeklyAverageFlightsClimbedyA2CmF",
+            "moduleName": "DSSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "weeklyAverageStandTime",
+            "printedName": "weeklyAverageStandTime",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CollectorType",
+                    "printedName": "DSSDK.CollectorType",
+                    "usr": "s:5DSSDK13CollectorTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DSSDK.CollectorType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CollectorType",
+                        "printedName": "DSSDK.CollectorType",
+                        "usr": "s:5DSSDK13CollectorTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5DSSDK13CollectorTypeO22weeklyAverageStandTimeyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO22weeklyAverageStandTimeyA2CmF",
+            "moduleName": "DSSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "weeklyAverageWalkingHeartRate",
+            "printedName": "weeklyAverageWalkingHeartRate",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "CollectorType",
+                    "printedName": "DSSDK.CollectorType",
+                    "usr": "s:5DSSDK13CollectorTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "DSSDK.CollectorType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "CollectorType",
+                        "printedName": "DSSDK.CollectorType",
+                        "usr": "s:5DSSDK13CollectorTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:5DSSDK13CollectorTypeO29weeklyAverageWalkingHeartRateyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO29weeklyAverageWalkingHeartRateyA2CmF",
             "moduleName": "DSSDK"
           },
           {
@@ -29826,9 +30185,6 @@
             "usr": "s:5DSSDK14PermissionTypeO4CaseO",
             "mangledName": "$s5DSSDK14PermissionTypeO4CaseO",
             "moduleName": "DSSDK",
-            "declAttributes": [
-              "AccessControl"
-            ],
             "isFromExtension": true,
             "conformances": [
               {
@@ -34745,6 +35101,56 @@
             "declKind": "Func",
             "usr": "s:5DSSDK16MeDataDefinitionV06createbC06valuesAA0bC9ContainerVypSg_tKF",
             "mangledName": "$s5DSSDK16MeDataDefinitionV06createbC06valuesAA0bC9ContainerVypSg_tKF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "createMeDataWithDate",
+            "printedName": "createMeDataWithDate(values:saveDate:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "MeDataContainer",
+                "printedName": "DSSDK.MeDataContainer",
+                "usr": "s:5DSSDK15MeDataContainerV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.Int64?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int64",
+                    "printedName": "Swift.Int64",
+                    "usr": "s:s5Int64V"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK16MeDataDefinitionV06createbC8WithDate6values04saveG0AA0bC9ContainerVypSg_s5Int64VSgtKF",
+            "mangledName": "$s5DSSDK16MeDataDefinitionV06createbC8WithDate6values04saveG0AA0bC9ContainerVypSg_s5Int64VSgtKF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "AccessControl"
@@ -43105,6 +43511,96 @@
             "declKind": "Func",
             "usr": "s:5DSSDK13MeDataServiceC03getbC14CategoryGroups9onSuccess0H5ErroryySayAA0bcF5GroupVGSgc_ys0J0_pcSgtF",
             "mangledName": "$s5DSSDK13MeDataServiceC03getbC14CategoryGroups9onSuccess0H5ErroryySayAA0bcF5GroupVGSgc_ys0J0_pcSgtF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "saveMeDataRecordWithDate",
+            "printedName": "saveMeDataRecordWithDate(name:values:date:onSuccess:onError:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Any?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "ProtocolComposition",
+                    "printedName": "Any"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int64",
+                "printedName": "Swift.Int64",
+                "usr": "s:s5Int64V"
+              },
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "() -> ()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ]
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "((any Swift.Error) -> ())?",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(any Swift.Error) -> ()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Void",
+                        "printedName": "()"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Error",
+                        "printedName": "any Swift.Error",
+                        "usr": "s:s5ErrorP"
+                      }
+                    ]
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK13MeDataServiceC04savebC14RecordWithDate4name6values4date9onSuccess0L5ErrorySS_ypSgs5Int64Vyycys0N0_pcSgtF",
+            "mangledName": "$s5DSSDK13MeDataServiceC04savebC14RecordWithDate4name6values4date9onSuccess0L5ErrorySS_ypSgs5Int64Vyycys0N0_pcSgtF",
             "moduleName": "DSSDK",
             "declAttributes": [
               "AccessControl",
@@ -52101,501 +52597,6 @@
         ]
       },
       {
-        "kind": "TypeDecl",
-        "name": "BaseResponse",
-        "printedName": "BaseResponse",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "created",
-            "printedName": "created",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[DSSDK.BaseVersionedResponse<τ_0_0>]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "BaseVersionedResponse",
-                    "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "GenericTypeParam",
-                        "printedName": "τ_0_0"
-                      }
-                    ],
-                    "usr": "s:5DSSDK21BaseVersionedResponseV"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvp",
-            "mangledName": "$s5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[DSSDK.BaseVersionedResponse<τ_0_0>]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "BaseVersionedResponse",
-                        "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "GenericTypeParam",
-                            "printedName": "τ_0_0"
-                          }
-                        ],
-                        "usr": "s:5DSSDK21BaseVersionedResponseV"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvg",
-                "mangledName": "$s5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[DSSDK.BaseVersionedResponse<τ_0_0>]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "BaseVersionedResponse",
-                        "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "GenericTypeParam",
-                            "printedName": "τ_0_0"
-                          }
-                        ],
-                        "usr": "s:5DSSDK21BaseVersionedResponseV"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvs",
-                "mangledName": "$s5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvM",
-                "mangledName": "$s5DSSDK12BaseResponseV7createdSayAA0b9VersionedC0VyxGGvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "updated",
-            "printedName": "updated",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[DSSDK.BaseVersionedResponse<τ_0_0>]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "BaseVersionedResponse",
-                    "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "GenericTypeParam",
-                        "printedName": "τ_0_0"
-                      }
-                    ],
-                    "usr": "s:5DSSDK21BaseVersionedResponseV"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvp",
-            "mangledName": "$s5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[DSSDK.BaseVersionedResponse<τ_0_0>]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "BaseVersionedResponse",
-                        "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "GenericTypeParam",
-                            "printedName": "τ_0_0"
-                          }
-                        ],
-                        "usr": "s:5DSSDK21BaseVersionedResponseV"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvg",
-                "mangledName": "$s5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[DSSDK.BaseVersionedResponse<τ_0_0>]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "BaseVersionedResponse",
-                        "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "GenericTypeParam",
-                            "printedName": "τ_0_0"
-                          }
-                        ],
-                        "usr": "s:5DSSDK21BaseVersionedResponseV"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvs",
-                "mangledName": "$s5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvM",
-                "mangledName": "$s5DSSDK12BaseResponseV7updatedSayAA0b9VersionedC0VyxGGvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "deleted",
-            "printedName": "deleted",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK12BaseResponseV7deletedSaySSGvp",
-            "mangledName": "$s5DSSDK12BaseResponseV7deletedSaySSGvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[Swift.String]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7deletedSaySSGvg",
-                "mangledName": "$s5DSSDK12BaseResponseV7deletedSaySSGvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Array",
-                    "printedName": "[Swift.String]",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sa"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7deletedSaySSGvs",
-                "mangledName": "$s5DSSDK12BaseResponseV7deletedSaySSGvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK12BaseResponseV7deletedSaySSGvM",
-                "mangledName": "$s5DSSDK12BaseResponseV7deletedSaySSGvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(from:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "BaseResponse",
-                "printedName": "DSSDK.BaseResponse<τ_0_0>",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "GenericTypeParam",
-                    "printedName": "τ_0_0"
-                  }
-                ],
-                "usr": "s:5DSSDK12BaseResponseV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Decoder",
-                "printedName": "any Swift.Decoder",
-                "usr": "s:s7DecoderP"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:5DSSDK12BaseResponseV4fromACyxGs7Decoder_p_tKcfc",
-            "mangledName": "$s5DSSDK12BaseResponseV4fromACyxGs7Decoder_p_tKcfc",
-            "moduleName": "DSSDK",
-            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-            "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-            "implicit": true,
-            "throwing": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Function",
-            "name": "encode",
-            "printedName": "encode(to:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Encoder",
-                "printedName": "any Swift.Encoder",
-                "usr": "s:s7EncoderP"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK12BaseResponseV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s5DSSDK12BaseResponseV6encode2toys7Encoder_p_tKF",
-            "moduleName": "DSSDK",
-            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-            "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-            "implicit": true,
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:5DSSDK12BaseResponseV",
-        "mangledName": "$s5DSSDK12BaseResponseV",
-        "moduleName": "DSSDK",
-        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-        "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Decodable",
-            "printedName": "Decodable",
-            "usr": "s:Se",
-            "mangledName": "$sSe"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Encodable",
-            "printedName": "Encodable",
-            "usr": "s:SE",
-            "mangledName": "$sSE"
-          }
-        ]
-      },
-      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -52603,759 +52604,6 @@
         "moduleName": "DSSDK",
         "declAttributes": [
           "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "BaseVersionedResponse",
-        "printedName": "BaseVersionedResponse",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "id",
-            "printedName": "id",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK21BaseVersionedResponseV2idSSvp",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV2idSSvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV2idSSvg",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV2idSSvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV2idSSvs",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV2idSSvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV2idSSvM",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV2idSSvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "createdBy",
-            "printedName": "createdBy",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK21BaseVersionedResponseV9createdBySSSgvp",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdBySSSgvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9createdBySSSgvg",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdBySSSgvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9createdBySSSgvs",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdBySSSgvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9createdBySSSgvM",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdBySSSgvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "createdAt",
-            "printedName": "createdAt",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK21BaseVersionedResponseV9createdAtSSSgvp",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdAtSSSgvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9createdAtSSSgvg",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdAtSSSgvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9createdAtSSSgvs",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdAtSSSgvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9createdAtSSSgvM",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9createdAtSSSgvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "updatedBy",
-            "printedName": "updatedBy",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK21BaseVersionedResponseV9updatedBySSSgvp",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedBySSSgvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9updatedBySSSgvg",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedBySSSgvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9updatedBySSSgvs",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedBySSSgvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9updatedBySSSgvM",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedBySSSgvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "updatedAt",
-            "printedName": "updatedAt",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "Swift.String?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK21BaseVersionedResponseV9updatedAtSSSgvp",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedAtSSSgvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasInitialValue",
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9updatedAtSSSgvg",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedAtSSSgvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Optional",
-                    "printedName": "Swift.String?",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "String",
-                        "printedName": "Swift.String",
-                        "usr": "s:SS"
-                      }
-                    ],
-                    "usr": "s:Sq"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9updatedAtSSSgvs",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedAtSSSgvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV9updatedAtSSSgvM",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV9updatedAtSSSgvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Var",
-            "name": "payload",
-            "printedName": "payload",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "GenericTypeParam",
-                "printedName": "τ_0_0"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:5DSSDK21BaseVersionedResponseV7payloadxvp",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV7payloadxvp",
-            "moduleName": "DSSDK",
-            "declAttributes": [
-              "HasStorage",
-              "AccessControl"
-            ],
-            "hasStorage": true,
-            "accessors": [
-              {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "GenericTypeParam",
-                    "printedName": "τ_0_0"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV7payloadxvg",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV7payloadxvg",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "get"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Set",
-                "printedName": "Set()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "GenericTypeParam",
-                    "printedName": "τ_0_0"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV7payloadxvs",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV7payloadxvs",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "set"
-              },
-              {
-                "kind": "Accessor",
-                "name": "Modify",
-                "printedName": "Modify()",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Void",
-                    "printedName": "()"
-                  }
-                ],
-                "declKind": "Accessor",
-                "usr": "s:5DSSDK21BaseVersionedResponseV7payloadxvM",
-                "mangledName": "$s5DSSDK21BaseVersionedResponseV7payloadxvM",
-                "moduleName": "DSSDK",
-                "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-                "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-                "implicit": true,
-                "accessorKind": "_modify"
-              }
-            ]
-          },
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(from:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "BaseVersionedResponse",
-                "printedName": "DSSDK.BaseVersionedResponse<τ_0_0>",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "GenericTypeParam",
-                    "printedName": "τ_0_0"
-                  }
-                ],
-                "usr": "s:5DSSDK21BaseVersionedResponseV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Decoder",
-                "printedName": "any Swift.Decoder",
-                "usr": "s:s7DecoderP"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:5DSSDK21BaseVersionedResponseV4fromACyxGs7Decoder_p_tKcfc",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV4fromACyxGs7Decoder_p_tKcfc",
-            "moduleName": "DSSDK",
-            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-            "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "throwing": true,
-            "init_kind": "Designated"
-          },
-          {
-            "kind": "Function",
-            "name": "encode",
-            "printedName": "encode(to:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Encoder",
-                "printedName": "any Swift.Encoder",
-                "usr": "s:s7EncoderP"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:5DSSDK21BaseVersionedResponseV6encode2toys7Encoder_p_tKF",
-            "mangledName": "$s5DSSDK21BaseVersionedResponseV6encode2toys7Encoder_p_tKF",
-            "moduleName": "DSSDK",
-            "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-            "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-            "implicit": true,
-            "throwing": true,
-            "funcSelfKind": "NonMutating"
-          }
-        ],
-        "declKind": "Struct",
-        "usr": "s:5DSSDK21BaseVersionedResponseV",
-        "mangledName": "$s5DSSDK21BaseVersionedResponseV",
-        "moduleName": "DSSDK",
-        "genericSig": "<τ_0_0 where τ_0_0 : Swift.Decodable, τ_0_0 : Swift.Encodable>",
-        "sugared_genericSig": "<T where T : Swift.Decodable, T : Swift.Encodable>",
-        "declAttributes": [
-          "AccessControl"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Decodable",
-            "printedName": "Decodable",
-            "usr": "s:Se",
-            "mangledName": "$sSe"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Encodable",
-            "printedName": "Encodable",
-            "usr": "s:SE",
-            "mangledName": "$sSE"
-          }
         ]
       },
       {
@@ -63928,228 +63176,6 @@
         "moduleName": "DSSDK"
       },
       {
-        "kind": "TypeDecl",
-        "name": "AudienceEntity",
-        "printedName": "AudienceEntity",
-        "declKind": "Class",
-        "usr": "c:@M@DSSDK@objc(cs)AudienceEntity",
-        "mangledName": "$s5DSSDK14AudienceEntityC",
-        "moduleName": "DSSDK",
-        "declAttributes": [
-          "AccessControl",
-          "ObjC"
-        ],
-        "superclassUsr": "c:objc(cs)RealmSwiftObject",
-        "hasMissingDesignatedInitializers": true,
-        "inheritsConvenienceInitializers": true,
-        "superclassNames": [
-          "Realm.RealmSwiftObject",
-          "Realm.RLMObjectBase",
-          "ObjectiveC.NSObject"
-        ],
-        "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Copyable",
-            "printedName": "Copyable",
-            "usr": "s:s8CopyableP",
-            "mangledName": "$ss8CopyableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Escapable",
-            "printedName": "Escapable",
-            "usr": "s:s9EscapableP",
-            "mangledName": "$ss9EscapableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CVarArg",
-            "printedName": "CVarArg",
-            "usr": "s:s7CVarArgP",
-            "mangledName": "$ss7CVarArgP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_KeyValueCodingAndObservingPublishing",
-            "printedName": "_KeyValueCodingAndObservingPublishing",
-            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
-            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_KeyValueCodingAndObserving",
-            "printedName": "_KeyValueCodingAndObserving",
-            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
-            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomStringConvertible",
-            "printedName": "CustomStringConvertible",
-            "usr": "s:s23CustomStringConvertibleP",
-            "mangledName": "$ss23CustomStringConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "CustomDebugStringConvertible",
-            "printedName": "CustomDebugStringConvertible",
-            "usr": "s:s28CustomDebugStringConvertibleP",
-            "mangledName": "$ss28CustomDebugStringConvertibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RealmSubscribable",
-            "printedName": "RealmSubscribable",
-            "usr": "s:10RealmSwift0A12SubscribableP",
-            "mangledName": "$s10RealmSwift0A12SubscribableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_ObjcBridgeable",
-            "printedName": "_ObjcBridgeable",
-            "usr": "s:10RealmSwift15_ObjcBridgeableP",
-            "mangledName": "$s10RealmSwift15_ObjcBridgeableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "KeypathSortable",
-            "printedName": "KeypathSortable",
-            "usr": "s:10RealmSwift15KeypathSortableP",
-            "mangledName": "$s10RealmSwift15KeypathSortableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "ObservableObject",
-            "printedName": "ObservableObject",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "ObjectWillChangePublisher",
-                "printedName": "ObjectWillChangePublisher",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "WillChange",
-                    "printedName": "RealmSwift.RealmPublishers.WillChange<Realm.RealmSwiftObject>",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "RealmSwiftObject",
-                        "printedName": "Realm.RealmSwiftObject",
-                        "usr": "c:objc(cs)RealmSwiftObject"
-                      }
-                    ],
-                    "usr": "s:10RealmSwift0A10PublishersO10WillChangeV"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:7Combine16ObservableObjectP",
-            "mangledName": "$s7Combine16ObservableObjectP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_PersistableInsideOptional",
-            "printedName": "_PersistableInsideOptional",
-            "usr": "s:10RealmSwift26_PersistableInsideOptionalP",
-            "mangledName": "$s10RealmSwift26_PersistableInsideOptionalP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_DefaultConstructible",
-            "printedName": "_DefaultConstructible",
-            "usr": "s:10RealmSwift21_DefaultConstructibleP",
-            "mangledName": "$s10RealmSwift21_DefaultConstructibleP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_RealmSchemaDiscoverable",
-            "printedName": "_RealmSchemaDiscoverable",
-            "usr": "s:10RealmSwift01_A18SchemaDiscoverableP",
-            "mangledName": "$s10RealmSwift01_A18SchemaDiscoverableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_Persistable",
-            "printedName": "_Persistable",
-            "usr": "s:10RealmSwift12_PersistableP",
-            "mangledName": "$s10RealmSwift12_PersistableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_HasPersistedType",
-            "printedName": "_HasPersistedType",
-            "children": [
-              {
-                "kind": "TypeWitness",
-                "name": "PersistedType",
-                "printedName": "PersistedType",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "RealmSwiftObject",
-                    "printedName": "Realm.RealmSwiftObject",
-                    "usr": "c:objc(cs)RealmSwiftObject"
-                  }
-                ]
-              }
-            ],
-            "usr": "s:10RealmSwift17_HasPersistedTypeP",
-            "mangledName": "$s10RealmSwift17_HasPersistedTypeP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_RealmCollectionValueInsideOptional",
-            "printedName": "_RealmCollectionValueInsideOptional",
-            "usr": "s:10RealmSwift01_A29CollectionValueInsideOptionalP",
-            "mangledName": "$s10RealmSwift01_A29CollectionValueInsideOptionalP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RealmCollectionValue",
-            "printedName": "RealmCollectionValue",
-            "usr": "s:10RealmSwift0A15CollectionValueP",
-            "mangledName": "$s10RealmSwift0A15CollectionValueP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "ThreadConfined",
-            "printedName": "ThreadConfined",
-            "usr": "s:10RealmSwift14ThreadConfinedP",
-            "mangledName": "$s10RealmSwift14ThreadConfinedP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "RealmFetchable",
-            "printedName": "RealmFetchable",
-            "usr": "s:10RealmSwift0A9FetchableP",
-            "mangledName": "$s10RealmSwift0A9FetchableP"
-          },
-          {
-            "kind": "Conformance",
-            "name": "_ObservedResultsValue",
-            "printedName": "_ObservedResultsValue",
-            "usr": "s:10RealmSwift21_ObservedResultsValueP",
-            "mangledName": "$s10RealmSwift21_ObservedResultsValueP"
-          }
-        ]
-      },
-      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
@@ -70727,7 +69753,7 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-journey\/JourneyService.swift",
       "kind": "Dictionary",
-      "offset": 8665,
+      "offset": 5735,
       "length": 3,
       "value": "[]"
     },
@@ -70776,217 +69802,217 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17142,
+      "offset": 17241,
       "length": 14,
       "value": "\"device_brand\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17184,
+      "offset": 17283,
       "length": 17,
       "value": "\"device_language\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17228,
+      "offset": 17327,
       "length": 16,
       "value": "\"device_country\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17268,
+      "offset": 17367,
       "length": 20,
       "value": "\"device_sdk_version\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17314,
+      "offset": 17413,
       "length": 22,
       "value": "\"device_ab_test_group\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17373,
+      "offset": 17472,
       "length": 34,
       "value": "\"device_push_notification_enabled\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17434,
+      "offset": 17533,
       "length": 23,
       "value": "\"device_mobile_carrier\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17479,
+      "offset": 17578,
       "length": 11,
       "value": "\"device_os\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17520,
+      "offset": 17619,
       "length": 19,
       "value": "\"device_os_version\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17564,
+      "offset": 17663,
       "length": 14,
       "value": "\"device_model\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17609,
+      "offset": 17708,
       "length": 27,
       "value": "\"device_last_app_open_date\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17673,
+      "offset": 17772,
       "length": 26,
       "value": "\"device_screen_resolution\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17728,
+      "offset": 17827,
       "length": 17,
       "value": "\"device_timezone\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17775,
+      "offset": 17874,
       "length": 19,
       "value": "\"device_gmt_offset\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17827,
+      "offset": 17926,
       "length": 22,
       "value": "\"device_battery_level\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17882,
+      "offset": 17981,
       "length": 22,
       "value": "\"device_battery_state\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17935,
+      "offset": 18034,
       "length": 20,
       "value": "\"device_orientation\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 17981,
+      "offset": 18080,
       "length": 15,
       "value": "\"device_rooted\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18025,
+      "offset": 18124,
       "length": 25,
       "value": "\"device_session_duration\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18087,
+      "offset": 18186,
       "length": 29,
       "value": "\"device_available_storage_mb\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18148,
+      "offset": 18247,
       "length": 21,
       "value": "\"device_network_type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18195,
+      "offset": 18294,
       "length": 18,
       "value": "\"device_uptime_ms\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18238,
+      "offset": 18337,
       "length": 14,
       "value": "\"device_muted\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18292,
+      "offset": 18391,
       "length": 29,
       "value": "\"device_ram_usage_percentage\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18355,
+      "offset": 18454,
       "length": 23,
       "value": "\"device_download_speed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18410,
+      "offset": 18509,
       "length": 21,
       "value": "\"device_upload_speed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18458,
+      "offset": 18557,
       "length": 16,
       "value": "\"device_ui_mode\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18504,
+      "offset": 18603,
       "length": 19,
       "value": "\"device_vpn_active\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18562,
+      "offset": 18661,
       "length": 28,
       "value": "\"device_headphone_connected\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18620,
+      "offset": 18719,
       "length": 19,
       "value": "\"device_ip_address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/device\/DeviceDataCollector.swift",
       "kind": "StringLiteral",
-      "offset": 18682,
+      "offset": 18781,
       "length": 32,
       "value": "\"device_screen_brightness_level\""
     },
@@ -71014,147 +70040,168 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1003,
+      "offset": 1269,
       "length": 14,
       "value": "\"contact_list\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1038,
+      "offset": 1304,
       "length": 11,
       "value": "\"app_usage\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1078,
+      "offset": 1344,
       "length": 19,
       "value": "\"bluetooth_devices\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1118,
+      "offset": 1384,
       "length": 17,
       "value": "\"calendar_events\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1157,
+      "offset": 1423,
       "length": 12,
       "value": "\"photo_exif\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1195,
+      "offset": 1461,
       "length": 16,
       "value": "\"installed_apps\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1235,
+      "offset": 1501,
       "length": 14,
       "value": "\"network_ssid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1269,
+      "offset": 1535,
       "length": 10,
       "value": "\"call_log\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1302,
+      "offset": 1568,
       "length": 13,
       "value": "\"device_data\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1340,
+      "offset": 1606,
       "length": 15,
       "value": "\"reminder_data\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1384,
+      "offset": 1650,
       "length": 22,
       "value": "\"total_calorie_burned\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1435,
+      "offset": 1701,
       "length": 8,
       "value": "\"weight\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1472,
+      "offset": 1738,
       "length": 8,
       "value": "\"height\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1514,
-      "length": 26,
-      "value": "\"daily_average_step_count\""
+      "offset": 1781,
+      "length": 17,
+      "value": "\"steps_weekly_av\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1580,
-      "length": 32,
-      "value": "\"daily_average_walking_distance\""
+      "offset": 1833,
+      "length": 22,
+      "value": "\"heart_rate_weekly_av\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1651,
-      "length": 31,
-      "value": "\"daily_average_flights_climbed\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 1716,
-      "length": 26,
-      "value": "\"daily_average_stand_time\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 1776,
-      "length": 26,
-      "value": "\"daily_average_heart_rate\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 1843,
-      "length": 34,
-      "value": "\"daily_average_resting_heart_rate\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 1918,
-      "length": 34,
-      "value": "\"daily_average_walking_heart_rate\""
+      "offset": 1897,
+      "length": 30,
+      "value": "\"resting_heart_rate_weekly_av\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
       "offset": 1972,
+      "length": 34,
+      "value": "\"cardio_fitness_vo2_max_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2045,
+      "length": 25,
+      "value": "\"sleep_dutaion_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2107,
+      "length": 24,
+      "value": "\"blood_oxygen_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2188,
+      "length": 28,
+      "value": "\"walking_distance_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2256,
+      "length": 27,
+      "value": "\"flights_climbed_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2318,
+      "length": 22,
+      "value": "\"stand_time_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2382,
+      "length": 30,
+      "value": "\"walking_heart_rate_weekly_av\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
+      "kind": "StringLiteral",
+      "offset": 2432,
       "length": 9,
       "value": "\"unknown\""
     },
@@ -72101,7 +71148,7 @@
       "kind": "StringLiteral",
       "offset": 136,
       "length": 7,
-      "value": "\"1.0.0\""
+      "value": "\"1.0.1\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/deprecated\/exchange\/ExchangeFlowManager.swift",
@@ -72183,7 +71230,7 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/deprecated\/model\/entity\/exchange\/AudienceEntity.swift",
       "kind": "BooleanLiteral",
-      "offset": 183,
+      "offset": 185,
       "length": 4,
       "value": "true"
     },

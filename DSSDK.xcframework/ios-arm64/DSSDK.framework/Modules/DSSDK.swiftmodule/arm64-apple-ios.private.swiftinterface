@@ -827,6 +827,10 @@ public enum ContinuousCollectorType : Swift.String {
     get
   }
 }
+public struct MeDataRecordResponse {
+  public var recordValue: Any?
+  public var date: Swift.Int64?
+}
 public protocol MeDataValueCollector {
   associatedtype T
   var name: Swift.String { get }
@@ -836,10 +840,10 @@ public protocol MeDataValueCollector {
   func isPermissionsGranted() -> Swift.Bool
 }
 public enum MeDataValueResponse {
-  case success(Any?)
+  case success([DSSDK.MeDataRecordResponse])
   case failed(any Swift.Error)
   case permissionRequired([Swift.String]?)
-  public static func successResponse(_ data: Any?) -> DSSDK.MeDataValueResponse
+  public static func successResponse(_ data: [DSSDK.MeDataRecordResponse]) -> DSSDK.MeDataValueResponse
   public static func failedResponse(_ throwable: any Swift.Error) -> DSSDK.MeDataValueResponse
   public static func permissionRequiredResponse(_ permissionList: [Swift.String]? = nil) -> DSSDK.MeDataValueResponse
 }
@@ -857,13 +861,16 @@ public enum CollectorType : Swift.String {
   case totalCalorieData
   case latestWeightData
   case latestHeightData
-  case dailyAverageStepCount
-  case dailyAverageWalkingDistance
-  case dailyAverageFlightsClimbed
-  case dailyAverageStandTime
-  case dailyAverageHeartRate
-  case dailyAverageRestingHeartRate
-  case dailyAverageWalkingHeartRate
+  case weeklyAverageStepCount
+  case weeklyAverageHeartRate
+  case weeklyAverageRestingHeartRate
+  case weeklyAverageCardioFitnessVo2Max
+  case weeklyAverageSleepDuration
+  case weeklyAverageBloodOxygen
+  case weeklyAverageWalkingDistance
+  case weeklyAverageFlightsClimbed
+  case weeklyAverageStandTime
+  case weeklyAverageWalkingHeartRate
   case unknown
   public static func getTypeOrNull(meDataName: Swift.String?) -> DSSDK.CollectorType?
   public init?(rawValue: Swift.String)
@@ -995,6 +1002,7 @@ public struct MeDataDefinition : Swift.Codable, Swift.Hashable {
   public static func == (lhs: DSSDK.MeDataDefinition, rhs: DSSDK.MeDataDefinition) -> Swift.Bool
   public func getMeDataDefinitionType() -> DSSDK.MeDataType?
   public func createMeData(values: Any?) throws -> DSSDK.MeDataContainer
+  public func createMeDataWithDate(values: Any?, saveDate: Swift.Int64? = nil) throws -> DSSDK.MeDataContainer
   public func hash(into hasher: inout Swift.Hasher)
   public func encode(to encoder: any Swift.Encoder) throws
   public var hashValue: Swift.Int {
@@ -1177,6 +1185,7 @@ public enum DataTypeEntity : Swift.String {
   public func getLastMeDataRecord(name: Swift.String, onSuccess: @escaping (DSSDK.MeDataRecord?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func collectMeData(meDataDefinitionNames: [Swift.String], onSuccess: @escaping ([Swift.String : Any]) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataCategoryGroups(onSuccess: @escaping ([DSSDK.MeDataCategoryGroup]?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
+  public func saveMeDataRecordWithDate(name: Swift.String, values: Any?, date: Swift.Int64, onSuccess: @escaping () -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMeDataPrompt(onSuccess: @escaping (DSSDK.Prompt?) -> Swift.Void, onError: ((any Swift.Error) -> Swift.Void)? = nil)
   public func getMedataViewController()
   @objc deinit
@@ -1408,23 +1417,6 @@ public protocol JSServiceRegistry {
 public protocol WebViewModuleProvider : ObjectiveC.NSObject {
   static func provideUserScripts() -> [WebKit.WKUserScript]
   static func provideHandlers(webView: WebKit.WKWebView) -> [Swift.String : any WebKit.WKScriptMessageHandler]
-}
-public struct BaseResponse<T> : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
-  public var created: [DSSDK.BaseVersionedResponse<T>]
-  public var updated: [DSSDK.BaseVersionedResponse<T>]
-  public var deleted: [Swift.String]
-  public func encode(to encoder: any Swift.Encoder) throws
-  public init(from decoder: any Swift.Decoder) throws
-}
-public struct BaseVersionedResponse<T> : Swift.Codable where T : Swift.Decodable, T : Swift.Encodable {
-  public var id: Swift.String
-  public var createdBy: Swift.String?
-  public var createdAt: Swift.String?
-  public var updatedBy: Swift.String?
-  public var updatedAt: Swift.String?
-  public var payload: T
-  public init(from decoder: any Swift.Decoder) throws
-  public func encode(to encoder: any Swift.Encoder) throws
 }
 public struct DSConfig : Swift.Decodable {
   public init(from decoder: any Swift.Decoder) throws
@@ -1665,9 +1657,6 @@ public struct QuestionnaireResult : Swift.Codable {
   public var answers: [Swift.String]
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
-}
-@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class AudienceEntity : RealmSwift.Object {
-  @objc deinit
 }
 @objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class ExchangeAudienceEntity : RealmSwift.Object {
   @objc deinit
