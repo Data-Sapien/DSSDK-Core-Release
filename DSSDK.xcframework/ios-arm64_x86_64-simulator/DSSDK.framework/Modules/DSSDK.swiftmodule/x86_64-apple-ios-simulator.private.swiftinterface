@@ -861,16 +861,12 @@ public enum CollectorType : Swift.String {
   case totalCalorieData
   case latestWeightData
   case latestHeightData
-  case weeklyAverageStepCount
-  case weeklyAverageHeartRate
-  case weeklyAverageRestingHeartRate
-  case weeklyAverageCardioFitnessVo2Max
-  case weeklyAverageSleepDuration
-  case weeklyAverageBloodOxygen
-  case weeklyAverageWalkingDistance
-  case weeklyAverageFlightsClimbed
-  case weeklyAverageStandTime
-  case weeklyAverageWalkingHeartRate
+  case stepCount
+  case heartRate
+  case restingHeartRate
+  case cardioFitnessVo2Max
+  case sleepDuration
+  case bloodOxygen
   case unknown
   public static func getTypeOrNull(meDataName: Swift.String?) -> DSSDK.CollectorType?
   public init?(rawValue: Swift.String)

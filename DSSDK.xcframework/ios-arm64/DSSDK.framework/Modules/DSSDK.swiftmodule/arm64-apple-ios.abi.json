@@ -29019,8 +29019,8 @@
           },
           {
             "kind": "Var",
-            "name": "weeklyAverageStepCount",
-            "printedName": "weeklyAverageStepCount",
+            "name": "stepCount",
+            "printedName": "stepCount",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29050,14 +29050,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO22weeklyAverageStepCountyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO22weeklyAverageStepCountyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO9stepCountyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO9stepCountyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "weeklyAverageHeartRate",
-            "printedName": "weeklyAverageHeartRate",
+            "name": "heartRate",
+            "printedName": "heartRate",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29087,14 +29087,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO22weeklyAverageHeartRateyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO22weeklyAverageHeartRateyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO9heartRateyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO9heartRateyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "weeklyAverageRestingHeartRate",
-            "printedName": "weeklyAverageRestingHeartRate",
+            "name": "restingHeartRate",
+            "printedName": "restingHeartRate",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29124,14 +29124,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO29weeklyAverageRestingHeartRateyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO29weeklyAverageRestingHeartRateyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO16restingHeartRateyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO16restingHeartRateyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "weeklyAverageCardioFitnessVo2Max",
-            "printedName": "weeklyAverageCardioFitnessVo2Max",
+            "name": "cardioFitnessVo2Max",
+            "printedName": "cardioFitnessVo2Max",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29161,14 +29161,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO32weeklyAverageCardioFitnessVo2MaxyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO32weeklyAverageCardioFitnessVo2MaxyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO19cardioFitnessVo2MaxyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO19cardioFitnessVo2MaxyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "weeklyAverageSleepDuration",
-            "printedName": "weeklyAverageSleepDuration",
+            "name": "sleepDuration",
+            "printedName": "sleepDuration",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29198,14 +29198,14 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO26weeklyAverageSleepDurationyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO26weeklyAverageSleepDurationyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO13sleepDurationyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO13sleepDurationyA2CmF",
             "moduleName": "DSSDK"
           },
           {
             "kind": "Var",
-            "name": "weeklyAverageBloodOxygen",
-            "printedName": "weeklyAverageBloodOxygen",
+            "name": "bloodOxygen",
+            "printedName": "bloodOxygen",
             "children": [
               {
                 "kind": "TypeFunc",
@@ -29235,156 +29235,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO24weeklyAverageBloodOxygenyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO24weeklyAverageBloodOxygenyA2CmF",
-            "moduleName": "DSSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "weeklyAverageWalkingDistance",
-            "printedName": "weeklyAverageWalkingDistance",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CollectorType",
-                    "printedName": "DSSDK.CollectorType",
-                    "usr": "s:5DSSDK13CollectorTypeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "DSSDK.CollectorType.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CollectorType",
-                        "printedName": "DSSDK.CollectorType",
-                        "usr": "s:5DSSDK13CollectorTypeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO28weeklyAverageWalkingDistanceyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO28weeklyAverageWalkingDistanceyA2CmF",
-            "moduleName": "DSSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "weeklyAverageFlightsClimbed",
-            "printedName": "weeklyAverageFlightsClimbed",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CollectorType",
-                    "printedName": "DSSDK.CollectorType",
-                    "usr": "s:5DSSDK13CollectorTypeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "DSSDK.CollectorType.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CollectorType",
-                        "printedName": "DSSDK.CollectorType",
-                        "usr": "s:5DSSDK13CollectorTypeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO27weeklyAverageFlightsClimbedyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO27weeklyAverageFlightsClimbedyA2CmF",
-            "moduleName": "DSSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "weeklyAverageStandTime",
-            "printedName": "weeklyAverageStandTime",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CollectorType",
-                    "printedName": "DSSDK.CollectorType",
-                    "usr": "s:5DSSDK13CollectorTypeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "DSSDK.CollectorType.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CollectorType",
-                        "printedName": "DSSDK.CollectorType",
-                        "usr": "s:5DSSDK13CollectorTypeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO22weeklyAverageStandTimeyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO22weeklyAverageStandTimeyA2CmF",
-            "moduleName": "DSSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "weeklyAverageWalkingHeartRate",
-            "printedName": "weeklyAverageWalkingHeartRate",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(DSSDK.CollectorType.Type) -> DSSDK.CollectorType",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "CollectorType",
-                    "printedName": "DSSDK.CollectorType",
-                    "usr": "s:5DSSDK13CollectorTypeO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "DSSDK.CollectorType.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "CollectorType",
-                        "printedName": "DSSDK.CollectorType",
-                        "usr": "s:5DSSDK13CollectorTypeO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:5DSSDK13CollectorTypeO29weeklyAverageWalkingHeartRateyA2CmF",
-            "mangledName": "$s5DSSDK13CollectorTypeO29weeklyAverageWalkingHeartRateyA2CmF",
+            "usr": "s:5DSSDK13CollectorTypeO11bloodOxygenyA2CmF",
+            "mangledName": "$s5DSSDK13CollectorTypeO11bloodOxygenyA2CmF",
             "moduleName": "DSSDK"
           },
           {
@@ -70131,77 +69983,49 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1781,
-      "length": 17,
-      "value": "\"steps_weekly_av\""
+      "offset": 1768,
+      "length": 12,
+      "value": "\"step_count\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1833,
-      "length": 22,
-      "value": "\"heart_rate_weekly_av\""
+      "offset": 1802,
+      "length": 12,
+      "value": "\"heart_rate\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1897,
-      "length": 30,
-      "value": "\"resting_heart_rate_weekly_av\""
+      "offset": 1843,
+      "length": 20,
+      "value": "\"resting_heart_rate\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 1972,
-      "length": 34,
-      "value": "\"cardio_fitness_vo2_max_weekly_av\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 2045,
-      "length": 25,
-      "value": "\"sleep_dutaion_weekly_av\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 2107,
+      "offset": 1895,
       "length": 24,
-      "value": "\"blood_oxygen_weekly_av\""
+      "value": "\"cardio_fitness_vo2_max\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 2188,
-      "length": 28,
-      "value": "\"walking_distance_weekly_av\""
+      "offset": 1945,
+      "length": 15,
+      "value": "\"sleep_dutaion\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 2256,
-      "length": 27,
-      "value": "\"flights_climbed_weekly_av\""
+      "offset": 1984,
+      "length": 14,
+      "value": "\"blood_oxygen\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
       "kind": "StringLiteral",
-      "offset": 2318,
-      "length": 22,
-      "value": "\"stand_time_weekly_av\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 2382,
-      "length": 30,
-      "value": "\"walking_heart_rate_weekly_av\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-medata\/collector\/MeDataValueCollector.swift",
-      "kind": "StringLiteral",
-      "offset": 2432,
+      "offset": 2018,
       "length": 9,
       "value": "\"unknown\""
     },
