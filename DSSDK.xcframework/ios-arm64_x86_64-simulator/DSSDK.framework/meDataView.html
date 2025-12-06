@@ -46,6 +46,12 @@
       margin-bottom: 1rem;
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       flex-wrap: wrap;
+      cursor: pointer;
+      transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+    }
+    .row:active {
+      transform: scale(0.99);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
     }
     .icon {
       width: 24px;
@@ -80,28 +86,126 @@
       color: #999;
       font-style: italic;
     }
+
+    /* ---- Detail view styles ---- */
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      gap: 0.5rem;
+    }
+    .back-button {
+      border: none;
+      background: #ffffff;
+      border-radius: 999px;
+      padding: 0.4rem 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+      font-size: 0.9rem;
+    }
+    .back-button:active {
+      transform: scale(0.97);
+    }
+    .back-arrow {
+      font-size: 1rem;
+    }
+    .detail-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 0.4rem;
+    }
+    .detail-subtitle {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 1.2rem;
+    }
+
+    .record-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 0.9rem 1rem;
+      margin-bottom: 0.9rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .record-date {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0.4rem;
+    }
+    .record-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #111;
+      margin-bottom: 0.2rem;
+    }
+    .record-value {
+      font-size: 0.95rem;
+      color: #333;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .record-value.empty {
+      color: #999;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
   <div id='content'></div>
   <script>
     const content = document.getElementById('content');
+
+    // Global state (liste & detay arasında geçiş için)
+    let allGroups = [];
+    let currentDetailGroup = null;
+
     function renderLoading() {
       content.innerHTML = '<div class="loader">Loading MeData...</div>';
     }
+
     function renderError(message) {
       content.innerHTML = '<div class="error">⚠️ ' + message + '</div>';
     }
 
+    // Epoch -> Date string
+    function formatEpochToDateString(epoch) {
+      if (!epoch && epoch !== 0) return '';
+
+      let ms = Number(epoch);
+      // saniye mi, milisaniye mi kontrolü
+      if (ms < 1e12) { // 10 haneli ise saniye gibi kabul
+        ms = ms * 1000;
+      }
+      const d = new Date(ms);
+      if (isNaN(d.getTime())) return '';
+
+      // Basit bir format: 2025-12-06 14:30
+      const yyyy = d.getFullYear();
+      const mm   = String(d.getMonth() + 1).padStart(2, '0');
+      const dd   = String(d.getDate()).padStart(2, '0');
+      const hh   = String(d.getHours()).padStart(2, '0');
+      const min  = String(d.getMinutes()).padStart(2, '0');
+
+      return `${yyyy}-${mm}-${dd} ${hh}:${min}`;
+    }
+
+    // Liste ekranı
     function renderGroups(groups) {
+      allGroups = groups || [];
+      currentDetailGroup = null;
       content.innerHTML = '';
 
-      // Sort categories alphabetically
-      groups.sort((a, b) =>
+      // Kategorileri alfabetik sırala
+      allGroups.sort((a, b) =>
         a.category.name.localeCompare(b.category.name, undefined, { sensitivity: 'base' })
       );
 
-      for (const categoryGroup of groups) {
+      for (const categoryGroup of allGroups) {
         const section = document.createElement('div');
         section.className = 'section';
 
@@ -111,13 +215,18 @@
         section.appendChild(header);
 
         for (const group of categoryGroup.groups) {
-          const row = document.createElement('div'); // block-scoped
+          const row = document.createElement('div');
           row.className = 'row';
+
+          // Row click -> detay sayfası
+          row.addEventListener('click', () => {
+            renderDetail(group);
+          });
 
           console.log(`[icona] ${group.meDataDefinition.iconUrl || "(none)"}`);
 
           if (group.meDataDefinition && group.meDataDefinition.iconUrl) {
-            const rowRef = row; // capture current row for async callback
+            const rowRef = row; // async callback için referans
             window.MediaUtil.getImageUrl(group.meDataDefinition.iconUrl, function(resolvedUrl) {
               if (!resolvedUrl) return;
 
@@ -135,7 +244,7 @@
 
               img.src = resolvedUrl;
 
-              rowRef.insertBefore(img, rowRef.firstChild); // keep icon at start
+              rowRef.insertBefore(img, rowRef.firstChild);
             });
           }
 
@@ -146,7 +255,7 @@
           label.className = 'label';
           label.innerText = group.meDataDefinition.text || group.meDataDefinition.name;
 
-          // Extract last value
+          // Son değeri çek
           let values = [];
           if (group.meData && group.meData.records && group.meData.lastValueId) {
             for (const info of group.meData.records) {
@@ -179,31 +288,109 @@
       }
     }
 
-      async function loadMeDataGroups() {
-        renderLoading();
+    // Detay ekranı (tek bir MeData group için)
+    function renderDetail(group) {
+      currentDetailGroup = group;
+      content.innerHTML = '';
 
-        // Promise tabanlı fonksiyon var mı?
-        if (!window.MeDataService || typeof window.MeDataService.getMeDataCategoryGroups !== 'function') {
-          renderError('MeDataService is not available.');
+      const navbar = document.createElement('div');
+      navbar.className = 'navbar';
+
+      const backButton = document.createElement('button');
+      backButton.className = 'back-button';
+      backButton.innerHTML = '<span class="back-arrow">←</span><span>Back</span>';
+      backButton.addEventListener('click', () => {
+        renderGroups(allGroups);
+      });
+
+      navbar.appendChild(backButton);
+      content.appendChild(navbar);
+
+      const title = document.createElement('div');
+      title.className = 'detail-title';
+      title.innerText = group.meDataDefinition.text || group.meDataDefinition.name;
+
+      const subtitle = document.createElement('div');
+      subtitle.className = 'detail-subtitle';
+      subtitle.innerText = 'All saved values';
+
+      content.appendChild(title);
+      content.appendChild(subtitle);
+
+      const records = (group.meData && Array.isArray(group.meData.records))
+        ? [...group.meData.records]
+        : [];
+
+      // En yeni en üstte olacak şekilde sırala (saveDate desc)
+      records.sort((a, b) => Number(b.saveDate) - Number(a.saveDate));
+
+      if (records.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'value empty';
+        empty.innerText = 'No data available';
+        content.appendChild(empty);
+        return;
+      }
+
+      for (const record of records) {
+        const card = document.createElement('div');
+        card.className = 'record-card';
+
+        // Tarih
+        const dateDiv = document.createElement('div');
+        dateDiv.className = 'record-date';
+        const dateString = formatEpochToDateString(record.saveDate);
+        dateDiv.innerText = dateString ? `Date: ${dateString}` : 'Date: -';
+        card.appendChild(dateDiv);
+
+        // Label "Value"
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'record-label';
+        labelDiv.innerText = 'Value';
+        card.appendChild(labelDiv);
+
+        // Tüm value’ları birleştir
+        let valueText = '';
+        if (Array.isArray(record.values)) {
+          for (const v of record.values) {
+            const val = v.value;
+            if (val && val.trim() !== '') {
+              valueText += (valueText ? '\n' : '') + val.trim();
+            }
+          }
+        }
+
+        const valueDiv = document.createElement('div');
+        valueDiv.className = 'record-value' + (valueText ? '' : ' empty');
+        valueDiv.innerText = valueText || 'No data available';
+        card.appendChild(valueDiv);
+
+        content.appendChild(card);
+      }
+    }
+
+    async function loadMeDataGroups() {
+      renderLoading();
+
+      if (!window.MeDataService || typeof window.MeDataService.getMeDataCategoryGroups !== 'function') {
+        renderError('MeDataService is not available.');
+        return;
+      }
+
+      try {
+        const groups = await window.MeDataService.getMeDataCategoryGroups();
+
+        if (!groups || !Array.isArray(groups)) {
+          renderGroups([]);
           return;
         }
 
-        try {
-          // ✅ Artık Promise dönüyor
-          const groups = await window.MeDataService.getMeDataCategoryGroups();
-
-          // null/undefined durumunda boş liste ver
-          if (!groups || !Array.isArray(groups)) {
-            renderGroups([]);
-            return;
-          }
-
-          renderGroups(groups);
-        } catch (e) {
-          renderError(e?.message || String(e));
-        }
+        renderGroups(groups);
+      } catch (e) {
+        renderError(e?.message || String(e));
       }
-      
+    }
+
     loadMeDataGroups();
   </script>
 </body>
