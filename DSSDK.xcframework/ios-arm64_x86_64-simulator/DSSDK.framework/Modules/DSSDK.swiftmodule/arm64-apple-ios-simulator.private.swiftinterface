@@ -457,6 +457,8 @@ public struct Journey : Swift.Codable {
   public var createdAt: Swift.Double
   public var updatedAt: Swift.Double?
   public var publishedAt: Swift.Double?
+  public let audience: DSSDK.JourneyAudience?
+  public func evaluateAudience() -> Swift.Bool
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -489,6 +491,13 @@ extension DSSDK.JourneyMetadata {
   public var imageFullUrl: Foundation.URL? {
     get
   }
+}
+public struct JourneyAudience : Swift.Codable {
+  public var audience: DSSDK.Audience?
+  public var openEnded: Swift.Bool
+  public var count: Swift.Int
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
 }
 public class JourneyContext : Swift.Codable {
   public init(values: [Swift.String : Any] = [:])
@@ -528,6 +537,9 @@ public struct SharedData : Swift.Codable {
 }
 @objc @_inheritsConvenienceInitializers public class JourneyExecutionRecordEntity : RealmSwift.Object {
   @objc override dynamic public init()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class JourneyAudienceEntity : RealmSwift.Object {
   @objc deinit
 }
 @objc @_inheritsConvenienceInitializers final public class JourneyEntity : RealmSwift.Object {
@@ -576,8 +588,13 @@ public struct SharedData : Swift.Codable {
     set
     _modify
   }
+  @RealmSwift.Persisted final public var audience: DSSDK.JourneyAudienceEntity? {
+    get
+    set
+    _modify
+  }
   @objc override dynamic public init()
-  convenience public init(id: Swift.String, name: Swift.String, flow: DSSDK.JourneyFlowEntity?, metadata: DSSDK.JourneyMetadataEntity, tags: [Swift.String] = [], zpdRequest: DSSDK.ZPDRequestEntity? = nil)
+  convenience public init(id: Swift.String, name: Swift.String, flow: DSSDK.JourneyFlowEntity?, metadata: DSSDK.JourneyMetadataEntity, tags: [Swift.String] = [], zpdRequest: DSSDK.ZPDRequestEntity? = nil, audience: DSSDK.JourneyAudienceEntity)
   convenience public init(dto: DSSDK.Journey)
   @objc deinit
 }

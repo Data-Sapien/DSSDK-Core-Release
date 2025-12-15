@@ -14195,6 +14195,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "Journey",
         "printedName": "Journey",
@@ -15089,6 +15099,87 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "audience",
+            "printedName": "audience",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DSSDK.JourneyAudience?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "JourneyAudience",
+                    "printedName": "DSSDK.JourneyAudience",
+                    "usr": "s:5DSSDK15JourneyAudienceV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK7JourneyV8audienceAA0B8AudienceVSgvp",
+            "mangledName": "$s5DSSDK7JourneyV8audienceAA0B8AudienceVSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DSSDK.JourneyAudience?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "JourneyAudience",
+                        "printedName": "DSSDK.JourneyAudience",
+                        "usr": "s:5DSSDK15JourneyAudienceV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK7JourneyV8audienceAA0B8AudienceVSgvg",
+                "mangledName": "$s5DSSDK7JourneyV8audienceAA0B8AudienceVSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "evaluateAudience",
+            "printedName": "evaluateAudience()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK7JourneyV16evaluateAudienceSbyF",
+            "mangledName": "$s5DSSDK7JourneyV16evaluateAudienceSbyF",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
@@ -15145,8 +15236,7 @@
         "mangledName": "$s5DSSDK7JourneyV",
         "moduleName": "DSSDK",
         "declAttributes": [
-          "AccessControl",
-          "RawDocComment"
+          "AccessControl"
         ],
         "conformances": [
           {
@@ -16461,6 +16551,383 @@
         "moduleName": "DSSDK",
         "declAttributes": [
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "JourneyAudience",
+        "printedName": "JourneyAudience",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "audience",
+            "printedName": "audience",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DSSDK.Audience?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Audience",
+                    "printedName": "DSSDK.Audience",
+                    "usr": "s:5DSSDK8AudienceV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK15JourneyAudienceV8audienceAA0C0VSgvp",
+            "mangledName": "$s5DSSDK15JourneyAudienceV8audienceAA0C0VSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DSSDK.Audience?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Audience",
+                        "printedName": "DSSDK.Audience",
+                        "usr": "s:5DSSDK8AudienceV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV8audienceAA0C0VSgvg",
+                "mangledName": "$s5DSSDK15JourneyAudienceV8audienceAA0C0VSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DSSDK.Audience?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Audience",
+                        "printedName": "DSSDK.Audience",
+                        "usr": "s:5DSSDK8AudienceV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV8audienceAA0C0VSgvs",
+                "mangledName": "$s5DSSDK15JourneyAudienceV8audienceAA0C0VSgvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV8audienceAA0C0VSgvM",
+                "mangledName": "$s5DSSDK15JourneyAudienceV8audienceAA0C0VSgvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "openEnded",
+            "printedName": "openEnded",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK15JourneyAudienceV9openEndedSbvp",
+            "mangledName": "$s5DSSDK15JourneyAudienceV9openEndedSbvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV9openEndedSbvg",
+                "mangledName": "$s5DSSDK15JourneyAudienceV9openEndedSbvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV9openEndedSbvs",
+                "mangledName": "$s5DSSDK15JourneyAudienceV9openEndedSbvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV9openEndedSbvM",
+                "mangledName": "$s5DSSDK15JourneyAudienceV9openEndedSbvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "count",
+            "printedName": "count",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK15JourneyAudienceV5countSivp",
+            "mangledName": "$s5DSSDK15JourneyAudienceV5countSivp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV5countSivg",
+                "mangledName": "$s5DSSDK15JourneyAudienceV5countSivg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV5countSivs",
+                "mangledName": "$s5DSSDK15JourneyAudienceV5countSivs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK15JourneyAudienceV5countSivM",
+                "mangledName": "$s5DSSDK15JourneyAudienceV5countSivM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "JourneyAudience",
+                "printedName": "DSSDK.JourneyAudience",
+                "usr": "s:5DSSDK15JourneyAudienceV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:5DSSDK15JourneyAudienceV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s5DSSDK15JourneyAudienceV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "DSSDK",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:5DSSDK15JourneyAudienceV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s5DSSDK15JourneyAudienceV6encode2toys7Encoder_p_tKF",
+            "moduleName": "DSSDK",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:5DSSDK15JourneyAudienceV",
+        "mangledName": "$s5DSSDK15JourneyAudienceV",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
         ]
       },
       {
@@ -18081,6 +18548,245 @@
       },
       {
         "kind": "TypeDecl",
+        "name": "JourneyAudienceEntity",
+        "printedName": "JourneyAudienceEntity",
+        "declKind": "Class",
+        "usr": "c:@M@DSSDK@objc(cs)JourneyAudienceEntity",
+        "mangledName": "$s5DSSDK21JourneyAudienceEntityC",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "AccessControl",
+          "ObjC"
+        ],
+        "superclassUsr": "c:objc(cs)RealmSwiftObject",
+        "hasMissingDesignatedInitializers": true,
+        "inheritsConvenienceInitializers": true,
+        "superclassNames": [
+          "Realm.RealmSwiftObject",
+          "Realm.RLMObjectBase",
+          "ObjectiveC.NSObject"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CVarArg",
+            "printedName": "CVarArg",
+            "usr": "s:s7CVarArgP",
+            "mangledName": "$ss7CVarArgP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObservingPublishing",
+            "printedName": "_KeyValueCodingAndObservingPublishing",
+            "usr": "s:10Foundation37_KeyValueCodingAndObservingPublishingP",
+            "mangledName": "$s10Foundation37_KeyValueCodingAndObservingPublishingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_KeyValueCodingAndObserving",
+            "printedName": "_KeyValueCodingAndObserving",
+            "usr": "s:10Foundation27_KeyValueCodingAndObservingP",
+            "mangledName": "$s10Foundation27_KeyValueCodingAndObservingP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomStringConvertible",
+            "printedName": "CustomStringConvertible",
+            "usr": "s:s23CustomStringConvertibleP",
+            "mangledName": "$ss23CustomStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CustomDebugStringConvertible",
+            "printedName": "CustomDebugStringConvertible",
+            "usr": "s:s28CustomDebugStringConvertibleP",
+            "mangledName": "$ss28CustomDebugStringConvertibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RealmSubscribable",
+            "printedName": "RealmSubscribable",
+            "usr": "s:10RealmSwift0A12SubscribableP",
+            "mangledName": "$s10RealmSwift0A12SubscribableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObjcBridgeable",
+            "printedName": "_ObjcBridgeable",
+            "usr": "s:10RealmSwift15_ObjcBridgeableP",
+            "mangledName": "$s10RealmSwift15_ObjcBridgeableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "KeypathSortable",
+            "printedName": "KeypathSortable",
+            "usr": "s:10RealmSwift15KeypathSortableP",
+            "mangledName": "$s10RealmSwift15KeypathSortableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ObservableObject",
+            "printedName": "ObservableObject",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ObjectWillChangePublisher",
+                "printedName": "ObjectWillChangePublisher",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "WillChange",
+                    "printedName": "RealmSwift.RealmPublishers.WillChange<Realm.RealmSwiftObject>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "RealmSwiftObject",
+                        "printedName": "Realm.RealmSwiftObject",
+                        "usr": "c:objc(cs)RealmSwiftObject"
+                      }
+                    ],
+                    "usr": "s:10RealmSwift0A10PublishersO10WillChangeV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:7Combine16ObservableObjectP",
+            "mangledName": "$s7Combine16ObservableObjectP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_PersistableInsideOptional",
+            "printedName": "_PersistableInsideOptional",
+            "usr": "s:10RealmSwift26_PersistableInsideOptionalP",
+            "mangledName": "$s10RealmSwift26_PersistableInsideOptionalP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_DefaultConstructible",
+            "printedName": "_DefaultConstructible",
+            "usr": "s:10RealmSwift21_DefaultConstructibleP",
+            "mangledName": "$s10RealmSwift21_DefaultConstructibleP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_RealmSchemaDiscoverable",
+            "printedName": "_RealmSchemaDiscoverable",
+            "usr": "s:10RealmSwift01_A18SchemaDiscoverableP",
+            "mangledName": "$s10RealmSwift01_A18SchemaDiscoverableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_Persistable",
+            "printedName": "_Persistable",
+            "usr": "s:10RealmSwift12_PersistableP",
+            "mangledName": "$s10RealmSwift12_PersistableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_HasPersistedType",
+            "printedName": "_HasPersistedType",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "PersistedType",
+                "printedName": "PersistedType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "RealmSwiftObject",
+                    "printedName": "Realm.RealmSwiftObject",
+                    "usr": "c:objc(cs)RealmSwiftObject"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:10RealmSwift17_HasPersistedTypeP",
+            "mangledName": "$s10RealmSwift17_HasPersistedTypeP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_RealmCollectionValueInsideOptional",
+            "printedName": "_RealmCollectionValueInsideOptional",
+            "usr": "s:10RealmSwift01_A29CollectionValueInsideOptionalP",
+            "mangledName": "$s10RealmSwift01_A29CollectionValueInsideOptionalP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RealmCollectionValue",
+            "printedName": "RealmCollectionValue",
+            "usr": "s:10RealmSwift0A15CollectionValueP",
+            "mangledName": "$s10RealmSwift0A15CollectionValueP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "ThreadConfined",
+            "printedName": "ThreadConfined",
+            "usr": "s:10RealmSwift14ThreadConfinedP",
+            "mangledName": "$s10RealmSwift14ThreadConfinedP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RealmFetchable",
+            "printedName": "RealmFetchable",
+            "usr": "s:10RealmSwift0A9FetchableP",
+            "mangledName": "$s10RealmSwift0A9FetchableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "_ObservedResultsValue",
+            "printedName": "_ObservedResultsValue",
+            "usr": "s:10RealmSwift21_ObservedResultsValueP",
+            "mangledName": "$s10RealmSwift21_ObservedResultsValueP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "DSSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "RealmSwift",
+        "printedName": "RealmSwift",
+        "declKind": "Import",
+        "moduleName": "DSSDK"
+      },
+      {
+        "kind": "TypeDecl",
         "name": "JourneyEntity",
         "printedName": "JourneyEntity",
         "children": [
@@ -19075,6 +19781,124 @@
             ]
           },
           {
+            "kind": "Var",
+            "name": "audience",
+            "printedName": "audience",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "DSSDK.JourneyAudienceEntity?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "JourneyAudienceEntity",
+                    "printedName": "DSSDK.JourneyAudienceEntity",
+                    "usr": "c:@M@DSSDK@objc(cs)JourneyAudienceEntity"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvp",
+            "mangledName": "$s5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvp",
+            "moduleName": "DSSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Custom"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DSSDK.JourneyAudienceEntity?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "JourneyAudienceEntity",
+                        "printedName": "DSSDK.JourneyAudienceEntity",
+                        "usr": "c:@M@DSSDK@objc(cs)JourneyAudienceEntity"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvg",
+                "mangledName": "$s5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvg",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "DSSDK.JourneyAudienceEntity?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "JourneyAudienceEntity",
+                        "printedName": "DSSDK.JourneyAudienceEntity",
+                        "usr": "c:@M@DSSDK@objc(cs)JourneyAudienceEntity"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvs",
+                "mangledName": "$s5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvs",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvM",
+                "mangledName": "$s5DSSDK13JourneyEntityC8audienceAA0b8AudienceC0CSgvM",
+                "moduleName": "DSSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init()",
@@ -19103,7 +19927,7 @@
           {
             "kind": "Constructor",
             "name": "init",
-            "printedName": "init(id:name:flow:metadata:tags:zpdRequest:)",
+            "printedName": "init(id:name:flow:metadata:tags:zpdRequest:audience:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -19172,15 +19996,22 @@
                 ],
                 "hasDefaultArg": true,
                 "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "JourneyAudienceEntity",
+                "printedName": "DSSDK.JourneyAudienceEntity",
+                "usr": "c:@M@DSSDK@objc(cs)JourneyAudienceEntity"
               }
             ],
             "declKind": "Constructor",
-            "usr": "s:5DSSDK13JourneyEntityC2id4name4flow8metadata4tags10zpdRequestACSS_SSAA0b4FlowC0CSgAA0b8MetadataC0CSaySSGAA010ZPDRequestC0CSgtcfc",
-            "mangledName": "$s5DSSDK13JourneyEntityC2id4name4flow8metadata4tags10zpdRequestACSS_SSAA0b4FlowC0CSgAA0b8MetadataC0CSaySSGAA010ZPDRequestC0CSgtcfc",
+            "usr": "s:5DSSDK13JourneyEntityC2id4name4flow8metadata4tags10zpdRequest8audienceACSS_SSAA0b4FlowC0CSgAA0b8MetadataC0CSaySSGAA010ZPDRequestC0CSgAA0b8AudienceC0Ctcfc",
+            "mangledName": "$s5DSSDK13JourneyEntityC2id4name4flow8metadata4tags10zpdRequest8audienceACSS_SSAA0b4FlowC0CSgAA0b8MetadataC0CSaySSGAA010ZPDRequestC0CSgAA0b8AudienceC0Ctcfc",
             "moduleName": "DSSDK",
             "declAttributes": [
               "Convenience",
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "init_kind": "Convenience"
           },
@@ -69755,6 +70586,13 @@
       "value": "\"COMPLETED\""
     },
     {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-journey\/model\/dto\/Journey\/JourneyAudience.swift",
+      "kind": "BooleanLiteral",
+      "offset": 202,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-journey\/model\/dto\/Journey\/JourneyContext.swift",
       "kind": "Dictionary",
       "offset": 179,
@@ -69797,6 +70635,13 @@
       "value": "true"
     },
     {
+      "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-journey\/model\/entity\/Journey\/JourneyAudienceEntity.swift",
+      "kind": "BooleanLiteral",
+      "offset": 264,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-journey\/model\/entity\/Journey\/JourneyEntity.swift",
       "kind": "BooleanLiteral",
       "offset": 225,
@@ -69806,7 +70651,7 @@
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/0-journey\/model\/entity\/Journey\/JourneyEntity.swift",
       "kind": "Array",
-      "offset": 927,
+      "offset": 1185,
       "length": 2,
       "value": "[]"
     },
@@ -71264,7 +72109,7 @@
       "kind": "StringLiteral",
       "offset": 136,
       "length": 7,
-      "value": "\"1.0.2\""
+      "value": "\"1.0.3\""
     },
     {
       "filePath": "\/Users\/runner\/work\/DSSDK-Core-Build\/DSSDK-Core-Build\/DSSDK\/deprecated\/exchange\/ExchangeFlowManager.swift",
