@@ -322,7 +322,7 @@
         : [];
 
       // En yeni en üstte olacak şekilde sırala (saveDate desc)
-      records.sort((a, b) => Number(b.saveDate) - Number(a.saveDate));
+      records.sort((a, b) => Number(b.date) - Number(a.date));
 
       if (records.length === 0) {
         const empty = document.createElement('div');
@@ -339,7 +339,7 @@
         // Tarih
         const dateDiv = document.createElement('div');
         dateDiv.className = 'record-date';
-        const dateString = formatEpochToDateString(record.saveDate);
+        const dateString = formatEpochToDateString(record.date);
         dateDiv.innerText = dateString ? `Date: ${dateString}` : 'Date: -';
         card.appendChild(dateDiv);
 
